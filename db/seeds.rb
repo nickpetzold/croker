@@ -87,3 +87,4 @@ end
 # THIS WILL RETURN AN HASH OF HASHES LIKE THIS
 # {"Bitcoin"=>{"BTC"=>3443.67}, "Ethereum"=>{"ETH"=>200.04}}
 CRYPTO_SEEDS_HASH_OF_HASHES = Hash[crypto_array_with_names.zip(crypto_seeds_hash.to_a)].transform_values!{|a| Hash[*a]}
+puts CRYPTO_SEEDS_HASH_OF_HASHES
