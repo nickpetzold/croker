@@ -1,11 +1,31 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# BUILDING CRYPTOCURRENCIES HASH TO FETCH TO BUILD SEEDS AND FETCH TO API LATER
+# IF YOU WANNA ADD A CRYPTOCURRENCY JUST ADD TICKER_NAME WITH A COMMA TO THE HASH
+# AND TICKER_CODE AS VALUE
+crypto_hash = {
+  Bitcoin: "BTC",
+  Bitcoincash: "BCH",
+  Ethereum: "ETH",
+  Ethereumclassic: "ETC",
+  Ripple: "XRP",
+  Basicattentiontoken: "BAT",
+  Icon: "ICX",
+  Vechain: "VET",
+  Stellar: "XLM",
+  Ravencoin: "RVN",
+  Tron: "TRX",
+  Nano: "NANO",
+  Monero: "XMR",
+  Binance: "BNB",
+  Dogecoin: "DOGE",
+  Qtum: "QTUM",
+  Lisk: "LSK",
+  Waves: "WAVES",
+  Siacoin: "SC",
+  Augur: "REP" }
 
+# STRING WITH FIAT CURRENCIES TO FEED INTO API. TO ADD ANOTHER ONE
+# TYPE LIKE THIS "USD, EUR, JPY"
+fiat_currencies = "USD"
 
 puts "---------- Creating Users ----------"
 
@@ -20,86 +40,51 @@ puts "---------- USERS CREATED ----------"
 
 puts "---------- Creating Cryptocurrencies ----------"
 
-coin = Cryptocurrency.new(ticker_name: "Bitcoin", ticker_code: "BTC/USD")
-coin.save
-puts "Creating #{coin.ticker_name} with ticker #{coin.ticker_code}"
-
-coin = Cryptocurrency.new(ticker_name: "Bitcoin Cash", ticker_code: "BCH/USD")
-coin.save
-puts "Creating #{coin.ticker_name} with ticker #{coin.ticker_code}"
-
-
-coin = Cryptocurrency.new(ticker_name: "Ethereum", ticker_code: "ETH/USD")
-coin.save
-puts "Creating #{coin.ticker_name} with ticker #{coin.ticker_code}"
-
-coin = Cryptocurrency.new(ticker_name: "Ethereum Classic", ticker_code: "ETC/USD")
-coin.save
-puts "Creating #{coin.ticker_name} with ticker #{coin.ticker_code}"
-
-coin = Cryptocurrency.new(ticker_name: "Ripple", ticker_code: "XRP/USD")
-coin.save
-puts "Creating #{coin.ticker_name} with ticker #{coin.ticker_code}"
-
-coin = Cryptocurrency.new(ticker_name: "Basic Attention Token", ticker_code: "BAT/USD")
-coin.save
-puts "Creating #{coin.ticker_name} with ticker #{coin.ticker_code}"
-
-coin = Cryptocurrency.new(ticker_name: "ICON", ticker_code: "ICX/USD")
-coin.save
-puts "Creating #{coin.ticker_name} with ticker #{coin.ticker_code}"
-
-coin = Cryptocurrency.new(ticker_name: "VeChain", ticker_code: "VET/USD")
-coin.save
-puts "Creating #{coin.ticker_name} with ticker #{coin.ticker_code}"
-
-coin = Cryptocurrency.new(ticker_name: "Stellar Lumens", ticker_code: "XLM/USD")
-coin.save
-puts "Creating #{coin.ticker_name} with ticker #{coin.ticker_code}"
-
-coin = Cryptocurrency.new(ticker_name: "Ravencoin", ticker_code: "RVN/USD")
-coin.save
-puts "Creating #{coin.ticker_name} with ticker #{coin.ticker_code}"
-
-coin = Cryptocurrency.new(ticker_name: "Tron", ticker_code: "TRX/USD")
-coin.save
-puts "Creating #{coin.ticker_name} with ticker #{coin.ticker_code}"
-
-coin = Cryptocurrency.new(ticker_name: "Nano", ticker_code: "Nano/USD")
-coin.save
-puts "Creating #{coin.ticker_name} with ticker #{coin.ticker_code}"
-
-coin = Cryptocurrency.new(ticker_name: "Monero", ticker_code: "XMR/USD")
-coin.save
-puts "Creating #{coin.ticker_name} with ticker #{coin.ticker_code}"
-
-coin = Cryptocurrency.new(ticker_name: "Binance Coin", ticker_code: "BNB/USD")
-coin.save
-puts "Creating #{coin.ticker_name} with ticker #{coin.ticker_code}"
-
-coin = Cryptocurrency.new(ticker_name: "Dogecoin", ticker_code: "DOGE/USD")
-coin.save
-puts "Creating #{coin.ticker_name} with ticker #{coin.ticker_code}"
-
-coin = Cryptocurrency.new(ticker_name: "QTUM", ticker_code: "QTUM/USD")
-coin.save
-puts "Creating #{coin.ticker_name} with ticker #{coin.ticker_code}"
-
-coin = Cryptocurrency.new(ticker_name: "Lisk", ticker_code: "LSK/USD")
-coin.save
-puts "Creating #{coin.ticker_name} with ticker #{coin.ticker_code}"
-
-coin = Cryptocurrency.new(ticker_name: "Waves", ticker_code: "WAVES/USD")
-coin.save
-puts "Creating #{coin.ticker_name} with ticker #{coin.ticker_code}"
-
-coin = Cryptocurrency.new(ticker_name: "Sia Coin", ticker_code: "SC/USD")
-coin.save
-puts "Creating #{coin.ticker_name} with ticker #{coin.ticker_code}"
-
-coin = Cryptocurrency.new(ticker_name: "REP", ticker_code: "REP/USD")
-coin.save
-puts "Creating #{coin.ticker_name} with ticker #{coin.ticker_code}"
+crypto_hash.each do |key, value|
+  coin = Cryptocurrency.new(ticker_name: "#{key}", ticker_code: "#{value}/#{fiat_currencies}")
+  coin.save!
+  puts "Creating #{coin.ticker_name} with ticker #{coin.ticker_code}"
+end
 
 puts "---------- CRYPTOCURRENCIES CREATED ----------"
 puts "!!!!!!!!!!!!!!! SEEDS CREATED !!!!!!!!!!!!!!!"
+
+
+# REFACTOR TOMORROW INTO A PARSE FILE FOR RAILS
+
+# 1 - Creating an empty crypto string to feed the tickers name
+crypto_string_with_tickers = ""
+# 2 - Creating an empty array to feed the cryptocurrencies names
+crypto_array_with_names = []
+
+# 3 - Iterate through the crypto_hash
+crypto_hash.each do |key, value|
+  # 4 - Build a string with all cryptocurrency tickers "BTC,ETH"
+  crypto_string_with_tickers << "#{value},"
+  # 5 - Build an array with all cryptocurrency names ["Bitcoin", "Ethereum"]
+  crypto_array_with_names << key.to_s
+end
+
+# 6 - Transform the ex string "BTC,ETH,XRP," into "BTC,ETH,XRP"
+crypto_string_with_tickers = crypto_string_with_tickers.chomp(",")
+
+# 7 - Transform the crypto string into a crypto array with tickers ex: ["BTC","ETH","XRP"]
+crypto_array_with_tickers = crypto_string_with_tickers.split(",")
+
+# 8 - Building the API GET Request and Parsing the Response
+url_api = "https://min-api.cryptocompare.com/data/pricemulti?fsyms=#{crypto_string_with_tickers}&tsyms=#{fiat_currencies}&api_key=#{ENV['CRYPTO_COMPARE_API_KEY']}"
+response = RestClient.get(url_api)
+response_parsed = JSON.parse(response)
+
+# Empty hash to build an hash of hashes
+crypto_seeds_hash = {}
+
+# THIS RETURNS AN HASH LIKE THIS {btc: 3017.24, eth: 3014.24}
+crypto_array_with_tickers.each do |crypto|
+  crypto_seeds_hash[crypto] = response_parsed[crypto][fiat_currencies]
+end
+
+# THIS WILL RETURN AN HASH OF HASHES LIKE THIS
+# {"Bitcoin"=>{"BTC"=>3443.67}, "Ethereum"=>{"ETH"=>200.04}}
+CRYPTO_SEEDS_HASH_OF_HASHES = Hash[crypto_array_with_names.zip(crypto_seeds_hash.to_a)].transform_values!{|a| Hash[*a]}
+puts CRYPTO_SEEDS_HASH_OF_HASHES
