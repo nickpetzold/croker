@@ -9,6 +9,30 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+h1 {
+  font-weight: 900;
+  font-size: 32px;
+  color: $header-gray;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 20px;
+  color: $header-gray;
+}
+
+h3 {
+  font-weight: bold;
+  font-size: 16px;
+  color: $header-gray;
+}
+
+p {
+  font-weight: lighter;
+  font-weight: 16px;
+  color: $header-gray;
+}
+
 // Your CSS partials
 @import "layouts/index";
 @import "components/index";

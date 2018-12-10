@@ -1,3 +1,48 @@
 .navbar-croker {
+  margin: 0;
+  height: 80px;
+  background-color: white;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+}
 
+.navbar-left {
+  display: flex;
+  margin: 0;
+
+}
+
+.logo {
+  height: 80px;
+  width: 80px;
+  margin-left: 50px;
+  margin-right: 15px;
+}
+
+.tabs {
+  display: flex;
+  align-items: center;
+}
+
+.tab {
+  margin: 0 20px;
+  padding: 26px 5px 26px 5px;
+  font-weight: normal;
+  color: $gray;
+}
+
+.tab:hover {
+  color: $header-gray;
+}
+
+.active {
+  font-weight: 900 !important;
+  color: $header-gray !important;
+  border-bottom: 4px solid $green;
+  padding-bottom: 22px !important;
+}
+
+.navbar-right {
+  border: 1px solid black;
 }

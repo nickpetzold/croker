@@ -1,33 +1,11 @@
 // Import Google fonts
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
+@import "colors" ;
 
 // Define fonts for body and headers
 $body-font: 'Lato', 'sans-serif';
 $headers-font: 'Lato', 'sans-serif';
 
-h1 {
-  font-weight: 900;
-  font-size: 32px;
-  color: $title-gray;
-}
-
-h2 {
-  font-weight: bold;
-  font-size: 20px;
-  color: $title-gray;
-}
-
-h3 {
-  font-weight: bold;
-  font-size: 16px;
-  color: $title-gray;
-}
-
-p {
-  font-weight: lighter;
-  font-weight: 16px;
-  color: $title-gray;
-}
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {
