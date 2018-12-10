@@ -10,10 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_10_105218) do
+ActiveRecord::Schema.define(version: 2018_12_10_145839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cryptocurrencies", force: :cascade do |t|
+    t.string "ticker_name"
+    t.string "ticker_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "portfolios", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "cryptocurrency_id"
+    t.decimal "amount_held", default: "0.0", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cryptocurrency_id"], name: "index_portfolios_on_cryptocurrency_id"
+    t.index ["user_id"], name: "index_portfolios_on_user_id"
+  end
+
+  create_table "trades", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "cryptocurrency_id"
+    t.integer "usd_cents_rate"
+    t.integer "usd_cents_value"
+    t.decimal "cryptocurrency_value"
+    t.integer "transaction_type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cryptocurrency_id"], name: "index_trades_on_cryptocurrency_id"
+    t.index ["user_id"], name: "index_trades_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -23,8 +53,15 @@ ActiveRecord::Schema.define(version: 2018_12_10_105218) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "country"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "portfolios", "cryptocurrencies"
+  add_foreign_key "portfolios", "users"
+  add_foreign_key "trades", "cryptocurrencies"
+  add_foreign_key "trades", "users"
 end
