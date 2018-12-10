@@ -1,0 +1,21 @@
+body {
+  display: block;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 45%;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+#btn-refresh {
+  display: flex;
+  justify-content: space-around;
+}
+

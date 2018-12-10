@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API Testing 💸</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrapper">
+  <button id="btn-refresh" type="button" class="btn btn-primary">Refresh</button>
+</div>
+  <div class="wrapper">
+    <div class="container cryptocompare">
+      <table class="table">
+        <thead>
+          <tr>
+            <th colspan="4">Crypto Exchange Rates - CryptoCompare</th>
+          </tr>
+          <tr>
+            <th>Coin</th>
+            <th>USD</th>
+            <th>EUR</th>
+            <th>GBP</th>
+          </tr>
+        </thead>
+        <tbody id="exchange-table-cc">
+
+        </tbody>
+      </table>
+    </div>
+    <div class="container coinigy">
+      <table class="table">
+        <thead>
+          <tr>
+            <th colspan="4">Crypto Exchange Rates - Coinigy</th>
+          </tr>
+          <tr>
+            <th>Coin</th>
+            <th>USD</th>
+            <th>EUR</th>
+            <th>GBP</th>
+          </tr>
+        </thead>
+        <tbody id="exchange-table-cy">
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="build/application.js"></script>
+</body>
+</html>
