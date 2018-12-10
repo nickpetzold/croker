@@ -1,0 +1,82 @@
+.dashboard-wrapper {
+  margin: 0;
+  background-color: $light-gray;
+  width: 100%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-top: 30px;
+}
+
+.dashboard-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1088px;
+  margin: 20px 0 0 0;
+}
+
+.dashboard-field {
+  background-color: white;
+  box-shadow: 1px 1px 50px rgba(0,0,0,0.3);
+  border-radius: 1px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  margin: 5px;
+}
+
+.title-icon {
+  border-bottom: 2px solid $green;
+  padding-bottom: 8px;
+}
+
+.icon {
+  width: 32px;
+  height: 28px;
+}
+
+.title-header {
+  padding-bottom: 8px;
+  border-bottom: 2px solid $light-gray;
+  margin: 0;
+  width: 100%;
+  h2 {
+    margin: 0;
+    padding: 3px 5px 3px 10px;
+  }
+}
+
+.portfolio-stats {
+  width: 720px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.portfolio-change {
+  width: 50%;
+  margin: 0px;
+}
+
+.change-content {
+  height: 200px;
+  margin: 10px;
+  border-right: 1px solid $light-gray;
+  padding: 0px;
+}
+
+.portfolio-value {
+  width: 50%;
+  margin: 0px;
+}
+
+.value-content {
+  height: 200px;
+  margin: 10px;
+  border-left: 1px solid $light-gray;
+  padding: 0px;
+}

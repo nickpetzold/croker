@@ -2,7 +2,6 @@
   margin: 0;
   height: 80px;
   background-color: white;
-  border: 1px solid black;
   display: flex;
   justify-content: space-between;
 }
@@ -23,6 +22,9 @@
 .tabs {
   display: flex;
   align-items: center;
+  a {
+    text-decoration: none;
+  }
 }
 
 .tab {
@@ -40,9 +42,66 @@
   font-weight: 900 !important;
   color: $header-gray !important;
   border-bottom: 4px solid $green;
-  padding-bottom: 22px !important;
+  padding-bottom: 25px !important;
+  padding-top: 28px !important;
 }
 
 .navbar-right {
-  border: 1px solid black;
+  margin-right: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-balances {
+  color: #D3D3D3;
+  text-align: right;
+  margin-right: 20px;
+  h4 {
+    font-size: 12px !important;
+    font-weight: bold !important;
+    #available-balance {
+      color: $header-gray
+    }
+    #portfolio-value {
+      color: $header-gray
+    }
+  }
+}
+
+.deposit {
+  font-size: 17px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+.sign-up {
+  font-size: 17px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 4px;
+  margin-right: 20px;
+}
+
+.login {
+  font-size: 17px;
+  padding: 5px 27px;
+  border-radius: 4px;
+  margin-left: 5px;
+  margin-right: 5px;
+  color: $green;
+  border: 2px solid $green;
+}
+
+.login:hover {
+  border: 4px solid $green;
+  padding: 3px 25px;
+  color: $green;
+  margin-left: 5px;
+}
+
+.navbar-settings i {
+  font-size: 24px;
+  color: #b7b7b7;
 }
