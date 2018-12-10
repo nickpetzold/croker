@@ -41,7 +41,7 @@
     <type label="Inet CIDR Addr" length="0" sql="CIDR" quote="'"/>
     <type label="Geometry" length="0" sql="GEOMETRY" quote="'"/>
   </group>
-</datatypes><table x="322" y="290" name="Users">
+</datatypes><table x="161" y="284" name="Users">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -57,31 +57,31 @@
 <row name="Date_of_birth" null="1" autoincrement="0">
 <datatype>DATE</datatype>
 <default>NULL</default></row>
-<row name="FIAT_balance" null="1" autoincrement="0">
+<row name="USD_balance" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="Country" null="1" autoincrement="0">
+<datatype>TEXT</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="769" y="154" name="Cryptos">
+<table x="716" y="312" name="Cryptos">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="Name" null="1" autoincrement="0">
+<row name="Ticker_name" null="1" autoincrement="0">
 <datatype>TEXT</datatype>
 <default>NULL</default></row>
-<row name="Code" null="1" autoincrement="0">
-<datatype>TEXT</datatype>
-<default>NULL</default></row>
-<row name="Icon" null="1" autoincrement="0">
+<row name="Ticker_code" null="1" autoincrement="0">
 <datatype>TEXT</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="511" y="305" name="Trades">
+<table x="439" y="418" name="Trades">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -93,20 +93,26 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="Cryptos" row="id" />
 </row>
-<row name="USD_rate" null="1" autoincrement="0">
+<row name="USD_rate_cents" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="USD_value" null="1" autoincrement="0">
+<row name="USD_value_cents" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="Crypto_value" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
+<row name="Transaction_type" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="Date_of_trade" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="507" y="77" name="Portfolio">
+<table x="436" y="112" name="Portfolio">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -121,19 +127,39 @@
 <row name="Amount_held" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
+<row name="Receive_notifications" null="1" autoincrement="0">
+<datatype>BOOLEAN</datatype>
+<default>NULL</default></row>
+<row name="Max_price_target" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="Min_price_target" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="80" y="276" name="Payment Details">
+<table x="130" y="24" name="Notifications">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="User_id" null="1" autoincrement="0">
+<row name="recipient_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="Users" row="id" />
-</row>
-<row name="Credit Card Number" null="1" autoincrement="0">
+<default>NULL</default></row>
+<row name="actor_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="read_at" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="action" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="notifiable_type" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="notifiable_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
