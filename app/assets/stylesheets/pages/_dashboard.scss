@@ -116,6 +116,10 @@
   }
 }
 
+.selected {
+  color: $header-gray;
+}
+
 .portfolio-value {
   width: 50%;
   margin: 0px;
@@ -168,17 +172,34 @@
 }
 
 .portfolio-headers {
-  display: flex;
-  align-items: center;
+  border-bottom: 1px solid $light-gray;
+  h4 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #919191;
+  }
+}
+
+.portfolio-crypto {
+  border-bottom: 1px solid $light-gray;
+  height: 60px;
+  // overflow-y: scroll;
+  h4 {
+    font-size: 16px;
+    font-weight: bold;
+    color: $header-gray;
+  }
 }
 
 .portfolio-row {
-  margin: 0 35px 0 5px;
+  display: flex;
+  align-items: center;
+  margin: 0 25px 0 25px;
+  padding: 0 10px 0 10px;
 }
 
 .portfolio-rank {
   flex: 1 0 70px;
-  text-align: center;
 }
 
 .portfolio-name {
@@ -199,3 +220,32 @@
   flex: 1 0 110px;
   text-align: right;
 }
+
+.crypto-rows {
+  max-height: 360px;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+
+.crypto-name {
+  display: flex;
+  align-items: center;
+}
+
+.portfolio-icon {
+  width: 35px;
+  height: 35px;
+  margin: 0 15px 0 5px;
+}
+
+.crypto-rank {
+  padding-left: 10px;
+}
+
+.crypto-code {
+  font-size: 12px;
+  color: #DDDBDB;
+}
+
+
