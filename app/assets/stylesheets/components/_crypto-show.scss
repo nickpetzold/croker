@@ -1,0 +1,122 @@
+.show {
+  background-color: #FFFFFF;
+}
+
+.crypto-logo-show {
+  width: 30px;
+  margin: 5px;
+}
+
+.price-wrapper {
+  text-align: right;
+  margin: 20px;
+}
+
+.chart-wrapper {
+  background-color: red;
+  height: 35%;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.empty {
+  // width: 75%;
+  flex: 0 1 80%;
+}
+
+.timeframe-wrapper {
+  display: flex;
+  margin: 0px 20px;
+  li {
+    padding: 0px;
+    color: $gray;
+  }
+  .selected {
+    color: black;
+  }
+}
+
+.balance-container {
+  margin: 0px 20px;
+}
+
+.show-balance {
+  h3{
+    margin: 0;
+  }
+}
+
+.buy-sell-container {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.buy-sell-tabs {
+  display: flex;
+  height: 60px;
+  .buy-tab {
+    width: 50%;
+  }
+  .sell-tab {
+    width: 50%;
+  }
+  .tab {
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.balance {
+  color: $gray;
+}
+
+.tab-selected {
+  border-bottom: 4px solid $green;
+}
+
+.crypto-search {
+  display: flex;
+  padding-top: 15px;
+  form {
+    width: 90%;
+    margin: 0px 30px;
+  }
+}
+
+#cryptoSearch {
+  background-color: #F7F7F7;
+  border: 0;
+  box-shadow: none;
+}
+
+#tradeValue {
+  background-color: white;
+  border: 0.5px solid $light-gray;
+  // border: 1px solid #F7F7F7;
+  box-shadow: none;
+  padding: 25px;
+}
+
+.buy-input-container {
+  display: flex;
+  margin-top: 45px;
+  justify-content: center;
+  align-items: center;
+  form {
+    margin: 10px;
+  }
+}
+
+.buy-sell-button {
+  padding-top: 40px;
+  .btn {
+    padding: 10px 120px;
+  }
+}
+
+.half-wrapper {
+  .show {
+    background-color: #ffffff;
+  }
+}
