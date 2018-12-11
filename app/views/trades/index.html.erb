@@ -102,9 +102,11 @@ THE INFORMATION FROM THE API, EXAMPLES BELOW -->
   <div>
     <% @cryptos.each do |cryptocurrency| %>
       <h2>
+        <%= image_tag "cardano.png", size: "50x50"%>
         <%= cryptocurrency.ticker_name %>
         <%= cryptocurrency.ticker_code %>
         <%= @live_prices[cryptocurrency.ticker_name][cryptocurrency.ticker_code] %>
+        <%= link_to "go to show", trade_path(cryptocurrency) %>
       </h2>
     <% end %>
   </div>
@@ -115,6 +117,7 @@ THE INFORMATION FROM THE API, EXAMPLES BELOW -->
   <% @live_news.first(5).each do |news| %>
     <div>
       <h2><%= news["title"] %></h2>
+      <h2><%= news["source"] %></h2>
       <%= image_tag news["imageurl"] %>
     </div>
     <div>

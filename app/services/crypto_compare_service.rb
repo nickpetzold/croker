@@ -4,6 +4,8 @@ class CryptoCompareService
   # AND TICKER_CODE AS VALUE
   CRYPTO_HASH = {
     Bitcoin: "BTC",
+    Cardano: "ADA",
+    Dignity: "DIG",
     Litecoin: "LTC",
     Bitcoincash: "BCH",
     Ethereum: "ETH",
