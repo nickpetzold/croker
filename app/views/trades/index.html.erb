@@ -1,0 +1,129 @@
+<div class="trade-container">
+  <div class="page-wrapper">
+    <div class="half-wrapper list">
+      <div class="crypto-search text-center">
+        <form>
+          <input type="name" class="crypto-search-input form-control" id="cryptoSearch" placeholder="🔍 (Bitcoin, Ethereum, etc)">
+        </form>
+      </div>
+      <div class="crypto-list-headers">
+        <div class="product list-headers">
+          <div class='list-inline product-controls product-body'>
+            <li>Coin</li>
+          </div>
+          <ul class="list-inline product-controls">
+            <li>Price</li>
+            <li>Value Held</li>
+          </ul>
+        </div>
+      </div>
+      <div class="scrollable-crypto-list">
+        <% cryptocounter = 1 %>
+        <% @cryptos.each do |crypto| %>
+        <% cryptocounter += 1 %>
+        <div class="product">
+          <%= image_tag "Bitcoin.png", class: "product-image" %>
+          <div class='product-body'>
+            <h3><%= crypto.ticker_name %></h3>
+            <p><%= crypto.ticker_code %></p>
+          </div>
+          <ul class="list-inline product-controls">
+            <li>$1.234<%#= @live_prices[crypto.ticker_name][crypto.ticker_code] %></li>
+            <li>$4.321</li>
+          </ul>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="half-wrapper show">
+      <div class="car-card-title">
+        <div class="green-line">
+          <%= image_tag "Bitcoin.png", class: "crypto-logo-show" %>
+        </div>
+        <h3 class="title-show">Bitcoin</h3>
+      </div>
+      <div class="price-wrapper">
+        <h3>$1.234</h3>
+      </div>
+      <div class="chart-wrapper">
+      </div>
+      <div class="timeframe-wrapper">
+        <div class="empty"></div>
+        <ul class= "list-inline timeframe-list">
+          <li class="1d">1D</li>
+          <li class="1w selected">1W</li>
+          <li class="1m">1M</li>
+          <li class="1y">1Y</li>
+          <li class="all">All</li>
+        </ul>
+      </div>
+      <div class="balance-container">
+        <div class="show-balance">
+          <ul class= "list-inline">
+            <li><h3>Balance:</h3></li>
+            <li class="balance">80.000,00 USD</li>
+          </ul>
+        </div>
+      </div>
+      <div class="buy-sell-container">
+        <div class="buy-sell-tabs">
+          <div class="buy-tab tab-selected text-center">
+            <h3>BUY</h3>
+          </div>
+          <div class="sell-tab text-center">
+            <h3>SELL</h3>
+          </div>
+        </div>
+        <div class="buy-input-container">
+          <form>
+            <input type="name" class="crypto-search-input form-control text-right" id="tradeValue" placeholder="2 BTC">
+          </form>
+          <i class="fas fa-exchange-alt"></i>
+          <form>
+            <input type="name" class="crypto-search-input form-control text-right" id="tradeValue" placeholder="80 USD">
+          </form>
+        </div>
+        <div class="buy-sell-button text-center">
+          <div class="btn btn-success">BUY</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- # THIS IS JUST FOR TESTING PURPOSES. THIS IS HOW YOU SHOULD FETCH
+THE INFORMATION FROM THE API, EXAMPLES BELOW -->
+
+
+
+<div class="container text-center">
+  <div><h1>HELLO THIS IS THE BUY SELL PAGE</h1></div>
+  <div>
+    <% @cryptos.each do |cryptocurrency| %>
+      <h2>
+        <%= cryptocurrency.ticker_name %>
+        <%= cryptocurrency.ticker_code %>
+        <%= @live_prices[cryptocurrency.ticker_name][cryptocurrency.ticker_code] %>
+      </h2>
+    <% end %>
+  </div>
+</div>
+
+<div class="container-fluid text-center">
+  <h1>#CRYPTOCURRENCY</h1>
+  <% @live_news.first(5).each do |news| %>
+    <div>
+      <h2><%= news["title"] %></h2>
+      <%= image_tag news["imageurl"] %>
+    </div>
+    <div>
+      <h3><%= news["body"] %></h3>
+    </div>
+  <% end %>
+</div>
+
+
+
+
+
