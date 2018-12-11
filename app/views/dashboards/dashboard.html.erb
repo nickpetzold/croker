@@ -1,5 +1,22 @@
 <div class="dashboard-wrapper">
-  <div class="dashboard-row-wrapper" id="top-row">
+  <% if true %>
+  <div class="dashboard-row-wrapper">
+    <div class="dashboard-container">
+      <div class="no-coins-dashboard dashboard-field">
+        <div class="no-coins-message">
+          <h1 class="text-center">It looks like you don't have any coins...</h1>
+          <%= image_tag 'sad_croker', class: "sad-croker"%>
+          <h1>Let's change that shall we?</h1>
+          <a href="#" class="btn btn-success buy-coins">Buy Coins Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% else %>
+  <!-- ########################################## -->
+  <!-- If user has coins this section to be shown -->
+  <!-- ########################################## -->
+  <div class="dashboard-row-wrapper">
     <div class="dashboard-container">
       <!-- This is the start of the first box!!!!! -->
       <div class="portfolio-val-change dashboard-field">
@@ -281,6 +298,10 @@
     </div>
   </div>
   <!-- This is the end of the third box!!!!! -->
+  <!-- ########################################## -->
+  <!-- If user has coins this section to be shown -->
+  <!-- ########################################## -->
+  <% end %>
   <div class="dashboard-row-wrapper">
     <div class="dashboard-container">
       <!-- This is the start of the fourth box!!!!! -->
