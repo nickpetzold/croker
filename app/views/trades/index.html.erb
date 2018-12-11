@@ -20,7 +20,10 @@
         </div>
       </div>
       <div class="scrollable-crypto-list">
+
         <% @cryptos.each do |crypto| %>
+        <%= link_to trade_path(crypto) do %>
+
         <div class="product">
           <%= image_tag "Bitcoin", class: "product-image" %>
           <div class='product-body'>
@@ -28,10 +31,14 @@
             <p><%= crypto.ticker_code %></p>
           </div>
           <ul class="list-inline product-controls">
-            <li>$1.234<%#= @live_prices[crypto.ticker_name][crypto.ticker_code] %></li>
+            <li>
+              <%= @live_prices[crypto.ticker_name][crypto.ticker_code] %>
+              <%= CryptoCompareService::FIAT_CURRENCIES %>
+            </li>
             <li>$4.321</li>
           </ul>
         </div>
+        <% end %>
         <% end %>
       </div>
     </div>
@@ -55,33 +62,36 @@ THE INFORMATION FROM THE API, EXAMPLES BELOW -->
 
 
 
-<div class="container text-center">
+<!-- <div class="container text-center">
   <div><h1>HELLO THIS IS THE BUY SELL PAGE</h1></div>
   <div>
-    <% @cryptos.each do |cryptocurrency| %>
+    <%# @cryptocurrencies.each do |cryptocurrency| %>
       <h2>
-        <%= cryptocurrency.ticker_name %>
-        <%= cryptocurrency.ticker_code %>
-        <%= @live_prices[cryptocurrency.ticker_name][cryptocurrency.ticker_code] %>
+        <%#= image_tag "cardano.png", size: "50x50"%>
+        <%#= cryptocurrency.ticker_name %>
+        <%#= cryptocurrency.ticker_code %>
+        <%#= @live_prices[cryptocurrency.ticker_name][cryptocurrency.ticker_code] %>
+        <%#= link_to "go to show", trade_path(cryptocurrency) %>
       </h2>
-    <% end %>
+    <%#end %>
   </div>
 </div>
 
 <div class="container-fluid text-center">
   <h1>#CRYPTOCURRENCY</h1>
-  <% @live_news.first(5).each do |news| %>
+  <%# @live_news.first(5).each do |news| %>
     <div>
-      <h2><%= news["title"] %></h2>
-      <%= image_tag news["imageurl"] %>
+      <h2><%#= news["title"] %></h2>
+      <h2><%#= news["source"] %></h2>
+      <%#= image_tag news["imageurl"] %>
     </div>
     <div>
-      <h3><%= news["body"] %></h3>
+      <h3><%#= news["body"] %></h3>
     </div>
-  <% end %>
+  <%# end %>
 </div>
 
-
+ -->
 
 
 

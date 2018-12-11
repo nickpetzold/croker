@@ -1,0 +1,442 @@
+<div class="dashboard-wrapper">
+  <% if true %>
+  <div class="dashboard-row-wrapper">
+    <div class="dashboard-container">
+      <div class="no-coins-dashboard dashboard-field">
+        <div class="no-coins-message">
+          <h1 class="text-center">It looks like you don't have any coins...</h1>
+          <%= image_tag 'sad_croker', class: "sad-croker"%>
+          <h1>Let's change that shall we?</h1>
+          <a href="#" class="btn btn-success buy-coins">Buy Coins Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% else %>
+  <!-- ########################################## -->
+  <!-- If user has coins this section to be shown -->
+  <!-- ########################################## -->
+  <div class="dashboard-row-wrapper">
+    <div class="dashboard-container">
+      <!-- This is the start of the first box!!!!! -->
+      <div class="portfolio-val-change dashboard-field">
+        <!-- #################################### -->
+        <div class="portfolio-change">
+          <div class="title">
+            <div class="title-icon">
+              <%= image_tag 'title_icon', class: "icon" %>
+            </div>
+            <div class="title-header">
+              <h2>Portfolio Change</h2>
+            </div>
+          </div>
+          <div class="change-content">
+            <%= image_tag 'launch', class: "portfolio-image launch" %>
+            <span class="positive content-headline-figure text-center">+50.83%</span>
+          </div>
+          <div class="change-timescale">
+            <h4>1D <span class="selected">1W</span> 1M 1Y ALL</h4>
+          </div>
+        </div>
+        <!-- #################################### -->
+        <div class="portfolio-value">
+          <div class="title">
+            <div class="title-icon">
+              <%= image_tag 'title_icon', class: "icon" %>
+            </div>
+            <div class="title-header">
+              <h2>Portfolio Value</h2>
+            </div>
+          </div>
+          <div class="value-content">
+            <%= image_tag 'coins', class: "portfolio-image coins" %>
+            <span class="content-headline-figure text-center">$634.50</span>
+          </div>
+          <div class="change-timescale">
+            <!-- Empty div to ensure border spacing -->
+          </div>
+        </div>
+        <!-- #################################### -->
+      </div>
+      <!-- This is the end of the first box!!!!! -->
+
+      <!-- This is the start of the second box!!!!! -->
+      <div class="portfolio-stats dashboard-field">
+        <div class="title">
+          <div class="title-icon">
+            <%= image_tag 'title_icon', class: "icon" %>
+          </div>
+          <div class="title-header">
+            <h2>Portfolio Change</h2>
+          </div>
+        </div>
+        <div class="stats-content">
+          <div class="stats-entry">
+            <div class="stats-title">
+              <h3>Number of Coins Held:</h3><h3>6</h3>
+            </div>
+            <p>Total number of different coins held</p>
+          </div>
+          <div class="stats-entry">
+            <div class="stats-title">
+              <h3>Total Trades:</h3><h3>22</h3>
+            </div>
+            <p>Total number of trades within this account</p>
+          </div>
+          <div class="stats-entry">
+            <div class="stats-title">
+              <h3>Profit Factor:</h3><h3>4.81</h3>
+            </div>
+            <p>Profit factor is defined as profits divided by losses</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- This is the end of the second box!!!!! -->
+
+  <!-- This is the start of the third box!!!!! -->
+  <div class="dashboard-row-wrapper">
+    <div class="dashboard-container">
+      <div class="portfolio-overview dashboard-field">
+        <div class="title">
+          <div class="title-icon">
+            <%= image_tag 'title_icon', class: "icon" %>
+          </div>
+          <div class="title-header">
+            <h2>Portfolio Overview</h2>
+          </div>
+        </div>
+        <div class="portfolio-headers portfolio-row">
+          <div class="portfolio-rank">
+            <h4>Rank</h4>
+          </div>
+          <div class="portfolio-name">
+            <h4>Name</h4>
+          </div>
+          <div class="portfolio-price">
+            <h4>Price</h4>
+          </div>
+          <div class="portfolio-value-held">
+            <h4 style="padding-right: 5px">Value Held</h4>
+          </div>
+          <div class="portfolio-profit-loss">
+            <h4 style="padding-right: 10px">Profit/Loss</h4>
+          </div>
+        </div>
+        <div class="crypto-rows">
+          <!-- Row for each crypto here -->
+          <%= link_to 'dashboards' do %>
+          <div class="portfolio-link">
+            <div class="portfolio-crypto portfolio-row">
+              <div class="portfolio-rank crypto-rank">
+                <h4>1</h4>
+              </div>
+              <div class="portfolio-name crypto-name">
+                <%= image_tag 'BTC', class: "portfolio-icon" %>
+                <h4>Bitcoin <span class="crypto-code">BTC</span></h4>
+              </div>
+              <div class="portfolio-price crypto-price">
+                <h4>$3,234.02</h4>
+              </div>
+              <div class="portfolio-value-held crypto-value-held">
+                <h4>$100.34</h4>
+              </div>
+              <div class="portfolio-profit-loss crypto-profit-loss">
+                <h4><span class="positive">$10.12</span></h4>
+              </div>
+            </div>
+          </div>
+          <% end %>
+          <!-- Row for each crypto here -->
+          <!-- Row for each crypto here -->
+          <%= link_to 'dashboards' do %>
+          <div class="portfolio-link">
+            <div class="portfolio-crypto portfolio-row">
+              <div class="portfolio-rank crypto-rank">
+                <h4>2</h4>
+              </div>
+              <div class="portfolio-name crypto-name">
+                <%= image_tag 'XMR', class: "portfolio-icon" %>
+                <h4>Monero <span class="crypto-code">XMR</span></h4>
+              </div>
+              <div class="portfolio-price crypto-price">
+                <h4>$78.90</h4>
+              </div>
+              <div class="portfolio-value-held crypto-value-held">
+                <h4>$1,030.34</h4>
+              </div>
+              <div class="portfolio-profit-loss crypto-profit-loss">
+                <h4><span class="positive">$500.73</span></h4>
+              </div>
+            </div>
+          </div>
+          <% end %>
+          <!-- Row for each crypto here -->
+          <!-- Row for each crypto here -->
+          <%= link_to 'dashboards' do %>
+          <div class="portfolio-link">
+            <div class="portfolio-crypto portfolio-row">
+              <div class="portfolio-rank crypto-rank">
+                <h4>3</h4>
+              </div>
+              <div class="portfolio-name crypto-name">
+                <%= image_tag 'BCH', class: "portfolio-icon" %>
+                <h4>Bitcoin Cash <span class="crypto-code">BCH</span></h4>
+              </div>
+              <div class="portfolio-price crypto-price">
+                <h4>$120.74</h4>
+              </div>
+              <div class="portfolio-value-held crypto-value-held">
+                <h4>$23.76</h4>
+              </div>
+              <div class="portfolio-profit-loss crypto-profit-loss">
+                <h4><span class="negative">$38.09</span></h4>
+              </div>
+            </div>
+          </div>
+          <% end %>
+          <!-- Row for each crypto here -->
+          <!-- Row for each crypto here -->
+          <%= link_to 'dashboards' do %>
+          <div class="portfolio-link">
+            <div class="portfolio-crypto portfolio-row">
+              <div class="portfolio-rank crypto-rank">
+                <h4>4</h4>
+              </div>
+              <div class="portfolio-name crypto-name">
+                <%= image_tag 'USDT', class: "portfolio-icon" %>
+                <h4>Tehter <span class="crypto-code">USDT</span></h4>
+              </div>
+              <div class="portfolio-price crypto-price">
+                <h4>$23.77</h4>
+              </div>
+              <div class="portfolio-value-held crypto-value-held">
+                <h4>$189.99</h4>
+              </div>
+              <div class="portfolio-profit-loss crypto-profit-loss">
+                <h4><span class="positive">$2.99</span></h4>
+              </div>
+            </div>
+          </div>
+          <% end %>
+          <!-- Row for each crypto here -->
+          <!-- Row for each crypto here -->
+          <%= link_to 'dashboards' do %>
+          <div class="portfolio-link">
+            <div class="portfolio-crypto portfolio-row">
+              <div class="portfolio-rank crypto-rank">
+                <h4>5</h4>
+              </div>
+              <div class="portfolio-name crypto-name">
+                <%= image_tag 'ETH', class: "portfolio-icon" %>
+                <h4>Ethereum <span class="crypto-code">ETH</span></h4>
+              </div>
+              <div class="portfolio-price crypto-price">
+                <h4>$1.88</h4>
+              </div>
+              <div class="portfolio-value-held crypto-value-held">
+                <h4>$409.65</h4>
+              </div>
+              <div class="portfolio-profit-loss crypto-profit-loss">
+                <h4><span class="negative">$28.99</span></h4>
+              </div>
+            </div>
+          </div>
+          <% end %>
+          <!-- Row for each crypto here -->
+          <!-- Row for each crypto here -->
+          <%= link_to 'dashboards' do %>
+          <div class="portfolio-link">
+            <div class="portfolio-crypto portfolio-row">
+              <div class="portfolio-rank crypto-rank">
+                <h4>6</h4>
+              </div>
+              <div class="portfolio-name crypto-name">
+                <%= image_tag 'XLM', class: "portfolio-icon" %>
+                <h4>Stellar <span class="crypto-code">XLM</span></h4>
+              </div>
+              <div class="portfolio-price crypto-price">
+                <h4>$88.87</h4>
+              </div>
+              <div class="portfolio-value-held crypto-value-held">
+                <h4>$10.66</h4>
+              </div>
+              <div class="portfolio-profit-loss crypto-profit-loss">
+                <h4><span class="negative">$9.76</span></h4>
+              </div>
+            </div>
+          </div>
+          <% end %>
+          <!-- Row for each crypto here -->
+          <!-- Row for each crypto here -->
+          <%= link_to 'dashboards' do %>
+          <div class="portfolio-link">
+            <div class="portfolio-crypto portfolio-row">
+              <div class="portfolio-rank crypto-rank">
+                <h4>7</h4>
+              </div>
+              <div class="portfolio-name crypto-name">
+                <%= image_tag 'XRP', class: "portfolio-icon" %>
+                <h4>Ripple <span class="crypto-code">XRP</span></h4>
+              </div>
+              <div class="portfolio-price crypto-price">
+                <h4>$0.87</h4>
+              </div>
+              <div class="portfolio-value-held crypto-value-held">
+                <h4>$390.88</h4>
+              </div>
+              <div class="portfolio-profit-loss crypto-profit-loss">
+                <h4><span class="positive">$130.12</span></h4>
+              </div>
+            </div>
+          </div>
+          <% end %>
+          <!-- Row for each crypto here -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- This is the end of the third box!!!!! -->
+  <!-- ########################################## -->
+  <!-- If user has coins this section to be shown -->
+  <!-- ########################################## -->
+  <% end %>
+  <div class="dashboard-row-wrapper">
+    <div class="dashboard-container">
+      <!-- This is the start of the fourth box!!!!! -->
+      <div class="top-winners-losers dashboard-field">
+        <div class="title">
+          <div class="title-icon">
+            <%= image_tag 'title_icon', class: "icon" %>
+          </div>
+          <div class="title-header">
+            <h2>Top 5 Winners/Losers</h2>
+          </div>
+        </div>
+        <div class="winners-losers-cols">
+          <div class="winners-losers-col">
+            <%= link_to 'dashboards' do %>
+            <div class="winner-loser-card">
+              <%= image_tag 'XMR', class: "portfolio-icon" %>
+              <h4>XMR</h4>
+              <h4><span class="winner">+34.59%</span></h4>
+            </div>
+            <% end %>
+            <%= link_to 'dashboards' do %>
+            <div class="winner-loser-card">
+              <%= image_tag 'BTC', class: "portfolio-icon" %>
+              <h4>BTC</h4>
+              <h4><span class="winner">+21.77%</span></h4>
+            </div>
+            <% end %>
+            <%= link_to 'dashboards' do %>
+            <div class="winner-loser-card">
+              <%= image_tag 'BCH', class: "portfolio-icon" %>
+              <h4>BCH</h4>
+              <h4><span class="winner">+19.02%</span></h4>
+            </div>
+            <% end %>
+            <%= link_to 'dashboards' do %>
+            <div class="winner-loser-card">
+              <%= image_tag 'NEO', class: "portfolio-icon" %>
+              <h4>NEO</h4>
+              <h4><span class="winner">+12.73%</span></h4>
+            </div>
+            <% end %>
+            <%= link_to 'dashboards' do %>
+            <div class="winner-loser-card">
+              <%= image_tag 'XLM', class: "portfolio-icon" %>
+              <h4>XLM</h4>
+              <h4><span class="winner">+8.62%</span></h4>
+            </div>
+            <% end %>
+          </div>
+          <div class="winners-losers-col">
+            <%= link_to 'dashboards' do %>
+            <div class="winner-loser-card">
+              <h4><span class="loser">-29.73%</span></h4>
+              <h4>XRP</h4>
+              <%= image_tag 'XRP', class: "portfolio-icon" %>
+            </div>
+            <% end %>
+            <%= link_to 'dashboards' do %>
+            <div class="winner-loser-card">
+              <h4><span class="loser">-24.57%</span></h4>
+              <h4>USDT</h4>
+              <%= image_tag 'USDT', class: "portfolio-icon" %>
+            </div>
+            <% end %>
+            <%= link_to 'dashboards' do %>
+            <div class="winner-loser-card">
+              <h4><span class="loser">-19.74%</span></h4>
+              <h4>LTC</h4>
+              <%= image_tag 'LTC', class: "portfolio-icon" %>
+            </div>
+            <% end %>
+            <%= link_to 'dashboards' do %>
+            <div class="winner-loser-card">
+              <h4><span class="loser">-13.48%</span></h4>
+              <h4>EOS</h4>
+              <%= image_tag 'EOS', class: "portfolio-icon" %>
+            </div>
+            <% end %>
+            <%= link_to 'dashboards' do %>
+            <div class="winner-loser-card">
+              <h4><span class="loser">-6.46%</span></h4>
+              <h4>ADA</h4>
+              <%= image_tag 'ADA', class: "portfolio-icon" %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <!-- This is the end of the fourth box!!!!! -->
+      <!-- This is the start of the fifth box!!!! -->
+      <div class="crypto-news dashboard-field">
+        <div class="title">
+          <div class="title-icon">
+            <%= image_tag 'title_icon', class: "icon" %>
+          </div>
+          <div class="title-header">
+            <h2>Crypto News</h2>
+          </div>
+        </div>
+        <div class="news-pane">
+          <% @latest_news.first(10).each do |news| %>
+            <%= link_to news["guid"] do %>
+            <div class="news-card">
+              <h4 class="news-title"><%= news["title"] %></h4>
+              <p class="news-body"><%= news["body"] %></p>
+            </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <!-- This is the end of the fifth box!!!!! -->
+      <!-- This is the start of the sixth box!!!! -->
+      <div class="top-traded-cryptos dashboard-field">
+        <div class="title">
+          <div class="title-icon">
+            <%= image_tag 'title_icon', class: "icon" %>
+          </div>
+          <div class="title-header">
+            <h2>Top Traded Cryptos</h2>
+          </div>
+        </div>
+        <div class="top-traded">
+          <% @top_five.each do |key, value|  %>
+            <%= link_to 'dashboards' do %>
+            <div class="top-traded-card">
+              <h4 style="padding-right: 20px; color: #969696;">1</h4>
+              <%= image_tag value, class: "portfolio-icon" %>
+              <h4><%= key %> <span class="crypto-code"><%= value %></span></h4>
+            </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <!-- This is the end of the sixth box!!!!! -->
+    </div>
+  </div>
+</div>
