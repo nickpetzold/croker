@@ -1,5 +1,5 @@
 <div class="dashboard-wrapper">
-  <% if true %>
+  <% if false %>
   <div class="dashboard-row-wrapper">
     <div class="dashboard-container">
       <div class="no-coins-dashboard dashboard-field">
@@ -404,7 +404,7 @@
         </div>
         <div class="news-pane">
           <% @latest_news.first(10).each do |news| %>
-            <%= link_to news["guid"] do %>
+            <%= link_to news["guid"], target: :_blank do %>
             <div class="news-card">
               <h4 class="news-title"><%= news["title"] %></h4>
               <p class="news-body"><%= news["body"] %></p>
