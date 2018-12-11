@@ -37,6 +37,8 @@ class CryptoCompareService
     @base_url_current_prices = "https://min-api.cryptocompare.com/data/pricemulti"
     # base url for get requests for historical data
     @base_url_historical_prices = "https://min-api.cryptocompare.com/data/histoday"
+    # base url for get requests for latest news
+    @base_url_current_news = "https://min-api.cryptocompare.com/data/v2/news/?lang=EN"
     @api_key = ENV['CRYPTO_COMPARE_API_KEY']
   end
 
@@ -94,5 +96,11 @@ class CryptoCompareService
       historical_data_days_array << data["close"]
     end
     historical_data_days_array
+  end
+
+  def call_latest_news
+    query_params = {api_key: @api_key}
+    response = RestClient.get(@base_url_current_news, {params: query_params})
+    JSON.parse(response)["Data"]
   end
 end
