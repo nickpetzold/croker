@@ -19,6 +19,7 @@
       </div>
       <div class="scrollable-crypto-list">
         <% @cryptocurrencies.each do |crypto| %>
+        <%= link_to trade_path(crypto) do %>
         <div class="product">
           <%= image_tag "Bitcoin.png", class: "product-image" %>
           <div class='product-body'>
@@ -33,6 +34,7 @@
             <li>$4.321</li>
           </ul>
         </div>
+        <% end %>
         <% end %>
       </div>
     </div>
