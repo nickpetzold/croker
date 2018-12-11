@@ -10,6 +10,8 @@ class TradesController < ApplicationController
 
   def show
     @crypto = Cryptocurrency.find(params[:id])
+    # render the chart here
+    # still need to figure it out
   end
 
   def new
