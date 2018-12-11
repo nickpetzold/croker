@@ -21,11 +21,11 @@
       </div>
       <div class="scrollable-crypto-list">
 
-        <% @cryptos.each do |crypto| %>
+        <% @cryptocurrencies.each do |crypto| %>
         <%= link_to trade_path(crypto) do %>
 
         <div class="product">
-          <%= image_tag "Bitcoin", class: "product-image" %>
+          <%= image_tag crypto.ticker_code.split("/")[0], class: "product-image" %>
           <div class='product-body'>
             <h3><%= crypto.ticker_name %></h3>
             <p><%= crypto.ticker_code %></p>

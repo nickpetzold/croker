@@ -1,7 +1,7 @@
 class TradesController < ApplicationController
   def index
     # this is an array of instances
-    @cryptos = Cryptocurrency.all
+    @cryptocurrencies = Cryptocurrency.all
     # this is an hash of hashes with current prices fetched from the api
     @live_prices = CryptoCompareService.new.call_current_prices
     # this is an array of hashes with latest news fetched from the api
