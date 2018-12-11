@@ -1,0 +1,150 @@
+.page-wrapper {
+  display: flex;
+  justify-content: center;
+  flex: 0 1 1200px;
+  // width: 1200px;
+  height: 750px;
+  background-color: #f7f7f7;
+}
+
+.trade-container {
+  display: flex;
+  justify-content: center;
+  margin: 45px;
+}
+
+.title-show {
+  margin: 0px;
+  padding: 0px;
+  padding-left: 10px;
+  width: 100%;
+  border-bottom: 3px solid $light-gray;
+  display: flex;
+  align-items: center;
+}
+
+.half-wrapper {
+  height: 100%;
+  width: 50%;
+}
+
+.car-card-title {
+  display: flex;
+  // border-bottom: 1px solid gray;
+  margin: 15px 20px 0px 20px;
+}
+
+.green-line {
+  width: 50px;
+  border-bottom: 3px solid $green;
+}
+
+.product {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px 15px 25px;
+  border-radius: 3px;
+  transition: all 0.15s ease;
+}
+
+/* Body design */
+.product-body {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+}
+.product-body h3 {
+  font-weight: bold;
+  font-size: 23px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.product-body p {
+  font-weight: lighter;
+  color: #999999;
+  margin-bottom: 0;
+  margin-left: 20px;
+}
+
+/* Product image */
+.product-image {
+  border-radius: 10px;
+  margin-right: 20px;
+  width: 30px;
+}
+
+/* Upvote design */
+.product-upvote {
+  padding-right: 20px;
+  text-align: center;
+  transition: all 0.15s ease;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 20px;
+}
+.product-count {
+  margin: 2px 0 0;
+}
+.list-headers {
+  padding: 10px;
+  padding-right: 20px;
+  color: $header-gray;
+}
+/* Controls design */
+.product-controls {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 0px;
+  li{
+    padding-right: 0px;
+    padding-left: 40px;
+
+  }
+}
+
+.product-controls a {
+  padding: 0 20px;
+  font-size: 17px;
+  color: #E6E6E6;
+}
+.product-controls a:hover {
+  color: #D3473C !important
+}
+.product-controls-hidden a {
+  color: transparent;
+  font-size: 15px;
+  transition: all 0.15s ease;
+  border-color: transparent;
+}
+
+.scrollable-crypto-list {
+  overflow: scroll;
+  height: 87%;
+  padding: 0px 0px 0px 20px;
+  .product {
+    border-bottom: 1px solid $light-gray;
+  }
+}
+
+/* Hover effects */
+.product:hover {
+  background: #ffffff;
+  cursor: pointer;
+}
+.product-upvote:hover, .product-upvote.product-upvote-upvoted {
+  color: #5898f1;
+  cursor: pointer;
+}
+.product-upvote-upvoted .product-arrow {
+  border-bottom-color: #5898f1;
+}
+// .product:hover .product-upvote {
+//   transform: scale(1.2)
+// }
+.product:hover .product-controls-hidden a {
+  color: #E6E6E6;
+}
+.product-upvote:hover .product-arrow {
+  border-bottom: 9px solid #5898f1;
+}
