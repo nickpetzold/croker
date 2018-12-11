@@ -1,4 +1,10 @@
 // Overall page styling
+.dashboard-wrapper {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 .dashboard-row-wrapper {
   margin: 0;
   background-color: $light-gray;
@@ -7,7 +13,14 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding-top: 30px;
+}
+
+.dashboard-row-wrapper:first-child {
+  margin-top: 30px;
+}
+
+.dashboard-row-wrapper:last-child {
+  margin-bottom: 30px;
 }
 
 .dashboard-container {
@@ -15,7 +28,7 @@
   justify-content: space-between;
   align-items: center;
   width: 1088px;
-  margin: 20px 0 0 0;
+  margin: 10px 0 10px 0;
 }
 
 .dashboard-field {
@@ -29,11 +42,12 @@
   display: flex;
   align-items: center;
   margin: 10px;
+  // padding-bottom: 15px;
 }
 
 .title-icon {
   border-bottom: 2px solid $green;
-  padding-bottom: 8px;
+  padding-bottom: 12px;
 }
 
 .icon {
@@ -42,7 +56,7 @@
 }
 
 .title-header {
-  padding-bottom: 8px;
+  padding-bottom: 12px;
   border-bottom: 2px solid $light-gray;
   margin: 0;
   width: 100%;
@@ -180,10 +194,22 @@
   }
 }
 
+.portfolio-link {
+  border-bottom: 1px solid $light-gray;
+  margin: 0 0 0 10px;
+}
+
+.portfolio-link:hover {
+  background-color: #F4F4F4;
+}
+
+a:link {
+    text-decoration: none;
+  }
+
 .portfolio-crypto {
   border-bottom: 1px solid $light-gray;
   height: 60px;
-  // overflow-y: scroll;
   h4 {
     font-size: 16px;
     font-weight: bold;
@@ -191,11 +217,15 @@
   }
 }
 
+.portfolio-crypto:last-child {
+  border-bottom: none;
+}
+
 .portfolio-row {
   display: flex;
   align-items: center;
-  margin: 0 25px 0 25px;
-  padding: 0 10px 0 10px;
+  margin: 0 10px 0 10px;
+  padding: 0 15px 0 15px;
 }
 
 .portfolio-rank {
@@ -224,7 +254,7 @@
 .crypto-rows {
   max-height: 360px;
   margin: 0;
-  padding: 0;
+  padding: 0 10px 0 0;
   overflow: auto;
 }
 
@@ -236,11 +266,11 @@
 .portfolio-icon {
   width: 35px;
   height: 35px;
-  margin: 0 15px 0 5px;
+  margin: 0 15px 0 0;
 }
 
 .crypto-rank {
-  padding-left: 10px;
+  padding-left: 0;
 }
 
 .crypto-code {
@@ -248,4 +278,100 @@
   color: #DDDBDB;
 }
 
+// Fourth box styling
+.top-winners-losers {
+  width: 40%;
+  height: 425px;
+}
 
+.winners-losers-cols {
+  display: flex;
+  align-items: center;
+}
+
+.winners-losers-col {
+  width: 50%;
+}
+
+.winner-loser-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 50px;
+  padding: 5px 20px;
+  margin: 10px 0;
+  h4 {
+    font-size: 16px;
+    font-weight: bold;
+    color: $header-gray;
+    .winner {
+      color: $green;
+    }
+    .loser {
+      color: $red;
+    }
+  }
+}
+
+.winner-loser-card:hover {
+  background-color: #F4F4F4;
+}
+
+.winner-loser-card:last-child {
+  margin-bottom: 20px;
+}
+
+// Fifth box styling
+.crypto-news {
+  width: 31%;
+  height: 425px;
+}
+
+.news-pane {
+  overflow: auto;
+  max-height: 350px;
+}
+
+.news-card {
+  margin: 15px;
+}
+
+.news-card:hover {
+  background-color: #F4F4F4;
+}
+
+.news-img {
+  width: 30%;
+  height: 30%;
+}
+
+.news-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  color: $header-gray;
+}
+
+.news-body {
+  font-size: 12px;
+}
+
+// Sixth box styling
+.top-traded-cryptos {
+  width: 24%;
+  height: 425px;
+}
+
+.top-traded-card {
+  display: flex;
+  align-items: center;
+  padding: 15px 30px 15px 30px;
+  h4 {
+    color: $header-gray;
+    font-weight: bold;
+  }
+}
+
+.top-traded-card:hover {
+  background-color: #F4F4F4;
+}
