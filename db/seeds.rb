@@ -12,7 +12,7 @@ puts "---------- USERS CREATED ----------"
 puts "---------- Creating Cryptocurrencies ----------"
 
 CryptoCompareService::CRYPTO_HASH.each do |key, value|
-  coin = Cryptocurrency.new(ticker_name: "#{key}", ticker_code: "#{value}/#{CryptoCompareService::FIAT_CURRENCIES}")
+  coin = Cryptocurrency.new(ticker_name: "#{key}", ticker_code: "#{value}")
   coin.save!
   puts "Creating #{coin.ticker_name} with ticker #{coin.ticker_code}"
 end
