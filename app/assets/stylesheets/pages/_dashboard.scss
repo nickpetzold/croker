@@ -1,4 +1,5 @@
-.dashboard-wrapper {
+// Overall page styling
+.dashboard-row-wrapper {
   margin: 0;
   background-color: $light-gray;
   width: 100%;
@@ -23,10 +24,11 @@
   border-radius: 1px;
 }
 
+// Title styling for each box
 .title {
   display: flex;
   align-items: center;
-  margin: 5px;
+  margin: 10px;
 }
 
 .title-icon {
@@ -50,8 +52,9 @@
   }
 }
 
-.portfolio-stats {
-  width: 720px;
+// First box styling
+.portfolio-val-change {
+  width: 66%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -64,9 +67,53 @@
 
 .change-content {
   height: 200px;
-  margin: 10px;
+  margin: 10px 0 5px 10px;
   border-right: 1px solid $light-gray;
-  padding: 0px;
+  padding: 0 10px 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.portfolio-image {
+  height: 80px;
+  width: 80px;
+  margin-top: 40px;
+}
+
+.launch {
+  margin-left: 20px;
+}
+
+.positive {
+  color: $green;
+}
+
+.negative {
+  color: $red;
+}
+
+.content-headline-figure {
+  font-size: 32px;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.change-timescale {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  text-align: right;
+  padding: 5px;
+  height: 35px;
+  h4 {
+    padding-right: 15px;
+    padding-bottom: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #DDDBDB;
+  }
 }
 
 .portfolio-value {
@@ -76,7 +123,79 @@
 
 .value-content {
   height: 200px;
-  margin: 10px;
+  margin: 10px 10px 5px 0;
   border-left: 1px solid $light-gray;
-  padding: 0px;
+  padding: 0 0 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+// Second box styling
+.portfolio-stats {
+  width: 32%;
+}
+
+.stats-content {
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 30px 20px 30px;
+}
+
+.stats-entry {
+  h3 {
+    margin: 10px 0 0 0;
+  }
+  p {
+    font-weight: bold;
+    font-size: 12px;
+    color: #DDDBDB;
+  }
+}
+
+.stats-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Third box styling
+.portfolio-overview {
+  width: 100%;
+}
+
+.portfolio-headers {
+  display: flex;
+  align-items: center;
+}
+
+.portfolio-row {
+  margin: 0 35px 0 5px;
+}
+
+.portfolio-rank {
+  flex: 1 0 70px;
+  text-align: center;
+}
+
+.portfolio-name {
+  flex: 0 1 500px;
+}
+
+.portfolio-price {
+  flex: 1 0 110px;
+  text-align: right;
+}
+
+.portfolio-value-held {
+  flex: 1 0 110px;
+  text-align: right;
+}
+
+.portfolio-profit-loss {
+  flex: 1 0 110px;
+  text-align: right;
 }

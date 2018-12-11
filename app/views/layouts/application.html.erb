@@ -10,10 +10,13 @@
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
-    <%= render 'shared/navbar_croker_logged_in' %>
-    <%= render 'shared/navbar_croker_sign_up' %>
+
+    <% if current_user %>
+      <%= render 'shared/navbar_croker_logged_in' %>
+    <% else %>
+      <%= render 'shared/navbar_croker_sign_up' %>
+    <% end %>
     <%= render 'shared/flashes' %>
-    <%= render 'dashboard/dashboard' %>
     <%= yield %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
