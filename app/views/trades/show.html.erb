@@ -1,7 +1,53 @@
-<h1>HELLO THIS IS SHOW TEST ROOM </h2>
-
-<h2><%= @crypto.ticker_name %></h2>
-<h3><%= @crypto.ticker_code %></h2>
-
-
-
+<div class="car-card-title">
+  <div class="green-line">
+    <%= image_tag "Bitcoin.png", class: "crypto-logo-show" %>
+  </div>
+  <h3 class="title-show">Bitcoin</h3>
+</div>
+<!-- This is where we show the price of the coin -->
+<div class="price-wrapper">
+  <h3>$1.234</h3>
+</div>
+<div class="chart-wrapper">
+</div>
+<!-- This div contains the timeframe selectors for the chart [1D, 1W, 1M, 1Y, Since Ever] -->
+<div class="timeframe-wrapper">
+  <div class="empty"></div>
+  <ul class= "list-inline timeframe-list">
+    <li class="1d">1D</li>
+    <li class="1w selected">1W</li>
+    <li class="1m">1M</li>
+    <li class="1y">1Y</li>
+    <li class="all">All</li>
+  </ul>
+</div>
+<div class="balance-container">
+  <div class="show-balance">
+    <ul class= "list-inline">
+      <li><h3>Balance:</h3></li>
+      <li class="balance">80.000,00 USD</li>
+    </ul>
+  </div>
+</div>
+<div class="buy-sell-container">
+  <div class="buy-sell-tabs">
+    <div class="buy-tab tab-selected text-center">
+      <h3>BUY</h3>
+    </div>
+    <div class="sell-tab text-center">
+      <h3>SELL</h3>
+    </div>
+  </div>
+  <div class="buy-input-container">
+    <form>
+      <input type="name" class="crypto-search-input form-control text-right" id="tradeValue" placeholder="2 BTC">
+    </form>
+    <i class="fas fa-exchange-alt"></i>
+    <form>
+      <input type="name" class="crypto-search-input form-control text-right" id="tradeValue" placeholder="80 USD">
+    </form>
+  </div>
+  <div class="buy-sell-button text-center">
+    <div class="btn btn-success">BUY</div>
+  </div>
+</div>
