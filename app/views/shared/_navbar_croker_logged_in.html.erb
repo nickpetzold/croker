@@ -8,7 +8,7 @@
   </div>
   <div class="navbar-right">
     <div class="navbar-balances">
-      <h4>Available Balance: <span id="available-balance">$80.00</span></h4>
+      <h4>Available Balance: <span id="available-balance"><%= humanized_money_with_symbol(current_user.fiat_balance) %></span></h4>
       <h4>Portfolio Value: <span id="portfolio-value">$63.21</span></h4>
     </div>
     <div class="btn-deposit">
