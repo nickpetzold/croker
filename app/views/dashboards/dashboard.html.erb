@@ -330,7 +330,7 @@
             <% @top5_losers.each do |key, value| %>
               <%= link_to 'dashboard' do %>
                 <div class="winner-loser-card">
-                  <h4><span class="loser">-<%= value.round(2) %>%</span></h4>
+                  <h4><span class="loser"><%= value.round(2) %>%</span></h4>
                   <h4><%= key %></h4>
                   <%= image_tag key, class: "portfolio-icon" %>
                 </div>

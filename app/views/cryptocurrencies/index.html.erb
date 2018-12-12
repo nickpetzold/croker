@@ -32,7 +32,7 @@
           </div>
           <ul class="list-inline product-controls">
             <li>
-              <%= @live_prices[crypto.ticker_name][crypto.ticker_code] %>
+              <%= @live_prices[crypto.ticker_name][crypto.ticker_code].round(4) %>
               <%= CryptoCompareService::FIAT_CURRENCIES %>
             </li>
             <li>$4.321</li>
