@@ -1,2 +1,15 @@
 <h1>HELLO THIS IS TRADES / NEW TEST ROOM </h2>
 
+
+
+<div class=“booking-form”>
+ <%= simple_form_for [@cryptocurrency, @trade] do |f| %>
+  <div class=“form-inline text-center”><%= f.input :cryptocurrency_amount, as: :decimal %></div>
+  <div class=“form-inline text-center”><%= f.input :fiat_amount_cents, as: :integer%></div>
+  <div class=“form-inline text-center”><%= f.input :fiat_price_cents, as: :integer%></div>
+  <div class=“form-inline text-center”><%= f.input :transaction_type, as: :integer%></div>
+  <%# f.hidden_field :title, value: “some value” %>
+  <h4 class= “text-center”>Price:</h4><h4 id= “rent-price”><strong></strong></h4>
+  <%= f.button :submit, class: "btn btn-success" %>
+ <% end %>
+</div>
