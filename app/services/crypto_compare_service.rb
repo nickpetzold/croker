@@ -8,28 +8,27 @@ class CryptoCompareService
   CRYPTO_HASH = {
     Bitcoin: "BTC",
     Cardano: "ADA",
-    Dignity: "DIG",
     Litecoin: "LTC",
     Bitcoincash: "BCH",
     Ethereum: "ETH",
-    Ethereumclassic: "ETC",
+    # Ethereumclassic: "ETC",
     Ripple: "XRP",
-    Basicattentiontoken: "BAT",
-    Icon: "ICX",
-    Vechain: "VET",
+    # Basicattentiontoken: "BAT",
+    # Icon: "ICX",
+    # Vechain: "VET",
     Stellar: "XLM",
-    Ravencoin: "RVN",
-    Tron: "TRX",
-    Nano: "NANO",
+    # Ravencoin: "RVN",
+    # Tron: "TRX",
+    # Nano: "NANO",
     Monero: "XMR",
-    Binance: "BNB",
-    Dogecoin: "DOGE",
-    Qtum: "QTUM",
-    Lisk: "LSK",
-    Waves: "WAVES",
-    Zcash: "ZEC",
-    Siacoin: "SC",
-    Augur: "REP"
+    # Binance: "BNB",
+    # Dogecoin: "DOGE",
+    # Qtum: "QTUM",
+    # Lisk: "LSK",
+    # Waves: "WAVES",
+    Zcash: "ZEC"
+    # Siacoin: "SC",
+    # Augur: "REP"
   }
 
   FIAT_CURRENCIES = "USD"
