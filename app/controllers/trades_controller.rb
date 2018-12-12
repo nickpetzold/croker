@@ -9,7 +9,8 @@ class TradesController < ApplicationController
   end
 
   def show
-    @crypto = Cryptocurrency.find(params[:id])
+    @cryptocurrency = Cryptocurrency.find(params[:id])
+    @live_prices = CryptoCompareService.new.call_current_prices
     # render the chart here
     # still need to figure it out
   end
