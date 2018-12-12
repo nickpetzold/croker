@@ -403,29 +403,13 @@
           </div>
         </div>
         <div class="news-pane">
-          <%= link_to 'https://www.coindesk.com/consensys-town-hall-shows-staff-shaken-at-ethereums-largest-startup' do %>
-          <div class="news-card">
-            <h4 class="news-title">New Esports Platform Release Increases the Adoption of MobileGO (MGO) Tokens</h4>
-            <p class="news-body">The MobileGo team which describes itself as a ‘by gamers for gamers’ project has released its own gaming platform to bring a new experience to gamers around the globe. The Beta of the platform is already live and available for anyone who wants to try it.</p>
-          </div>
-          <% end %>
-          <%= link_to 'https://news.bitcoin.com/report-btc-gets-a-health-check-in-the-state-of-bitcoin/' do %>
-          <div class="news-card">
-            <h4 class="news-title">Report: BTC Gets a Health Check in ‘The State of Bitcoin’</h4>
-            <p class="news-body">Delphi Digital has taken a deep dive into bitcoin core in its first “The State of Bitcoin” report. The 59-page document from the digital asset investment company leaves no stone unturned, covering everything from BTC payments to coin distribution and rolling returns compared to stocks and gold.</p>
-          </div>
-          <% end %>
-          <%= link_to 'https://www.ccn.com/nydfs-hastens-response-to-bitlicense-applications/' do %>
-          <div class="news-card">
-            <h4 class="news-title">NYDFS Hastens Response to BitLicense Applications</h4>
-            <p class="news-body">According to data obtained from the source – the New York Department of Financial Services itself – the financial regulator has only responded to 9 of 36 BitLicense applications submitted since 2015. Five have been denied, four have been approved, the rest are still going through the process. Fortune writer Robert Hackett became interested inThe post NYDFS Hastens Response to BitLicense Applications appeared first on CCN.</p>
-          </div>
-          <% end %>
-          <%= link_to 'https://cryptopotato.com/weekly-price-analysis-dec-11-bitcoin-ethereum-bitcoin-cash-and-ripple/' do %>
-          <div class="news-card">
-            <h4 class="news-title">Weekly Price Analysis Dec.11: Bitcoin, Ethereum, Bitcoin Cash and Ripple</h4>
-            <p class="news-body">Bitcoin Support around $3,800 has been broken very quickly and currently around $3,300 resistance currently around $3,630 the situation does not look good in the trending down. Traders are shorting, and the floor is yet to be seen at this stage. Traded around $3336 BTC/USD by Stompy1942 on TradingView.com Ethereum Against the dollar, it is The post Weekly Price Analysis Dec.11: Bitcoin, Ethereum, Bitcoin Cash and Ripple appeared first on CryptoPotato.</p>
-          </div>
+          <% @latest_news.first(10).each do |news| %>
+            <%= link_to news["guid"], target: :_blank do %>
+            <div class="news-card">
+              <h4 class="news-title"><%= news["title"] %></h4>
+              <p class="news-body"><%= news["body"] %></p>
+            </div>
+            <% end %>
           <% end %>
         </div>
       </div>
@@ -441,40 +425,14 @@
           </div>
         </div>
         <div class="top-traded">
-          <%= link_to 'dashboards' do %>
-          <div class="top-traded-card">
-            <h4 style="padding-right: 20px; color: #969696;">1</h4>
-            <%= image_tag 'BTC', class: "portfolio-icon" %>
-            <h4>Bitcoin <span class="crypto-code">BTC</span></h4>
-          </div>
-          <% end %>
-          <%= link_to 'dashboards' do %>
-          <div class="top-traded-card">
-            <h4 style="padding-right: 20px; color: #969696;">2</h4>
-            <%= image_tag 'XMR', class: "portfolio-icon" %>
-            <h4>Monero <span class="crypto-code">XMR</span></h4>
-          </div>
-          <% end %>
-          <%= link_to 'dashboards' do %>
-          <div class="top-traded-card">
-            <h4 style="padding-right: 20px; color: #969696;">3</h4>
-            <%= image_tag 'XRP', class: "portfolio-icon" %>
-            <h4>Ripple <span class="crypto-code">XRP</span></h4>
-          </div>
-          <% end %>
-          <%= link_to 'dashboards' do %>
-          <div class="top-traded-card">
-            <h4 style="padding-right: 20px; color: #969696;">4</h4>
-            <%= image_tag 'ETH', class: "portfolio-icon" %>
-            <h4>Ethereum <span class="crypto-code">ETH</span></h4>
-          </div>
-          <% end %>
-          <%= link_to 'dashboards' do %>
-          <div class="top-traded-card">
-            <h4 style="padding-right: 20px; color: #969696;">5</h4>
-            <%= image_tag 'MIOTA', class: "portfolio-icon" %>
-            <h4>IOTA <span class="crypto-code">MIOTA</span></h4>
-          </div>
+          <% @top_five.each do |key, value|  %>
+            <%= link_to 'dashboards' do %>
+            <div class="top-traded-card">
+              <h4 style="padding-right: 20px; color: #969696;">1</h4>
+              <%= image_tag value, class: "portfolio-icon" %>
+              <h4><%= key %> <span class="crypto-code"><%= value %></span></h4>
+            </div>
+            <% end %>
           <% end %>
         </div>
       </div>

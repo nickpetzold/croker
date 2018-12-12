@@ -1,11 +1,13 @@
 <div class="trade-container">
   <div class="page-wrapper">
+    <!-- here starts the div that wraps the coins list on the left and the (buy/sell, chart) div on the right -->
     <div class="half-wrapper list">
       <div class="crypto-search text-center">
         <form>
           <input type="name" class="crypto-search-input form-control" id="cryptoSearch" placeholder="🔍 (Bitcoin, Ethereum, etc)">
         </form>
       </div>
+      <!-- Headers -->
       <div class="crypto-list-headers">
         <div class="product list-headers">
           <div class='list-inline product-controls product-body'>
@@ -18,10 +20,12 @@
         </div>
       </div>
       <div class="scrollable-crypto-list">
+
         <% @cryptocurrencies.each do |crypto| %>
         <%= link_to trade_path(crypto) do %>
+
         <div class="product">
-          <%= image_tag "Bitcoin.png", class: "product-image" %>
+          <%#= image_tag crypto.ticker_code.split("/")[0], class: "product-image" %>
           <div class='product-body'>
             <h3><%= crypto.ticker_name %></h3>
             <p><%= crypto.ticker_code %></p>
@@ -38,61 +42,19 @@
         <% end %>
       </div>
     </div>
+    <!-- here starts the show page, that has the coin chart, buy/sell option, etc -->
     <div class="half-wrapper show">
-      <div class="car-card-title">
-        <div class="green-line">
-          <%= image_tag "Bitcoin.png", class: "crypto-logo-show" %>
-        </div>
-        <h3 class="title-show">Bitcoin</h3>
-      </div>
-      <div class="price-wrapper">
-        <h3>$1.234</h3>
-      </div>
-      <div class="chart-wrapper">
-      </div>
-      <div class="timeframe-wrapper">
-        <div class="empty"></div>
-        <ul class= "list-inline timeframe-list">
-          <li class="1d">1D</li>
-          <li class="1w selected">1W</li>
-          <li class="1m">1M</li>
-          <li class="1y">1Y</li>
-          <li class="all">All</li>
-        </ul>
-      </div>
-      <div class="balance-container">
-        <div class="show-balance">
-          <ul class= "list-inline">
-            <li><h3>Balance:</h3></li>
-            <li class="balance">80.000,00 USD</li>
-          </ul>
-        </div>
-      </div>
-      <div class="buy-sell-container">
-        <div class="buy-sell-tabs">
-          <div class="buy-tab tab-selected text-center">
-            <h3>BUY</h3>
-          </div>
-          <div class="sell-tab text-center">
-            <h3>SELL</h3>
-          </div>
-        </div>
-        <div class="buy-input-container">
-          <form>
-            <input type="name" class="crypto-search-input form-control text-right" id="tradeValue" placeholder="2 BTC">
-          </form>
-          <i class="fas fa-exchange-alt"></i>
-          <form>
-            <input type="name" class="crypto-search-input form-control text-right" id="tradeValue" placeholder="80 USD">
-          </form>
-        </div>
-        <div class="buy-sell-button text-center">
-          <div class="btn btn-success">BUY</div>
-        </div>
-      </div>
+
+      <!-- Render the show page inside this DIV -->
+
     </div>
   </div>
 </div>
+
+
+<!-- This button is here just for development purposes, to log out -->
+
+<%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "sign-out my-btn", style: "border: 3px solid rgb(200,200,200); color: rgb(200,200,200); background-color: white" %>
 
 
 <!-- # THIS IS JUST FOR TESTING PURPOSES. THIS IS HOW YOU SHOULD FETCH
