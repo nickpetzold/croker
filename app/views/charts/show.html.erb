@@ -1,1 +1,1 @@
-<%= area_chart Visit.group_by_minute(:created_at).maximum(:load_time) %>
+<%= area_chart @data, colors: ["#60cd44", "#666"], curve: false, points: false %>

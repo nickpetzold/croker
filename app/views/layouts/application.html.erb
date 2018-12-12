@@ -9,6 +9,8 @@
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_pack_tag 'application' %>
   </head>
   <body>
     <% if current_user %>
@@ -18,8 +20,7 @@
     <% end %>
     <%= render 'shared/flashes' %>
     <%= yield %>
-    <%= javascript_include_tag 'application' %>
-    <%= javascript_pack_tag 'application' %>
+
     <%= render 'shared/slim_footer' %>
   </body>
 </html>
