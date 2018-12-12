@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2018_12_12_140106) do
   end
 
   create_table "trades", force: :cascade do |t|
-    t.integer "transaction_type"
+    t.integer "transaction_type", default: 0, null: false
     t.bigint "user_id"
     t.bigint "cryptocurrency_id"
     t.integer "fiat_price_cents", default: 0, null: false

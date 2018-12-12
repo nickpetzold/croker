@@ -1,29 +1,22 @@
 class TradesController < ApplicationController
-  def index
-  end
-
-  def show
-  end
-
   def new
     # can create new trades
     # fetch information from forms rendered in html
     # raise
-    @cryptocurrency = Cryptocurrency.find(params[:id])
+    @cryptocurrency = Cryptocurrency.find(params[:cryptocurrency_id])
     @trade = Trade.new
-    raise
-
-
   end
 
   def create
-    @user = current_user
+    @cryptocurrency = Cryptocurrency.find(params[:cryptocurrency_id])
     @trade = Trade.new(trade_params)
+    @trade.user = current_user
+    @trade.cryptocurrency = @cryptocurrency
     @trade.save
   end
 
   def trade_params
-    params.require(:trade).permit(:usd_price_cents, :usd_amount_cents, :cryptocurrency_amount, :transaction_type)
+    params.require(:trade).permit(:fiat_price_cents, :fiat_amount_cents, :cryptocurrency_amount, :transaction_type, :date_of_trade)
   end
 
   def crypto_service
