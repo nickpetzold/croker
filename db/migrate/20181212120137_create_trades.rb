@@ -5,8 +5,8 @@ class CreateTrades < ActiveRecord::Migration[5.2]
       t.jsonb :payment
       t.references :user, foreign_key: true
       t.references :cryptocurrency, foreign_key: true
-      t.monetize :usd_price, currency: { present: false }
-      t.monetize :usd_amount, currency: { present: false }
+      t.monetize :fiat_price, currency: { present: false }
+      t.monetize :fiat_amount, currency: { present: false }
       t.decimal :cryptocurrency_amount
 
       t.timestamps

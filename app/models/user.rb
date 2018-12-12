@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :first_name, :last_name, :email, :country, presence: true
+  has_many :top_ups
+  has_many :trades
+  has_many :portfolios
 
+  validates :first_name, :last_name, :email, :country, :fiat_balance_cents, presence: true
 end

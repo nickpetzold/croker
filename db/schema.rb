@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_12_121524) do
+ActiveRecord::Schema.define(version: 2018_12_12_125321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,22 +25,34 @@ ActiveRecord::Schema.define(version: 2018_12_12_121524) do
   create_table "portfolios", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "cryptocurrency_id"
-    t.decimal "amount_held", default: "0.0", null: false
+    t.decimal "crypto_amount_held", default: "0.0", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cryptocurrency_id"], name: "index_portfolios_on_cryptocurrency_id"
     t.index ["user_id"], name: "index_portfolios_on_user_id"
   end
 
+  create_table "top_ups", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "fiat_amount_cents", default: 0, null: false
+    t.jsonb "payment"
+    t.integer "transaction_type"
+    t.datetime "date_of_top_up"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_top_ups_on_user_id"
+  end
+
   create_table "trades", force: :cascade do |t|
     t.integer "transaction_type"
     t.bigint "user_id"
     t.bigint "cryptocurrency_id"
-    t.integer "usd_price_cents", default: 0, null: false
-    t.integer "usd_amount_cents", default: 0, null: false
+    t.integer "fiat_price_cents", default: 0, null: false
+    t.integer "fiat_amount_cents", default: 0, null: false
     t.decimal "cryptocurrency_amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "date_of_trade"
     t.index ["cryptocurrency_id"], name: "index_trades_on_cryptocurrency_id"
     t.index ["user_id"], name: "index_trades_on_user_id"
   end
@@ -56,12 +68,14 @@ ActiveRecord::Schema.define(version: 2018_12_12_121524) do
     t.string "first_name"
     t.string "last_name"
     t.string "country"
+    t.integer "fiat_balance_cents", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "portfolios", "cryptocurrencies"
   add_foreign_key "portfolios", "users"
+  add_foreign_key "top_ups", "users"
   add_foreign_key "trades", "cryptocurrencies"
   add_foreign_key "trades", "users"
 end
