@@ -3,14 +3,14 @@ class TradesController < ApplicationController
     # this is an array of instances
     @cryptocurrencies = Cryptocurrency.all
     # this is an hash of hashes with current prices fetched from the api
-    @live_prices = CryptoCompareService.new.call_current_prices
+    @live_prices = crypto_service.call_current_prices
     # this is an array of hashes with latest news fetched from the api
-    @live_news = CryptoCompareService.new.call_latest_news
+    @live_news = crypto_service.call_latest_news
   end
 
   def show
     @cryptocurrency = Cryptocurrency.find(params[:id])
-    @live_prices = CryptoCompareService.new.call_current_prices
+    @live_price = crypto_service.call_current_prices[@cryptocurrency.ticker_name][@cryptocurrency.ticker_code]
     # render the chart here
     # still need to figure it out
   end
@@ -27,6 +27,11 @@ class TradesController < ApplicationController
   end
 
   def trade_params
-    params.require(:trade).permit(:usd_cents_rate, :usd_cents_value, :cryptocurrency_value, :transaction_type)
+    params.require(:trade).permit(:usd_price_cents, :usd_amount_cents, :cryptocurrency_amount, :transaction_type)
+  end
+
+  def crypto_service
+    # API MEMOIZATION CODE
+    @crypto_service ||= CryptoCompareService.new
   end
 end
