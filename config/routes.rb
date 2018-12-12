@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   resources :cryptocurrencies, only: [:index, :show] do
     resources :trades, only: [:new, :create]
   end
+  resources :top_ups, only: [:show, :new, :create] do
+    resources :payments, only: [:new, :create]
+  end
 end
