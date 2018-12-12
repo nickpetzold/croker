@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_10_145839) do
+ActiveRecord::Schema.define(version: 2018_12_12_121524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,12 +33,12 @@ ActiveRecord::Schema.define(version: 2018_12_10_145839) do
   end
 
   create_table "trades", force: :cascade do |t|
+    t.integer "transaction_type"
     t.bigint "user_id"
     t.bigint "cryptocurrency_id"
-    t.integer "usd_cents_rate"
-    t.integer "usd_cents_value"
-    t.decimal "cryptocurrency_value"
-    t.integer "transaction_type", null: false
+    t.integer "usd_price_cents", default: 0, null: false
+    t.integer "usd_amount_cents", default: 0, null: false
+    t.decimal "cryptocurrency_amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cryptocurrency_id"], name: "index_trades_on_cryptocurrency_id"
