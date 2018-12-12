@@ -12,7 +12,11 @@ class TradesController < ApplicationController
     @trade = Trade.new(trade_params)
     @trade.user = current_user
     @trade.cryptocurrency = @cryptocurrency
-    @trade.save
+    if @trade.save
+      redirect_to cryptocurrencies_path
+    else
+      render :new
+    end
   end
 
   def trade_params
