@@ -98,21 +98,29 @@ class CryptoCompareService
       toTs: Time.new.to_i,
       api_key: @api_key
     }
+    # Building the API GET Request and Parsing the Response
     response = RestClient.get(@base_url_historical_prices, {params: query_params})
+    # RAW RESPONSE
     response_parsed = JSON.parse(response)
+    # RAW RESPONSE WITH FILTERS
     historical_data = response_parsed["Data"]
+    # EMPTY ARRAY THAT WILL BE FILLED WITH DATA LATER
     historical_data_days_array = []
 
     historical_data.each do |data|
       historical_data_days_array << data["close"]
     end
+    # THIS RETURNS AN ARRAY LIKE THIS
+    # [8.59, 8.29, 7.75, 7.96, 7.33, 6.77, 6.29, 6.36, 6.9, 5.92, 6.25]
     historical_data_days_array
   end
 
   def call_latest_news
     query_params = {api_key: @api_key}
+    # Building the API GET Request and Parsing the response
     response = RestClient.get(@base_url_current_news, {params: query_params})
     JSON.parse(response)["Data"]
+    # This returns an array of hashes with news articles
   end
 
   def call_top5_traded
@@ -120,8 +128,10 @@ class CryptoCompareService
       tsym: FIAT_CURRENCIES,
       api_key: @api_key
     }
-
+    # Empty hash to be filled later with data
     crypto_top_5_hash = {}
+
+    # Building the API GET Request and Parsing the response
     response = RestClient.get(@base_url_top_traded, {params: query_params})
     JSON.parse(response)["Data"].first(5).each do |crypto|
       crypto_top_5_hash[crypto["CoinInfo"]["FullName"]] = crypto["CoinInfo"]["Name"]
@@ -156,7 +166,9 @@ class CryptoCompareService
   end
 
   def top5_winners_and_losers
+    # call the method
     hash_to_string_and_array
+
     @crypto_array_with_tickers = @crypto_string_with_tickers.split(",")
 
     query_params = {
@@ -165,6 +177,7 @@ class CryptoCompareService
       api_key: @api_key
     }
 
+    # Building the API GET Request and Parsing the response
     response = RestClient.get(@base_url_current_prices, {params: query_params})
     response_parsed = JSON.parse(response)
     # Empty hash to build an hash of hashes
@@ -172,6 +185,7 @@ class CryptoCompareService
     @crypto_array_with_tickers.each do |crypto|
       top5_hash[crypto] = response_parsed["RAW"][crypto][FIAT_CURRENCIES]["CHANGEPCTDAY"]
     end
+    # this returns an hash sorted by key.values from low negatives to high positives
     top5_hash.sort_by {|_key, value| value}.to_h
   end
 
