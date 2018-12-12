@@ -7,6 +7,6 @@ class User < ApplicationRecord
   has_many :top_ups
   has_many :trades
   has_many :portfolios
-
+  monetize :fiat_balance_cents
   validates :first_name, :last_name, :email, :country, :fiat_balance_cents, presence: true
 end
