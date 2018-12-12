@@ -316,77 +316,25 @@
         </div>
         <div class="winners-losers-cols">
           <div class="winners-losers-col">
-            <%= link_to 'dashboards' do %>
-            <div class="winner-loser-card">
-              <%= image_tag 'XMR', class: "portfolio-icon" %>
-              <h4>XMR</h4>
-              <h4><span class="winner">+34.59%</span></h4>
-            </div>
-            <% end %>
-            <%= link_to 'dashboards' do %>
-            <div class="winner-loser-card">
-              <%= image_tag 'BTC', class: "portfolio-icon" %>
-              <h4>BTC</h4>
-              <h4><span class="winner">+21.77%</span></h4>
-            </div>
-            <% end %>
-            <%= link_to 'dashboards' do %>
-            <div class="winner-loser-card">
-              <%= image_tag 'BCH', class: "portfolio-icon" %>
-              <h4>BCH</h4>
-              <h4><span class="winner">+19.02%</span></h4>
-            </div>
-            <% end %>
-            <%= link_to 'dashboards' do %>
-            <div class="winner-loser-card">
-              <%= image_tag 'NEO', class: "portfolio-icon" %>
-              <h4>NEO</h4>
-              <h4><span class="winner">+12.73%</span></h4>
-            </div>
-            <% end %>
-            <%= link_to 'dashboards' do %>
-            <div class="winner-loser-card">
-              <%= image_tag 'XLM', class: "portfolio-icon" %>
-              <h4>XLM</h4>
-              <h4><span class="winner">+8.62%</span></h4>
-            </div>
+            <% @top5_winners.each do |key, value| %>
+              <%= link_to 'dashboards' do  %>
+                <div class="winner-loser-card">
+                  <%= image_tag key, class: "portfolio-icon" %>
+                  <h4><%= key %></h4>
+                  <h4><span class="winner">+<%= value.round(2) %>%</span></h4>
+                </div>
+              <% end %>
             <% end %>
           </div>
           <div class="winners-losers-col">
-            <%= link_to 'dashboards' do %>
-            <div class="winner-loser-card">
-              <h4><span class="loser">-29.73%</span></h4>
-              <h4>XRP</h4>
-              <%= image_tag 'XRP', class: "portfolio-icon" %>
-            </div>
-            <% end %>
-            <%= link_to 'dashboards' do %>
-            <div class="winner-loser-card">
-              <h4><span class="loser">-24.57%</span></h4>
-              <h4>USDT</h4>
-              <%= image_tag 'USDT', class: "portfolio-icon" %>
-            </div>
-            <% end %>
-            <%= link_to 'dashboards' do %>
-            <div class="winner-loser-card">
-              <h4><span class="loser">-19.74%</span></h4>
-              <h4>LTC</h4>
-              <%= image_tag 'LTC', class: "portfolio-icon" %>
-            </div>
-            <% end %>
-            <%= link_to 'dashboards' do %>
-            <div class="winner-loser-card">
-              <h4><span class="loser">-13.48%</span></h4>
-              <h4>EOS</h4>
-              <%= image_tag 'EOS', class: "portfolio-icon" %>
-            </div>
-            <% end %>
-            <%= link_to 'dashboards' do %>
-            <div class="winner-loser-card">
-              <h4><span class="loser">-6.46%</span></h4>
-              <h4>ADA</h4>
-              <%= image_tag 'ADA', class: "portfolio-icon" %>
-            </div>
+            <% @top5_losers.each do |key, value| %>
+              <%= link_to 'dashboard' do %>
+                <div class="winner-loser-card">
+                  <h4><span class="loser">-<%= value.round(2) %>%</span></h4>
+                  <h4><%= key %></h4>
+                  <%= image_tag key, class: "portfolio-icon" %>
+                </div>
+              <% end %>
             <% end %>
           </div>
         </div>
