@@ -1,12 +1,12 @@
 <div class="car-card-title">
   <div class="green-line">
-    <%= image_tag "Bitcoin.png", class: "crypto-logo-show" %>
+    <%= image_tag @cryptocurrency.ticker_code.split("/")[0], class: "crypto-logo-show" %>
   </div>
-  <h3 class="title-show">Bitcoin</h3>
+  <h3 class="title-show"><%= @cryptocurrency.ticker_name %></h3>
 </div>
 <!-- This is where we show the price of the coin -->
 <div class="price-wrapper">
-  <h3>$1.234</h3>
+  <h3><%= @live_prices[@cryptocurrency.ticker_name][@cryptocurrency.ticker_code] %></h3>
 </div>
 <div class="chart-wrapper">
 </div>
