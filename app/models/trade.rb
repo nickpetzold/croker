@@ -6,4 +6,8 @@ class Trade < ApplicationRecord
   monetize :fiat_price_cents, :fiat_amount_cents
   #                          0      1
   enum transaction_type: [:buy, :sell]
+
+  def self.list_transaction_types
+    self.transaction_types.keys.map { |k| k.humanize.downcase }
+  end
 end

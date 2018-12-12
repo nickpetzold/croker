@@ -1,7 +1,7 @@
 class CreateTrades < ActiveRecord::Migration[5.2]
   def change
     create_table :trades do |t|
-      t.integer :transaction_type
+      t.integer :transaction_type, default: 0, null: false
       t.jsonb :payment
       t.references :user, foreign_key: true
       t.references :cryptocurrency, foreign_key: true
