@@ -1,23 +1,19 @@
 class TradesController < ApplicationController
   def index
-    # this is an array of instances
-    @cryptocurrencies = Cryptocurrency.all
-    # this is an hash of hashes with current prices fetched from the api
-    @live_prices = crypto_service.call_current_prices
-    # this is an array of hashes with latest news fetched from the api
-    @live_news = crypto_service.call_latest_news
   end
 
   def show
-    @cryptocurrency = Cryptocurrency.find(params[:id])
-    @live_price = crypto_service.call_current_prices[@cryptocurrency.ticker_name][@cryptocurrency.ticker_code]
-    # render the chart here
-    # still need to figure it out
   end
 
   def new
     # can create new trades
+    # fetch information from forms rendered in html
+    # raise
+    @cryptocurrency = Cryptocurrency.find(params[:id])
     @trade = Trade.new
+    raise
+
+
   end
 
   def create

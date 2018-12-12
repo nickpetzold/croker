@@ -22,7 +22,7 @@
       <div class="scrollable-crypto-list">
 
         <% @cryptocurrencies.each do |crypto| %>
-        <%= link_to trade_path(crypto) do %>
+        <%= link_to cryptocurrency_path(crypto) do %>
 
         <div class="product">
           <%= image_tag crypto.ticker_code, class: "product-image" %>
