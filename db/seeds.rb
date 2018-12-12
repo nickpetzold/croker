@@ -1,3 +1,8 @@
+puts "Cleaning database..."
+TopUp.destroy_all
+Cryptocurrency.destroy_all
+User.destroy_all
+
 puts "---------- Creating Users ----------"
 
 user = User.new(email: "wheelsnocoiner@wheels.com", first_name: "filipe", last_name: "Custodio", password: 123456, country: "Portugal")
