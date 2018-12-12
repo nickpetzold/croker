@@ -2,16 +2,16 @@
   <div class="navbar-left">
     <%= image_tag 'logo', class: "logo" %>
     <div class="tabs">
-      <a href="#"><h2 class="tab active">Dashboard</h2></a>
+      <%= link_to 'Dashboard', dashboard_path, class: 'tab active', style: 'font-size: 20px' %>
       <a href="#"><h2 class="tab">Buy/Sell</h2></a>
     </div>
   </div>
   <div class="navbar-right">
     <div class="btn-sign-up">
-      <a href="#" class="sign-up btn btn-success">Sign Up</a>
+      <%= link_to 'Sign Up', new_user_registration_path, class: "sign-up btn btn-success" %>
     </div>
     <div class="btn-login">
-      <a href="#" class="login btn">Login</a>
+      <%= link_to 'Log In', new_user_session_path, class: "login btn" %>
     </div>
     <div class="navbar-settings">
       <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
