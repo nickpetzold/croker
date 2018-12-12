@@ -1,0 +1,1 @@
+<%= area_chart Visit.group_by_minute(:created_at).maximum(:load_time) %>
