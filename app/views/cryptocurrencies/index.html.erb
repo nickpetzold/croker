@@ -7,11 +7,7 @@
           <input type="name" class="crypto-search-input form-control" id="cryptoSearch" placeholder="🔍 (Bitcoin, Ethereum, etc)">
         </form> -->
         <%= form_tag cryptocurrencies_path, method: :get do %>
-        <%= text_field_tag :query,
-        params[:query],
-        class: "form-control",
-        placeholder: "🔍 (Bitcoin, Ethereum, etc)"
-        %>
+          <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "🔍 (Bitcoin, Ethereum, etc)" %>
         <% end %>
       </div>
 
@@ -31,7 +27,7 @@
       <div class="scrollable-crypto-list">
 
         <% @cryptocurrencies.each do |crypto| %>
-            <%= link_to cryptocurrencies_path(crypto_id: crypto.id) do %>
+          <%= link_to cryptocurrencies_path(crypto_id: crypto.id) do %>
 
             <div class="product">
               <%= image_tag crypto.ticker_code, class: "product-image" %>
