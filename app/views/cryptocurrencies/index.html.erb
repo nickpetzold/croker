@@ -34,7 +34,7 @@
         <%= link_to cryptocurrency_path(crypto) do %>
 
         <div class="product">
-          <%= image_tag crypto.ticker_code, class: "product-image" %>
+          <%= image_tag "#{crypto.ticker_code}.png", class: "product-image" %>
           <div class='product-body'>
             <h3><%= crypto.ticker_name %></h3>
             <p><%= crypto.ticker_code %></p>
