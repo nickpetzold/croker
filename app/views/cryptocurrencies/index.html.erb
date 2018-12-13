@@ -3,20 +3,15 @@
     <!-- here starts the div that wraps the coins list on the left and the (buy/sell, chart) div on the right -->
     <div class="half-wrapper list">
       <div class="crypto-search text-center">
-       <!--  <form>
-          <input type="name" class="crypto-search-input form-control" id="cryptoSearch" placeholder="🔍 (Bitcoin, Ethereum, etc)">
-        </form> -->
-      <%= form_tag cryptocurrencies_path, method: :get do %>
-      <%= text_field_tag :query,
-      params[:query],
-      class: "form-control",
-        placeholder: "🔍 (Bitcoin, Ethereum, etc)"
-        %>
+        <%= form_tag cryptocurrencies_path, method: :get do %>
+          <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "🔍 (Bitcoin, Ethereum, etc)"
+          %>
         <% end %>
       </div>
-
-
-      <!-- Headers -->
+      <!-- Headers (COIN, PRICE, VALUE HELD) -->
       <div class="crypto-list-headers">
         <div class="product list-headers">
           <div class='list-inline product-controls product-body'>
@@ -31,44 +26,33 @@
       <div class="scrollable-crypto-list">
 
         <% @cryptocurrencies.each do |crypto| %>
-        <%= link_to cryptocurrencies_path(crypto_id: crypto.id) do %>
+          <%= link_to cryptocurrencies_path(crypto_id: crypto.id) do %>
 
-        <div class="product">
-          <%= image_tag "#{crypto.ticker_code}.png", class: "product-image" %>
-          <div class='product-body'>
-            <h3><%= crypto.ticker_name %></h3>
-            <p><%= crypto.ticker_code %></p>
+          <div class="product">
+            <%= image_tag "#{crypto.ticker_code}.png", class: "product-image" %>
+            <div class='product-body'>
+              <h4><%= crypto.ticker_name %> <span class="crypto-code"><%= crypto.ticker_code %></span></h4>
+            </div>
+            <ul class="list-inline product-controls price-values">
+              <li>
+                <%= "$#{number_with_delimiter(@live_prices[crypto.ticker_name][crypto.ticker_code].round(4), :delimeter => ",")}" %>
+              </li>
+              <li>$4.321</li>
+            </ul>
           </div>
-          <ul class="list-inline product-controls">
-            <li>
-              <%= "$#{number_with_delimiter(@live_prices[crypto.ticker_name][crypto.ticker_code].round(4), :delimeter => ",")}" %>
-            </li>
-            <li>$4.321</li>
-          </ul>
-        </div>
-        <% end %>
-
+          <% end %>
         <% end %>
       </div>
     </div>
 
     <!-- here starts the show page, that has the coin chart, buy/sell option, etc -->
     <div id="current_cryptocurrency" class="half-wrapper show" >
-
       <!-- Render the show page inside this DIV -->
       <% if @cryptocurrency %>
         <%= render 'cryptocurrencies/show', cryptocurrency: @cryptocurrency %>
       <% else %>
         <%= render 'cryptocurrencies/grayed_show' %>
       <% end %>
-
-
     </div>
   </div>
 </div>
-
-
-<!-- This button is here just for development purposes, to log out -->
-
-<%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "sign-out my-btn", style: "border: 3px solid rgb(200,200,200); color: rgb(200,200,200); background-color: white" %>
-
