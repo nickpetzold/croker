@@ -73,8 +73,11 @@ class CryptoCompareService
       tsyms: FIAT_CURRENCIES,
       api_key: @api_key
     }
+
+    # WARNING: DO NOT DELETE THIS VARIABLE BECAUSE WE MIGHT NEED IT IN THE
+    # FUTURE TO DEBUG SOME STUFF.
     # Transform the ex string "BTC,ETH,XRP," into "BTC,ETH,XRP"
-    @crypto_string_with_tickers = @crypto_string_with_tickers.chomp(",")
+    # @crypto_string_with_tickers = @crypto_string_with_tickers.chomp(",")
 
     # Transform the crypto string into a crypto array with tickers ex: ["BTC","ETH","XRP"]
     crypto_array_with_tickers = @crypto_string_with_tickers.split(",")
@@ -178,13 +181,16 @@ class CryptoCompareService
     crypto_array = []
     crypto_array_with_names = []
     CRYPTO_HASH.each do |key, value|
-      # Build a string with all cryptocurrency tickers "BTC,ETH"
+      # Build an array with all cryptocurrency tickers
       crypto_array << value
+      # build an array with all cryptocurrency names
       crypto_array_with_names << key.to_s
     end
-      @crypto_string_with_tickers = crypto_array.uniq.join(",")
-      @crypto_array_with_names = crypto_array_with_names.uniq
-      # Build an array with all cryptocurrency names ["Bitcoin", "Ethereum"]
+    # build a string with ticker names without duplicates
+    # ex: ["BTC","ETC","ETH",XRP]
+    @crypto_string_with_tickers = crypto_array.uniq.join(",")
+    # build an array with names ["Bitcoin", "Ethereum"] etc.
+    @crypto_array_with_names = crypto_array_with_names.uniq
   end
 
   def top5_winners_and_losers

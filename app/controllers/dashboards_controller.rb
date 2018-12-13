@@ -3,35 +3,62 @@ class DashboardsController < ApplicationController
   before_action :set_portfolio, only: [:dashboard, :portfolio_overview]
 
   def dashboard
-    @portfolio_overview = portfolio_overview
-  end
-
-  def portfolio_change_pct
-
-  end
-
-  def portfolio_change_value
-
-  end
-
-  def portfolio_change_resume
-
-  end
-
-  def portfolio_overview
-     # {"Bitcoin"=>{"BTC"=>3443.67}, "Ethereum"=>{"ETH"=>200.04}}
-    live_prices = crypto_service.call_current_prices
-
-    portfolio_hash = {}
-
-    @portfolios.each do |portfolio|
-      portfolio_hash[portfolio.cryptocurrency.ticker_name] = live_prices[portfolio.cryptocurrency.ticker_name.capitalize][portfolio.cryptocurrency.ticker_code]
-    end
-    # {"Bitcoin"=>3443.67, "Ethereum"=>200.04}
-    portfolio_hash
+   @portfolio_overview = portfolio_overview
   end
 
   private
+
+  def portfolio_overview
+    # {"Bitcoin"=>{"BTC"=>3443.67}, "Ethereum"=>{"ETH"=>200.04}}
+    live_prices = crypto_service.call_current_prices
+    # ---- THIS IS WHERE WE CALCULATE THE CURRENT PRICE FOR EVERY
+    # ---- CRYPTOCURRENCY OWNED BY THE USER
+    portfolio_price_hash = {}
+    portfolio_price_hash_of_hashes = {}
+
+    @portfolios.each do |portfolio|
+      portfolio_price_hash[portfolio.cryptocurrency.ticker_code] = live_prices[portfolio.cryptocurrency.ticker_name.capitalize][portfolio.cryptocurrency.ticker_code]
+      # {"Bitcoin" => {"BTC"=>3443.67}, "Ethereum" => {"ETH"=>200.04}}
+      portfolio_price_hash_of_hashes[portfolio.cryptocurrency.ticker_name] = portfolio_price_hash
+    end
+
+    # ---- THIS IS WHERE WE CALCULATE THE CURRENT VALUE HELD BY EVERY
+    # ---- CRYPTOCURRENCY OWNED BY THE USER
+
+    ind_price_crypto_hash = {}
+
+    @portfolios.each do |portfolio|
+      live_price_per_crypto = portfolio_price_hash_of_hashes[portfolio.cryptocurrency.ticker_name][portfolio.cryptocurrency.ticker_code]
+      crypto_armound_held = portfolio.crypto_amount_held
+      # this returns something like this {"XRP"=>0.2093e1, "XLM"=>0.521e3, "ADA"=>0.5798e0}
+      ind_price_crypto_hash[portfolio.cryptocurrency.ticker_code] = live_price_per_crypto * crypto_armound_held
+    end
+
+    # ---- THIS IS WHERE WE CALCULATE THE CURRENT
+    # ---- THE CURRENT PROFIT / LOSS
+
+    profit_or_loss_array = []
+    profit_or_loss_hash_of_arrays = {}
+
+    @portfolios.each do |portfolio|
+      portfolio.cryptocurrency.trades.buy.each do |trade|
+        price_paid = trade.fiat_amount_cents
+        price_now = portfolio_price_hash_of_hashes[trade.cryptocurrency.ticker_name][trade.cryptocurrency.ticker_code] * trade.cryptocurrency_amount
+        profit_or_loss_array << price_now - price_paid
+        profit_or_loss_hash_of_arrays[trade.cryptocurrency.ticker_name] = profit_or_loss_array
+      end
+      portfolio.cryptocurrency.trades.sell.each do |trade|
+        price_paid = trade.fiat_amount_cents
+        price_now = portfolio_price_hash_of_hashes[trade.cryptocurrency.ticker_name][trade.cryptocurrency.ticker_code] * trade.cryptocurrency_amount
+        profit_or_loss_array << price_now - price_paid
+        profit_or_loss_hash_of_arrays[trade.cryptocurrency.ticker_name] = profit_or_loss_array
+      end
+      # THIS RETURNS SOMETHING LIKE THE BELOW EXAMPLE
+      # {"Ripple"=>[-0.999985055e5, -0.3988044e3, -0.11999994022e7, -0.3399487e7, -0.1999994246e6],
+      # "Stellar"=>[-0.999985055e5, -0.3988044e3, -0.11999994022e7, -0.3399487e7, -0.1999994246e6],
+      # "Cardano"=>[-0.999985055e5, -0.3988044e3, -0.11999994022e7, -0.3399487e7, -0.1999994246e6]}
+    end
+  end
 
   def top_five_traded
     # this returns an hash with the top5 most traded by volume

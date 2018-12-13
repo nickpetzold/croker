@@ -7,6 +7,8 @@ class Trade < ApplicationRecord
   #                          0      1
   enum transaction_type: [:buy, :sell]
 
+  delegate :ticker_name, :ticker_code, to: :cryptocurrency
+
   def self.list_transaction_types
     self.transaction_types.keys.map { |k| k.humanize.downcase }
   end
