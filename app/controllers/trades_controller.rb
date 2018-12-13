@@ -29,6 +29,7 @@ class TradesController < ApplicationController
         user_portfolio = check_portfolio
         # create or update the instance of portfolio with the cryptocurrency bought
         user_portfolio.crypto_amount_held += @trade.cryptocurrency_amount
+        user_portfolio.fiat_amount_cents += @trade.fiat_amount_cents
         # save changes to portfolio
         user_portfolio.save
         # save current_user and redirect to dashboard or cryptocurrencies path
