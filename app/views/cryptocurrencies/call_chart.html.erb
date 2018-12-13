@@ -2,51 +2,56 @@
   <script src="https://code.highcharts.com/modules/series-label.js"></script>
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
-  <div id="container" style="height: 400px;"></div>
+  <div id="container0" style="height: 400px; width: 600px;"></div>
+  <div id="container1" style="height: 400px; width: 600px;"></div>
+  <div id="container2" style="height: 400px; width: 600px;"></div>
+  <div id="container3" style="height: 400px; width: 600px;"></div>
 
   <script>
-    Highcharts.chart('container', {
+    <% @data.each_with_index do |data, index| %>
+    <% titles = %w[yearly monthly weekly daily] %>
+    Highcharts.chart('<%= "container#{index}" %>', {
 
-    chart: {
-      type: 'area'
-    },
-
-    title: {
-      text: ''
-    },
-
-    xAxis: {
-      visible : false,
-      type: 'datetime',
-      labels: {
-        format: '{value:%Y-%b-%e}'
+      chart: {
+        type: 'area'
       },
-    },
 
-    yAxis: {
-      visible : false
-    },
+      title: {
+        text: '<%= "#{titles[index]} data" %>'
+      },
 
-    tooltip: {
-      xDateFormat: '%Y-%m-%d',
-      pointFormat: 'USD{point.y}',
-      shared: true
-    },
+      xAxis: {
+        visible : false,
+        type: 'datetime',
+        labels: {
+          format: '{value:%Y-%b-%e}'
+        },
+      },
 
-    legend: {
-      enabled: false
-    },
-    series: [{
-      name : "|",
-      data: <%= @data %>,
-      lineColor: '#60cd44',
-      color: '#60cd44',
-      fillOpacity: 0.5,
-      marker: {
+      yAxis: {
+        visible : false
+      },
+
+      tooltip: {
+        pointFormat: 'USD{point.y}',
+        shared: true
+      },
+
+      legend: {
         enabled: false
       },
-      threshold: null
-    }]
+      series: [{
+        name : "|",
+        data: <%= data %>,
+        lineColor: '#60cd44',
+        color: '#60cd44',
+        fillOpacity: 0.5,
+        marker: {
+          enabled: false
+        },
+        threshold: null
+      }]
 
-  });
+    });
+  <% end %>
   </script>
