@@ -5,6 +5,23 @@ class DashboardsController < ApplicationController
     # call here portfolio
     # total trades
     # the icons if its up or down in terms of portfolio
+    @portfolio = current_user.portfolios
+
+  end
+
+  def portfolio_change_pct
+
+  end
+
+  def portfolio_change_value
+
+  end
+
+  def portfolio_change_resume
+
+  end
+
+  def portfolio_overview
 
   end
 
