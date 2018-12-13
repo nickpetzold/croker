@@ -31,23 +31,23 @@
       <div class="scrollable-crypto-list">
 
         <% @cryptocurrencies.each do |crypto| %>
-          <%= link_to cryptocurrencies_path(crypto_id: crypto.id) do %>
+        <%= link_to cryptocurrency_path(crypto) do %>
 
-            <div class="product">
-              <%= image_tag crypto.ticker_code, class: "product-image" %>
-              <div class='product-body'>
-                <h3><%= crypto.ticker_name %></h3>
-                <p><%= crypto.ticker_code %></p>
-              </div>
-              <ul class="list-inline product-controls">
-                <li>
-                  <%= @live_prices[crypto.ticker_name][crypto.ticker_code] %>
-                  <%= CryptoCompareService::FIAT_CURRENCIES %>
-                </li>
-                <li>$4.321</li>
-              </ul>
-            </div>
-          <% end %>
+        <div class="product">
+          <%= image_tag "#{crypto.ticker_code}.png", class: "product-image" %>
+          <div class='product-body'>
+            <h3><%= crypto.ticker_name %></h3>
+            <p><%= crypto.ticker_code %></p>
+          </div>
+          <ul class="list-inline product-controls">
+            <li>
+              <%= "$#{number_with_delimiter(@live_prices[crypto.ticker_name][crypto.ticker_code].round(4), :delimeter => ",")}" %>
+            </li>
+            <li>$4.321</li>
+          </ul>
+        </div>
+        <% end %>
+
         <% end %>
       </div>
     </div>
