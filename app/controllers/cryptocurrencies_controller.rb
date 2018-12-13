@@ -13,16 +13,17 @@ class CryptocurrenciesController < ApplicationController
       @cryptocurrencies = Cryptocurrency.all
     end
       # @cryptocurrencies_search =
-  end
 
-  def show
-    @cryptocurrency = Cryptocurrency.find(params[:id])
-    @live_price = crypto_service.call_current_prices[@cryptocurrency.ticker_name][@cryptocurrency.ticker_code]
+    # this condition takes care of showing the "show" when a cryptocurrency is selected
+    if params[:crypto_id]
+      @cryptocurrency = Cryptocurrency.find(params[:crypto_id])
+      # @live_price = crypto_service.call_current_prices[@cryptocurrency.ticker_name][@cryptocurrency.ticker_code]
 
-    # --------------TODO LATER------------------
-    # CALL THE CHART ON THE SHOW
-    # CALL THE USER BALANCE ON THE SHOW
-    # DISPLAY THE TIMEFRAME
+      # --------------TODO LATER------------------
+      # CALL THE CHART ON THE SHOW
+      # CALL THE USER BALANCE ON THE SHOWD
+      # DISPLAY THE TIMEFRAME
+    end
   end
 
   def call_chart

@@ -31,30 +31,35 @@
       <div class="scrollable-crypto-list">
 
         <% @cryptocurrencies.each do |crypto| %>
-        <%= link_to cryptocurrency_path(crypto) do %>
+          <%= link_to cryptocurrencies_path(crypto_id: crypto.id) do %>
 
-        <div class="product">
-          <%= image_tag "#{crypto.ticker_code}.png", class: "product-image" %>
-          <div class='product-body'>
-            <h3><%= crypto.ticker_name %></h3>
-            <p><%= crypto.ticker_code %></p>
-          </div>
-          <ul class="list-inline product-controls">
-            <li>
-              <%= @live_prices[crypto.ticker_name][crypto.ticker_code].round(4) %>
-              <%= CryptoCompareService::FIAT_CURRENCIES %>
-            </li>
-            <li>$4.321</li>
-          </ul>
-        </div>
-        <% end %>
+            <div class="product">
+              <%= image_tag crypto.ticker_code, class: "product-image" %>
+              <div class='product-body'>
+                <h3><%= crypto.ticker_name %></h3>
+                <p><%= crypto.ticker_code %></p>
+              </div>
+              <ul class="list-inline product-controls">
+                <li>
+                  <%= @live_prices[crypto.ticker_name][crypto.ticker_code] %>
+                  <%= CryptoCompareService::FIAT_CURRENCIES %>
+                </li>
+                <li>$4.321</li>
+              </ul>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>
+
     <!-- here starts the show page, that has the coin chart, buy/sell option, etc -->
-    <div class="half-wrapper show">
+    <div id="current_cryptocurrency" class="half-wrapper show">
 
       <!-- Render the show page inside this DIV -->
+      <% if @cryptocurrency %>
+        <%= render 'cryptocurrencies/show', cryptocurrency: @cryptocurrency %>
+      <% end %>
+
 
     </div>
   </div>
@@ -64,43 +69,4 @@
 <!-- This button is here just for development purposes, to log out -->
 
 <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "sign-out my-btn", style: "border: 3px solid rgb(200,200,200); color: rgb(200,200,200); background-color: white" %>
-
-
-<!-- # THIS IS JUST FOR TESTING PURPOSES. THIS IS HOW YOU SHOULD FETCH
-THE INFORMATION FROM THE API, EXAMPLES BELOW -->
-
-
-
-<!-- <div class="container text-center">
-  <div><h1>HELLO THIS IS THE BUY SELL PAGE</h1></div>
-  <div>
-    <%# @cryptocurrencies.each do |cryptocurrency| %>
-      <h2>
-        <%#= image_tag "cardano.png", size: "50x50"%>
-        <%#= cryptocurrency.ticker_name %>
-        <%#= cryptocurrency.ticker_code %>
-        <%#= @live_prices[cryptocurrency.ticker_name][cryptocurrency.ticker_code] %>
-        <%#= link_to "go to show", trade_path(cryptocurrency) %>
-      </h2>
-    <%#end %>
-  </div>
-</div>
-
-<div class="container-fluid text-center">
-  <h1>#CRYPTOCURRENCY</h1>
-  <%# @live_news.first(5).each do |news| %>
-    <div>
-      <h2><%#= news["title"] %></h2>
-      <h2><%#= news["source"] %></h2>
-      <%#= image_tag news["imageurl"] %>
-    </div>
-    <div>
-      <h3><%#= news["body"] %></h3>
-    </div>
-  <%# end %>
-</div>
-
- -->
-
-
 
