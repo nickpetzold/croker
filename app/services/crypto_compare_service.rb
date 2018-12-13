@@ -175,12 +175,16 @@ class CryptoCompareService
 
   def hash_to_string_and_array
     # Iterate through the crypto_hash
+    crypto_array = []
+    crypto_array_with_names = []
     CRYPTO_HASH.each do |key, value|
       # Build a string with all cryptocurrency tickers "BTC,ETH"
-      @crypto_string_with_tickers << "#{value},"
-      # Build an array with all cryptocurrency names ["Bitcoin", "Ethereum"]
-      @crypto_array_with_names << key.to_s
+      crypto_array << value
+      crypto_array_with_names << key.to_s
     end
+      @crypto_string_with_tickers = crypto_array.uniq.join(",")
+      @crypto_array_with_names = crypto_array_with_names.uniq
+      # Build an array with all cryptocurrency names ["Bitcoin", "Ethereum"]
   end
 
   def top5_winners_and_losers
