@@ -1,0 +1,12 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "../../javascript/components/highcharts.js" %>
+<% end %>
+
+<div id="container" style="height: 400px;"></div>
+
+<%= yield :javascript_includes %>
+
+<script>
+  buildCharts();
+</script>
+
