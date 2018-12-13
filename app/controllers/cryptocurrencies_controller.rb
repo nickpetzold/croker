@@ -16,15 +16,14 @@ class CryptocurrenciesController < ApplicationController
     # CALL THE CHART ON THE SHOW
     # CALL THE USER BALANCE ON THE SHOW
     # DISPLAY THE TIMEFRAME
-
   end
 
   def call_chart
     @cryptocurrency = Cryptocurrency.find(params[:cryptocurrency_id])
-    days = (0..364).to_a.reverse
+    days = (0..30).to_a.reverse
     dates = days.map { |x| (DateTime.now - x).strftime('%s').to_i * 1000 }
     prices = crypto_service.call_historical_prices(@cryptocurrency.ticker_code, days.first)
-    @data = dates.zip(prices).first(365)
+    @data = dates.zip(prices)
   end
 
   def crypto_service
