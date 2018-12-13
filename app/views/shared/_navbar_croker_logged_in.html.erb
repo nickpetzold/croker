@@ -14,14 +14,17 @@
     <div class="btn-deposit">
       <%= link_to 'Deposit', new_top_up_path, class: "deposit btn btn-success" %>
     </div>
-    <div class="navbar-settings">
-      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div class="dropdown">
+      <button class="dropdown-toggle btn-settings" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
         <i class="fas fa-ellipsis-v"></i>
-      </a>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">My Profile</a>
-        <a class="dropdown-item" href="#">Settings</a>
-      </div>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li><a href="#">My Profile</a></li>
+        <li><a href="#">Settings</a></li>
+        <%= link_to destroy_user_session_path do %>
+        <li><a href="#">Log Out</a></li>
+        <% end %>
+      </ul>
     </div>
   </div>
 </div>
