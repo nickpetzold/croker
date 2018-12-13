@@ -1,6 +1,6 @@
 <div class="car-card-title">
   <div class="green-line">
-    <%= image_tag "#{@cryptocurrency.ticker_code}.png", class: "crypto-logo-show" %>
+    <%= image_tag @cryptocurrency.ticker_code, class: "crypto-logo-show" %>
   </div>
   <h3 class="title-show"><%= @cryptocurrency.ticker_name %></h3>
 </div>
@@ -51,3 +51,4 @@
     <div class="btn btn-success">BUY</div>
   </div>
 </div>
+

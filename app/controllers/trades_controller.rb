@@ -1,12 +1,10 @@
 class TradesController < ApplicationController
+  before_action :set_cryptocurrency, only: [:new, :create]
   def new
-    @cryptocurrency = Cryptocurrency.find(params[:cryptocurrency_id])
     @trade = Trade.new
   end
 
   def create
-    # get the cryptocurrency
-    @cryptocurrency = Cryptocurrency.find(params[:cryptocurrency_id])
     # create a new trade instance with private trade params
     @trade = Trade.new(trade_params)
     # assign this trade to the current user logged in
@@ -31,6 +29,7 @@ class TradesController < ApplicationController
         user_portfolio = check_portfolio
         # create or update the instance of portfolio with the cryptocurrency bought
         user_portfolio.crypto_amount_held += @trade.cryptocurrency_amount
+        user_portfolio.fiat_amount_cents += @trade.fiat_amount_cents
         # save changes to portfolio
         user_portfolio.save
         # save current_user and redirect to dashboard or cryptocurrencies path
@@ -48,49 +47,67 @@ class TradesController < ApplicationController
   end
 
   def sell_trade
-    # TODO
-    # CHANGE THIS METHOD SO IT FETCHES USER PORTFOLIO BY CRYPTO
-    # PORTFOLIO CONTROLLER HAS TO BE BUILT FIRST IN ORDER
-    # FOR THIS TO WORK AS IT SHOULD.
-    # FOR NOW JUST LET IT BE
+    # Verify if user crypto balnce is superior to the amount he wants to sell
+    # because user can't sell more than what he has
     if user_crypto_balance?
+      # if user has crypto balance that allows him to sell
+      # verify if he entered the right params to save the trade
       if @trade.save
+        # if trade saved. Subtract the amount of the trade to his current USD balance
         current_user.fiat_balance_cents += @trade.fiat_amount_cents
+        # set user portfolio
         user_portfolio = check_portfolio
+        # change his portfolio amount to the specific crypto he sold
         user_portfolio.crypto_amount_held -= @trade.cryptocurrency_amount
+        # save the changes on his portfolio
         user_portfolio.save
+        # save the user changes
         current_user.save
         redirect_to dashboard_path
       else
+        # if the params he entered during the form aren't valid
         render :new
       end
     else
+      # if he doesn't have enough cryptocurrency balance to make the sell order
       redirect_to cryptocurrencies_path, :alert => "NOT ENOUGH #{@trade.cryptocurrency.ticker_name} BALANCE" # becase user doesnt have enough balance
     end
   end
 
   def user_crypto_balance?
+    # set the amount bought counter
     amount_bought = 0
+    # iterate thro all his buy trades for a specific crypto
     current_user.trades.buy.where(cryptocurrency_id: @cryptocurrency).each do |amount|
+      # increment the counter with the amount of the cryptocurrency
       amount_bought += amount.cryptocurrency_amount
     end
-
+    # set the amount sold counter
     amount_sold = 0
+    # iterate thro all his sell trades for a specific crypto
     current_user.trades.sell.where(cryptocurrency_id: @cryptocurrency).each do |amount|
+      # increment the counter with the amount of the cryptocurrency
       amount_sold += amount.cryptocurrency_amount
     end
-    amount_bought > amount_sold
+    # return true or false. If amount bought >= sold then the user has enough balance
+    # to create a valid trade.
+    amount_bought >= amount_sold
   end
 
   def buy_or_sell
+    # verify if its a trade or a sell
+    # if true = buy
     if @trade.buy?
       buy_trade
     else
+      # if false = sell
       sell_trade
     end
   end
 
   def check_portfolio
+    # verify if the user has portfolio instances for that specific crypto
+    # if he doesn't have a portfolio instance for that crypto, create one
     Portfolio.where(cryptocurrency_id: @cryptocurrency, user_id: current_user).first_or_create
   end
 
@@ -101,5 +118,9 @@ class TradesController < ApplicationController
   def crypto_service
     # API MEMOIZATION CODE
     @crypto_service ||= CryptoCompareService.new
+  end
+
+  def set_cryptocurrency
+    @cryptocurrency = Cryptocurrency.find(params[:cryptocurrency_id])
   end
 end
