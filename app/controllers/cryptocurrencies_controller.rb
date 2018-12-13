@@ -1,11 +1,10 @@
 class CryptocurrenciesController < ApplicationController
+  before_action :set_cryptocurrency, only: [:call_chart]
   def index
     # this is an array of instances
     @cryptocurrencies = Cryptocurrency.all
     # this is an hash of hashes with current prices fetched from the api
     @live_prices = crypto_service.call_current_prices
-    # this is an array of hashes with latest news fetched from the api
-    @live_news = crypto_service.call_latest_news
 
     if params["query"].present?
       @cryptocurrencies = Cryptocurrency.search_by_ticker_name_and_ticker_code(params["query"])
@@ -28,7 +27,7 @@ class CryptocurrenciesController < ApplicationController
 
   def call_chart
     @data = []
-    @cryptocurrency = Cryptocurrency.find(params[:cryptocurrency_id])
+    # @cryptocurrency = Cryptocurrency.find(params[:cryptocurrency_id])
     # API call to get prices at daily/hourly/minutely increments
     day_prices = crypto_service.call_historical_prices(@cryptocurrency.ticker_code, 'daily')
     hour_prices = crypto_service.call_historical_prices(@cryptocurrency.ticker_code, 'hourly')
@@ -45,12 +44,12 @@ class CryptocurrenciesController < ApplicationController
     @data << simplify_data(minute_time, minute_prices) # Daily data
   end
 
+  private
+
   def crypto_service
     # API MEMOIZATION CODE
     @crypto_service ||= CryptoCompareService.new
   end
-
-  private
 
   def get_time_data(period)
     time = []
@@ -83,5 +82,9 @@ class CryptocurrenciesController < ApplicationController
       result << (n - 1).step(price.size - 1, n).map { |i| price[i] }
     end
     result[0].zip(result[1])
+  end
+
+  def set_cryptocurrency
+    @cryptocurrency = Cryptocurrency.find(params[:cryptocurrency_id])
   end
 end
