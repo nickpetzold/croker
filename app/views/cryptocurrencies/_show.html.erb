@@ -8,6 +8,11 @@
 <div class="price-wrapper">
   <h3>$<%= @latest_price %></h3>
 </div>
+<!-- Start of the chart  -->
+<div class="chart-wrapper">
+  <!-- Render the chart in this div -->
+  <%#= render 'cryptocurrencies/call_chart', cryptocurrency: @cryptocurrency %>
+</div>
 <div id="chart-container" data-historical-prices="<%= @data.to_json %>" class="chart-wrapper"></div>
 <!-- This div contains the timeframe selectors for the chart [1D, 1W, 1M, 1Y, Since Ever] -->
 <div class="timeframe-wrapper">
@@ -27,6 +32,7 @@
     </ul>
   </div>
 </div>
+<!-- Beggining of the BUY/SELL div -->
 <div class="buy-sell-container">
   <div class="buy-sell-tabs">
     <div class="buy-tab tab-selected text-center">
