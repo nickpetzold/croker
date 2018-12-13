@@ -139,12 +139,16 @@
 .product-upvote-upvoted .product-arrow {
   border-bottom-color: #5898f1;
 }
-// .product:hover .product-upvote {
-//   transform: scale(1.2)
-// }
+
 .product:hover .product-controls-hidden a {
   color: #E6E6E6;
 }
 .product-upvote:hover .product-arrow {
   border-bottom: 9px solid #5898f1;
+}
+
+#query {
+  background-color: #FFFFFF;
+  border: 0;
+  box-shadow: none;
 }

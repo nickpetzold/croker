@@ -53,11 +53,13 @@
     </div>
 
     <!-- here starts the show page, that has the coin chart, buy/sell option, etc -->
-    <div id="current_cryptocurrency" class="half-wrapper show">
+    <div id="current_cryptocurrency" class="half-wrapper show" >
 
       <!-- Render the show page inside this DIV -->
       <% if @cryptocurrency %>
         <%= render 'cryptocurrencies/show', cryptocurrency: @cryptocurrency %>
+      <% else %>
+        <%= render 'cryptocurrencies/grayed_show' %>
       <% end %>
 
 
