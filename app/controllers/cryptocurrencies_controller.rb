@@ -6,6 +6,13 @@ class CryptocurrenciesController < ApplicationController
     @live_prices = crypto_service.call_current_prices
     # this is an array of hashes with latest news fetched from the api
     @live_news = crypto_service.call_latest_news
+
+    if params["query"].present?
+      @cryptocurrencies = Cryptocurrency.search_by_ticker_name_and_ticker_code(params["query"])
+    else
+      @cryptocurrencies = Cryptocurrency.all
+    end
+      # @cryptocurrencies_search =
   end
 
   def show
