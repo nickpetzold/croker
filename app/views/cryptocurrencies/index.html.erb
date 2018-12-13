@@ -41,8 +41,7 @@
           </div>
           <ul class="list-inline product-controls">
             <li>
-              <%= @live_prices[crypto.ticker_name][crypto.ticker_code].round(4) %>
-              <%= CryptoCompareService::FIAT_CURRENCIES %>
+              <%= "$#{number_with_delimiter(@live_prices[crypto.ticker_name][crypto.ticker_code].round(4), :delimeter => ",")}" %>
             </li>
             <li>$4.321</li>
           </ul>
