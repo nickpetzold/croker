@@ -2,6 +2,9 @@ class DashboardsController < ApplicationController
   before_action :top_five_traded, :latest_news, :top5_winners, :top5_losers
 
   def dashboard
+    # call here portfolio
+    # total trades
+    # the icons if its up or down in terms of portfolio
 
   end
 

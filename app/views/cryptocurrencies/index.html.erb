@@ -6,8 +6,12 @@
        <!--  <form>
           <input type="name" class="crypto-search-input form-control" id="cryptoSearch" placeholder="🔍 (Bitcoin, Ethereum, etc)">
         </form> -->
-        <%= form_tag cryptocurrencies_path, method: :get do %>
-          <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "🔍 (Bitcoin, Ethereum, etc)" %>
+      <%= form_tag cryptocurrencies_path, method: :get do %>
+      <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+        placeholder: "🔍 (Bitcoin, Ethereum, etc)"
+        %>
         <% end %>
       </div>
 

@@ -197,5 +197,4 @@ class CryptoCompareService
     # this returns an hash sorted by key.values from low negatives to high positives
     top5_hash.sort_by {|_key, value| value}.to_h
   end
-
 end

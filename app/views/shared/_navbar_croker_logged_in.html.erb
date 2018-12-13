@@ -1,6 +1,8 @@
 <div class="navbar-croker">
   <div class="navbar-left">
-    <%= image_tag 'logo', class: "logo" %>
+    <%= link_to :root do %>
+    <%= image_tag 'logo.png', class: "logo" %>
+    <% end %>
     <div class="tabs">
       <%= link_to 'Dashboard', dashboard_path, class: 'tab active', style: 'font-size: 20px' %>
       <a href="#"><h2 class="tab">Buy/Sell</h2></a>
@@ -12,16 +14,17 @@
       <h4>Portfolio Value: <span id="portfolio-value">$63.21</span></h4>
     </div>
     <div class="btn-deposit">
-      <a href="#" class="deposit btn btn-success">Deposit</a>
+      <%= link_to 'Deposit', new_top_up_path, class: "deposit btn btn-success" %>
     </div>
-    <div class="navbar-settings">
-      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div class="dropdown">
+      <button class="dropdown-toggle btn-settings" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
         <i class="fas fa-ellipsis-v"></i>
-      </a>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">My Profile</a>
-        <a class="dropdown-item" href="#">Settings</a>
-      </div>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li><a href="#">My Profile</a></li>
+        <li><a href="#">Settings</a></li>
+        <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+      </ul>
     </div>
   </div>
 </div>

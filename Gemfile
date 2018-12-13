@@ -21,6 +21,8 @@ gem 'rest-client'
 gem 'stripe'
 gem 'country_select'
 gem 'chartkick', '~> 1.4', '>= 1.4.1'
+gem 'pg_search'
+gem 'cloudinary', '~> 1.9.1'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
