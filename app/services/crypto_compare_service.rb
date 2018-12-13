@@ -51,7 +51,7 @@ class CryptoCompareService
     @base_url_current_prices = "https://min-api.cryptocompare.com/data/pricemultifull"
 
     # base url for get requests for historical data
-    @base_url_historical_prices = "https://min-api.cryptocompare.com/data/histoday"
+    @base_url_historical_prices = "https://min-api.cryptocompare.com/data/histo"
 
     # base url for get requests for latest news
     @base_url_current_news = "https://min-api.cryptocompare.com/data/v2/news/?lang=EN"
@@ -96,16 +96,29 @@ class CryptoCompareService
     Hash[@crypto_array_with_names.zip(crypto_seeds_hash.to_a)].transform_values!{|a| Hash[*a]}
   end
 
-  def call_historical_prices(crypto, days)
+  def call_historical_prices(crypto, type = nil)
+    if type == 'yearly'
+      limit = 365
+      call_type = 'day'
+    elsif type == 'hourly'
+      limit = 720
+      call_type = 'hour'
+    elsif type == 'minutely'
+      limit = 1440
+      call_type = 'minute'
+    end
+
+    url = @base_url_historical_prices + call_type
+
     query_params = {
       fsym: crypto,
       tsym: FIAT_CURRENCIES,
-      limit: days,
+      limit: limit,
       toTs: Time.new.to_i,
       api_key: @api_key
     }
     # Building the API GET Request and Parsing the Response
-    response = RestClient.get(@base_url_historical_prices, {params: query_params})
+    response = RestClient.get(url, {params: query_params})
     # RAW RESPONSE
     response_parsed = JSON.parse(response)
     # RAW RESPONSE WITH FILTERS
