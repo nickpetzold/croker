@@ -74,11 +74,10 @@ class CryptoCompareService
       api_key: @api_key
     }
     # Transform the ex string "BTC,ETH,XRP," into "BTC,ETH,XRP"
-    @crypto_string_with_tickers = @crypto_string_with_tickers.chomp(",")
+    # @crypto_string_with_tickers = @crypto_string_with_tickers.chomp(",")
 
     # Transform the crypto string into a crypto array with tickers ex: ["BTC","ETH","XRP"]
     crypto_array_with_tickers = @crypto_string_with_tickers.split(",")
-
     # Building the API GET Request and Parsing the Response
     response = RestClient.get(@base_url_current_prices, {params: query_params})
 
@@ -165,7 +164,11 @@ class CryptoCompareService
     # Iterate through the crypto_hash
     CRYPTO_HASH.each do |key, value|
       # Build a string with all cryptocurrency tickers "BTC,ETH"
-      @crypto_string_with_tickers << "#{value},"
+      if key == CRYPTO_HASH.keys.last
+        @crypto_string_with_tickers << "#{value}"
+      else
+        @crypto_string_with_tickers << "#{value},"
+      end
       # Build an array with all cryptocurrency names ["Bitcoin", "Ethereum"]
       @crypto_array_with_names << key.to_s
     end
