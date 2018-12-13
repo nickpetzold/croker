@@ -1,14 +1,14 @@
 class CryptocurrenciesController < ApplicationController
  skip_before_action :authenticate_user!, only: [:index]
-  
-  
+
+
  def index
    # this is an array of instances
    @cryptocurrencies = Cryptocurrency.all
    # this is an hash of hashes with current prices fetched from the api
    @live_prices = crypto_service.call_current_prices
 
-   if params[“query”].present?
+   if params['query'].present?
      @cryptocurrencies = Cryptocurrency.search_by_ticker_name_and_ticker_code(params[“query”])
    else
      @cryptocurrencies = Cryptocurrency.all
@@ -19,15 +19,15 @@ class CryptocurrenciesController < ApplicationController
    if params[:crypto_id]
      @cryptocurrency = Cryptocurrency.find(params[:crypto_id])
      @data = []
-     day_prices = crypto_service.call_historical_prices(@cryptocurrency.ticker_code, ‘daily’)
-     hour_prices = crypto_service.call_historical_prices(@cryptocurrency.ticker_code, ‘hourly’)
-     minute_prices = crypto_service.call_historical_prices(@cryptocurrency.ticker_code, ‘minutely’)
+     day_prices = crypto_service.call_historical_prices(@cryptocurrency.ticker_code, 'daily')
+     hour_prices = crypto_service.call_historical_prices(@cryptocurrency.ticker_code, 'hourly')
+     minute_prices = crypto_service.call_historical_prices(@cryptocurrency.ticker_code, 'minutely')
      @latest_price = minute_prices.last
      # Construct array of corresponding times for price data. #last accommodates for where
      # price data returned is less than asked for.
-     day_time = get_time_data(‘year’).last(day_prices.length)
-     hour_time = get_time_data(‘hour’).last(hour_prices.length)
-     minute_time = get_time_data(‘minute’).last(minute_prices.length)
+     day_time = get_time_data('year').last(day_prices.length)
+     hour_time = get_time_data('hour').last(hour_prices.length)
+     minute_time = get_time_data('minute').last(minute_prices.length)
      # Simplify data so that each graph is made up of the same number of datapoints
      @data << simplify_data(day_time, day_prices) # Yearly data
      @data << simplify_data(hour_time, hour_prices) # Monthly data
@@ -52,17 +52,17 @@ class CryptocurrenciesController < ApplicationController
  def get_time_data(period)
    time = []
    case period
-   when ‘year’
+   when 'year'
      last_year = DateTime.now - 365
-     365.times { |days| time << (last_year + days).strftime(‘%s’).to_i * 1000 }
-   when ‘hour’
+     365.times { |days| time << (last_year + days).strftime('%s').to_i * 1000 }
+   when 'hour'
      last_month = DateTime.now - 30
-     760.times { |hours| time << (last_month + ((1 / 24.0) * hours)).strftime(‘%s’).to_i * 1000 }
-   when ‘minute’
+     760.times { |hours| time << (last_month + ((1 / 24.0) * hours)).strftime('%s').to_i * 1000 }
+   when 'minute'
      yesterday = DateTime.now - 1
-     1440.times { |minutes| time << (yesterday + ((1 / 1440.0) * minutes)).strftime(‘%s’).to_i * 1000 }
+     1440.times { |minutes| time << (yesterday + ((1 / 1440.0) * minutes)).strftime('%s').to_i * 1000 }
    else
-     puts ‘That is not a valid time period’
+     puts 'That is not a valid time period'
    end
    return time
  end
