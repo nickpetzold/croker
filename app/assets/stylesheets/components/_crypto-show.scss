@@ -1,5 +1,6 @@
 .show {
   background-color: #FFFFFF;
+  position: relative;
 }
 
 .crypto-logo-show {
@@ -20,7 +21,6 @@
 }
 
 .empty {
-  // width: 75%;
   flex: 0 1 80%;
 }
 
@@ -84,12 +84,6 @@
   }
 }
 
-#cryptoSearch {
-  background-color: #F7F7F7;
-  border: 0;
-  box-shadow: none;
-}
-
 #tradeValue {
   background-color: white;
   border: 0.5px solid $light-gray;
@@ -119,4 +113,14 @@
   .show {
     background-color: #ffffff;
   }
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  opacity: 0.4;
+  position: absolute;
+  top: 0px;
+  right: 0px;
 }
