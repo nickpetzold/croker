@@ -25,7 +25,7 @@
   <div class="show-balance">
     <ul class= "list-inline">
       <li><h3>Balance:</h3></li>
-      <li class="balance">80.000,00 USD</li>
+      <li class="balance"><%= humanized_money_with_symbol(current_user.fiat_balance) %> USD</li>
     </ul>
   </div>
 </div>
