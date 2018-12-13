@@ -96,7 +96,7 @@ class CryptoCompareService
   end
 
   def call_historical_prices(crypto, type = nil)
-    if type == 'yearly'
+    if type == 'daily'
       limit = 365
       call_type = 'day'
     elsif type == 'hourly'

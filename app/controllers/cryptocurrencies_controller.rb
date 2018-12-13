@@ -29,16 +29,20 @@ class CryptocurrenciesController < ApplicationController
   def call_chart
     @data = []
     @cryptocurrency = Cryptocurrency.find(params[:cryptocurrency_id])
-    day_prices = crypto_service.call_historical_prices(@cryptocurrency.ticker_code, 'yearly')
+    # API call to get prices at daily/hourly/minutely increments
+    day_prices = crypto_service.call_historical_prices(@cryptocurrency.ticker_code, 'daily')
     hour_prices = crypto_service.call_historical_prices(@cryptocurrency.ticker_code, 'hourly')
     minute_prices = crypto_service.call_historical_prices(@cryptocurrency.ticker_code, 'minutely')
-    day_time = get_time_data('year')
-    hour_time = get_time_data('hour')
-    minute_time = get_time_data('minute')
-    @data << day_time.zip(day_prices)
-    @data << hour_time.last(721).zip(hour_prices.last(721))
-    @data << hour_time.last(168).zip(hour_prices.last(168))
-    @data << minute_time.last(1440).zip(minute_prices.last(1440))
+    # Construct array of corresponding times for price data. #last accommodates for where
+    # price data returned is less than asked for.
+    day_time = get_time_data('year').last(day_prices.length)
+    hour_time = get_time_data('hour').last(hour_prices.length)
+    minute_time = get_time_data('minute').last(minute_prices.length)
+    # Simplify data so that each graph is made up of the same number of datapoints
+    @data << simplify_data(day_time, day_prices) # Yearly data
+    @data << simplify_data(hour_time, hour_prices) # Monthly data
+    @data << simplify_data(hour_time.last(168), hour_prices.last(168)) # Weekly data
+    @data << simplify_data(minute_time, minute_prices) # Daily data
   end
 
   def crypto_service
@@ -64,5 +68,20 @@ class CryptocurrenciesController < ApplicationController
       puts 'That is not a valid time period'
     end
     return time
+  end
+
+  def simplify_data(time, price)
+    # This method reduces the number of data points used to plot each graph
+    # to around 150
+    result = []
+    n = (time.length / 150)
+    if n == 1
+      result << time
+      result << price
+    else
+      result << (n - 1).step(time.size - 1, n).map { |i| time[i] }
+      result << (n - 1).step(price.size - 1, n).map { |i| price[i] }
+    end
+    result[0].zip(result[1])
   end
 end
