@@ -1,12 +1,9 @@
 class DashboardsController < ApplicationController
   before_action :top_five_traded, :latest_news, :top5_winners, :top5_losers
+  before_action :set_portfolio, only: [:dashboard, :portfolio_overview]
 
   def dashboard
-    # call here portfolio
-    # total trades
-    # the icons if its up or down in terms of portfolio
-    @portfolio = current_user.portfolios
-
+    @portfolio_overview = portfolio_overview
   end
 
   def portfolio_change_pct
@@ -22,7 +19,16 @@ class DashboardsController < ApplicationController
   end
 
   def portfolio_overview
+     # {"Bitcoin"=>{"BTC"=>3443.67}, "Ethereum"=>{"ETH"=>200.04}}
+    live_prices = crypto_service.call_current_prices
 
+    portfolio_hash = {}
+
+    @portfolios.each do |portfolio|
+      portfolio_hash[portfolio.cryptocurrency.ticker_name] = live_prices[portfolio.cryptocurrency.ticker_name.capitalize][portfolio.cryptocurrency.ticker_code]
+    end
+    # {"Bitcoin"=>3443.67, "Ethereum"=>200.04}
+    portfolio_hash
   end
 
   private
@@ -55,5 +61,9 @@ class DashboardsController < ApplicationController
   def crypto_service
     # API MEMOIZATION CODE
     @crypto_service ||= CryptoCompareService.new
+  end
+
+  def set_portfolio
+    @portfolios = current_user.portfolios
   end
 end
