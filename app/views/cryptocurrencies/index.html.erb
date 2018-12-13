@@ -3,10 +3,19 @@
     <!-- here starts the div that wraps the coins list on the left and the (buy/sell, chart) div on the right -->
     <div class="half-wrapper list">
       <div class="crypto-search text-center">
-        <form>
+       <!--  <form>
           <input type="name" class="crypto-search-input form-control" id="cryptoSearch" placeholder="🔍 (Bitcoin, Ethereum, etc)">
-        </form>
+        </form> -->
+      <%= form_tag cryptocurrencies_path, method: :get do %>
+      <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+        placeholder: "🔍 (Bitcoin, Ethereum, etc)"
+        %>
+        <% end %>
       </div>
+
+
       <!-- Headers -->
       <div class="crypto-list-headers">
         <div class="product list-headers">
@@ -32,7 +41,7 @@
           </div>
           <ul class="list-inline product-controls">
             <li>
-              <%= @live_prices[crypto.ticker_name][crypto.ticker_code] %>
+              <%= @live_prices[crypto.ticker_name][crypto.ticker_code].round(4) %>
               <%= CryptoCompareService::FIAT_CURRENCIES %>
             </li>
             <li>$4.321</li>
