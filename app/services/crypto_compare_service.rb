@@ -74,7 +74,7 @@ class CryptoCompareService
       api_key: @api_key
     }
     # Transform the ex string "BTC,ETH,XRP," into "BTC,ETH,XRP"
-    # @crypto_string_with_tickers = @crypto_string_with_tickers.chomp(",")
+    @crypto_string_with_tickers = @crypto_string_with_tickers.chomp(",")
 
     # Transform the crypto string into a crypto array with tickers ex: ["BTC","ETH","XRP"]
     crypto_array_with_tickers = @crypto_string_with_tickers.split(",")
