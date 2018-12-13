@@ -21,7 +21,7 @@ class CryptocurrenciesController < ApplicationController
 
   def call_chart
     @cryptocurrency = Cryptocurrency.find(params[:cryptocurrency_id])
-    days = (1..365).to_a.reverse
+    days = (0..364).to_a.reverse
     dates = days.map { |x| (DateTime.now - x).strftime('%s').to_i * 1000 }
     prices = crypto_service.call_historical_prices(@cryptocurrency.ticker_code, days.first)
     @data = dates.zip(prices).first(365)
