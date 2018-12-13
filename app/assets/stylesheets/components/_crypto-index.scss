@@ -40,6 +40,7 @@
 }
 
 .product {
+  height: 60px;
   display: flex;
   align-items: center;
   padding: 15px 20px 15px 25px;
@@ -52,6 +53,9 @@
   flex: 1 1 auto;
   display: flex;
   align-items: center;
+  h4 {
+    color: $header-gray;
+  }
 }
 .product-body h3 {
   font-weight: bold;
@@ -88,7 +92,9 @@
 .list-headers {
   padding: 10px;
   padding-right: 20px;
-  color: $header-gray;
+  color: #919191;
+  font-weight: bold;
+  font-size: 16px;
 }
 /* Controls design */
 .product-controls {
@@ -125,6 +131,11 @@
   .product {
     border-bottom: 1px solid $light-gray;
   }
+}
+
+.price-values li {
+  color: $header-gray;
+  font-weight: bold;
 }
 
 /* Hover effects */
