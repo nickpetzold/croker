@@ -4,14 +4,23 @@
     <%= image_tag 'logo.png', class: "logo" %>
     <% end %>
     <div class="tabs">
+      <% if controller.class == DashboardsController && controller.action_name == 'dashboard' %>
       <%= link_to 'Dashboard', dashboard_path, class: 'tab active', style: 'font-size: 20px' %>
-      <a href="#"><h2 class="tab">Buy/Sell</h2></a>
+      <% else %>
+      <%= link_to 'Dashboard', dashboard_path, class: 'tab', style: 'font-size: 20px' %>
+      <% end %>
+      <% if controller.class == CryptocurrenciesController && controller.action_name == 'index' %>
+      <%= link_to 'Buy/Sell', cryptocurrencies_path, class: 'tab active', style: 'font-size: 20px' %>
+      <% else %>
+      <%= link_to 'Buy/Sell', cryptocurrencies_path, class: 'tab', style: 'font-size: 20px' %>
+      <% end %>
+      <!-- <a href="#"><h2 class="tab">Buy/Sell</h2></a> -->
     </div>
   </div>
   <div class="navbar-right">
     <div class="navbar-balances">
       <h4>Available Balance: <span id="available-balance"><%= humanized_money_with_symbol(current_user.fiat_balance) %></span></h4>
-      <h4>Portfolio Value: <span id="portfolio-value">$63.21</span></h4>
+      <h4>Portfolio Value: <span id="portfolio-value">$0.00</span></h4>
     </div>
     <div class="btn-deposit">
       <%= link_to 'Deposit', new_top_up_path, class: "deposit btn btn-success" %>
