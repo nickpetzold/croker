@@ -52,23 +52,37 @@ const initCharts = function() {
 
   if (chartElement) {
     const data = JSON.parse(chartElement.dataset.historicalPrices);
-    const oneDayBtn = document.getElementById('one-day');
-    const oneWeekBtn = document.getElementById('one-week');
-    const oneMonthBtn = document.getElementById('one-month');
-    const oneYearBtn = document.getElementById('one-year');
+    const oneDayBtn = document.querySelector('.one-day');
+    const oneWeekBtn = document.querySelector('.one-week');
+    const oneMonthBtn = document.querySelector('.one-month');
+    const oneYearBtn = document.querySelector('.one-year');
+    const buttons = [oneDayBtn, oneWeekBtn, oneMonthBtn, oneYearBtn];
+    const removeSelectedClass = (() => {
+      buttons.forEach(function(x) {
+        x.classList.remove('selected');
+      });
+    });
     oneDayBtn.addEventListener("click", function(event) {
       renderChart(data[3]);
+      removeSelectedClass();
+      oneDayBtn.classList.add('selected');
     });
     oneWeekBtn.addEventListener("click", function(event) {
       renderChart(data[2]);
+      removeSelectedClass();
+      oneWeekBtn.classList.add('selected');
     });
     oneMonthBtn.addEventListener("click", function(event) {
       renderChart(data[1]);
+      removeSelectedClass();
+      oneMonthBtn.classList.add('selected');
     });
     oneYearBtn.addEventListener("click", function(event) {
       renderChart(data[0]);
+      removeSelectedClass();
+      oneYearBtn.classList.add('selected');
     });
-    renderChart(data[0]);
+    renderChart(data[3]);
 
   }
 };

@@ -1,4 +1,6 @@
 class CryptocurrenciesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index]
+
   def index
     # this is an array of instances
     @cryptocurrencies = Cryptocurrency.all
@@ -17,6 +19,21 @@ class CryptocurrenciesController < ApplicationController
     # this condition takes care of showing the "show" when a cryptocurrency is selected
     if params[:crypto_id]
       @cryptocurrency = Cryptocurrency.find(params[:crypto_id])
+      @data = []
+      day_prices = crypto_service.call_historical_prices(@cryptocurrency.ticker_code, 'daily')
+      hour_prices = crypto_service.call_historical_prices(@cryptocurrency.ticker_code, 'hourly')
+      minute_prices = crypto_service.call_historical_prices(@cryptocurrency.ticker_code, 'minutely')
+      @latest_price = minute_prices.last
+      # Construct array of corresponding times for price data. #last accommodates for where
+      # price data returned is less than asked for.
+      day_time = get_time_data('year').last(day_prices.length)
+      hour_time = get_time_data('hour').last(hour_prices.length)
+      minute_time = get_time_data('minute').last(minute_prices.length)
+      # Simplify data so that each graph is made up of the same number of datapoints
+      @data << simplify_data(day_time, day_prices) # Yearly data
+      @data << simplify_data(hour_time, hour_prices) # Monthly data
+      @data << simplify_data(hour_time.last(168), hour_prices.last(168)) # Weekly data
+      @data << simplify_data(minute_time, minute_prices) # Daily data
       # @live_price = crypto_service.call_current_prices[@cryptocurrency.ticker_name][@cryptocurrency.ticker_code]
 
       # --------------TODO LATER------------------
@@ -27,30 +44,18 @@ class CryptocurrenciesController < ApplicationController
   end
 
   def call_chart
-    @data = []
+
     @cryptocurrency = Cryptocurrency.find(params[:cryptocurrency_id])
     # API call to get prices at daily/hourly/minutely increments
-    day_prices = crypto_service.call_historical_prices(@cryptocurrency.ticker_code, 'daily')
-    hour_prices = crypto_service.call_historical_prices(@cryptocurrency.ticker_code, 'hourly')
-    minute_prices = crypto_service.call_historical_prices(@cryptocurrency.ticker_code, 'minutely')
-    # Construct array of corresponding times for price data. #last accommodates for where
-    # price data returned is less than asked for.
-    day_time = get_time_data('year').last(day_prices.length)
-    hour_time = get_time_data('hour').last(hour_prices.length)
-    minute_time = get_time_data('minute').last(minute_prices.length)
-    # Simplify data so that each graph is made up of the same number of datapoints
-    @data << simplify_data(day_time, day_prices) # Yearly data
-    @data << simplify_data(hour_time, hour_prices) # Monthly data
-    @data << simplify_data(hour_time.last(168), hour_prices.last(168)) # Weekly data
-    @data << simplify_data(minute_time, minute_prices) # Daily data
+
   end
+
+  private
 
   def crypto_service
     # API MEMOIZATION CODE
     @crypto_service ||= CryptoCompareService.new
   end
-
-  private
 
   def get_time_data(period)
     time = []

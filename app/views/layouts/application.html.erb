@@ -20,8 +20,11 @@
   <div style="min-height: calc(100vh - 130px);">
     <%= yield %>
   </div>
-
+  <% if controller.class == DashboardsController && controller.action_name == 'dashboard' || controller.class == PagesController && controller.action_name == 'home'%>
+  <%= render 'shared/footer' %>
+  <% else %>
   <%= render 'shared/slim_footer' %>
+  <% end %>
   <%= javascript_include_tag 'application' %>
   <%= javascript_pack_tag 'application' %>
 </body>
