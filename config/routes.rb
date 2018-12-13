@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "dashboard", to: "dashboards#dashboard"
 
   resources :cryptocurrencies, only: [:index, :show] do
+    get "call_chart", to: "cryptocurrencies#call_chart"
     resources :trades, only: [:new, :create]
     resources :charts, only: :show
   end
