@@ -164,11 +164,7 @@ class CryptoCompareService
     # Iterate through the crypto_hash
     CRYPTO_HASH.each do |key, value|
       # Build a string with all cryptocurrency tickers "BTC,ETH"
-      if key == CRYPTO_HASH.keys.last
-        @crypto_string_with_tickers << "#{value}"
-      else
-        @crypto_string_with_tickers << "#{value},"
-      end
+      @crypto_string_with_tickers << "#{value},"
       # Build an array with all cryptocurrency names ["Bitcoin", "Ethereum"]
       @crypto_array_with_names << key.to_s
     end
