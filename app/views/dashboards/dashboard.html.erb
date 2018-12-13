@@ -373,10 +373,12 @@
           </div>
         </div>
         <div class="top-traded">
+          <% rank_top_five = 0 %>
           <% @top_five.each do |key, value|  %>
             <%= link_to 'dashboards' do %>
+            <% rank_top_five += 1 %>
             <div class="top-traded-card">
-              <h4 style="padding-right: 20px; color: #969696;">1</h4>
+              <h4 style="padding-right: 20px; color: #969696;"><%= rank_top_five %></h4>
               <%= image_tag "#{value}.png", class: "portfolio-icon" %>
               <h4><%= key %> <span class="crypto-code"><%= value %></span></h4>
             </div>
