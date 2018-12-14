@@ -1,7 +1,7 @@
 
 <div class="title">
   <div class="title-icon">
-    <%= image_tag "#{@cryptocurrency.ticker_code}", class: "crypto-logo-show" %>
+    <%= image_tag "#{@cryptocurrency.ticker_code}.png", class: "crypto-logo-show" %>
   </div>
   <div class="title-header">
     <h2 style="padding-top: 9px; padding-bottom: 9px;"><%= @cryptocurrency.ticker_name %></h2>
@@ -29,8 +29,13 @@
 <div class="balance-container">
   <div class="show-balance">
     <ul class= "list-inline">
+      <% if current_user %>
       <li><h3>Balance:</h3></li>
-      <li class="balance"><%= humanized_money_with_symbol(current_user.fiat_balance) %> USD</li>
+      <li class="balance">$<%= humanized_money_with_symbol(current_user.fiat_balance) %></li>
+      <% else %>
+      <li><h3>Balance:</h3></li>
+      <li class="balance">$ --.--</li>
+      <% end %>
     </ul>
   </div>
 </div>
