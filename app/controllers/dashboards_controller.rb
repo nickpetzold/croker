@@ -130,6 +130,7 @@ class DashboardsController < ApplicationController
   end
 
   def tname(portfolio)
-    portfolio.cryptocurrency.ticker_name.capitalize
+    # IF THIS STARTS BREAKING TRY OUT WITH .capitalize !!!
+    portfolio.cryptocurrency.ticker_name
   end
 end
