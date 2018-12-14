@@ -20,8 +20,10 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));</script>
 
-  <% if current_user %>
-    <% if controller.class == PagesController && controller.action_name == 'home' %>
+  <%# if current_user %>
+
+
+  <% if controller.class == PagesController && controller.action_name == 'home' %>
 
   <% elsif current_user %>
     <%= render 'shared/navbar_croker_logged_in' %>
