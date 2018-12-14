@@ -11,21 +11,31 @@
   <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
 </head>
 <body>
-  <% if controller.class == PagesController && controller.action_name == 'home' %>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/pt_PT/sdk.js#xfbml=1&version=v3.2&appId=362432604490244&autoLogAppEvents=1';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+  <% if current_user %>
+    <% if controller.class == PagesController && controller.action_name == 'home' %>
 
   <% elsif current_user %>
-  <%= render 'shared/navbar_croker_logged_in' %>
+    <%= render 'shared/navbar_croker_logged_in' %>
   <% else %>
-  <%= render 'shared/navbar_croker_sign_up' %>
+    <%= render 'shared/navbar_croker_sign_up' %>
   <% end %>
   <%= render 'shared/flashes' %>
   <div style="min-height: calc(100vh - 130px);">
     <%= yield %>
   </div>
   <% if controller.class == DashboardsController && controller.action_name == 'dashboard' || controller.class == PagesController && controller.action_name == 'home'%>
-  <%= render 'shared/footer' %>
+    <%= render 'shared/footer' %>
   <% else %>
-  <%= render 'shared/slim_footer' %>
+    <%= render 'shared/slim_footer' %>
   <% end %>
   <%= javascript_include_tag 'application' %>
   <%= javascript_pack_tag 'application' %>
