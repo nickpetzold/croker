@@ -1,6 +1,6 @@
 class CryptocurrenciesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
-  before_action :set_cryptocurrency, only: [:call_chart]
+  # before_action :set_cryptocurrency, only: [:call_chart]
 
   def index
     # this is an array of instances
@@ -82,7 +82,7 @@ class CryptocurrenciesController < ApplicationController
     result[0].zip(result[1])
   end
 
-  def set_cryptocurrency
-    @cryptocurrency = Cryptocurrency.find(params[:cryptocurrency_id])
-  end
+  # def set_cryptocurrency
+  #   @cryptocurrency = Cryptocurrency.find(params[:cryptocurrency_id])
+  # end
 end
