@@ -1,5 +1,5 @@
 <div class="dashboard-wrapper">
-  <% if false %>
+  <% if @portfolio_value == 0 %>
   <div class="dashboard-row-wrapper">
     <div class="dashboard-container">
       <div class="no-coins-dashboard dashboard-field">
@@ -50,7 +50,7 @@
           </div>
           <div class="value-content">
             <%= image_tag 'coins.png', class: "portfolio-image coins" %>
-            <span class="content-headline-figure text-center">$<%= number_with_delimiter(@portfolio_value.round(0), :delimeter => ",") %></span>
+            <span class="content-headline-figure text-center">$<%= number_with_delimiter(@portfolio_value.round(0), delimeter: ",") %></span>
           </div>
           <div class="change-timescale">
             <!-- Empty div to ensure border spacing -->
@@ -85,9 +85,13 @@
           </div>
           <div class="stats-entry">
             <div class="stats-title">
-              <h3>Last trade:</h3><h3><%= @days_since_last_trade %></h3>
+              <h3>Days since last trade:</h3><h3><%= @days_since_last_trade %></h3>
             </div>
-            <p>Days since last trade</p>
+            <% if @days_since_last_trade > 0 %>
+            <p>I think you should make a trade...</p>
+            <% else %>
+            <p>That doesn't mean you should stop...</p>
+            <% end %>
           </div>
         </div>
       </div>
@@ -126,12 +130,12 @@
         </div>
         <div class="crypto-rows">
           <!-- Row for each crypto here -->
-          <% @portfolios.each do |portfolio|  %>
-            <%= link_to 'dashboard' do %>
+          <% @portfolios.each_with_index do |portfolio, index|  %>
+            <%= link_to "cryptocurrencies?crypto_id=#{portfolio.cryptocurrency.id}" do %>
               <div class="portfolio-link">
                 <div class="portfolio-crypto portfolio-row">
                   <div class="portfolio-rank crypto-rank">
-                    <h4>2</h4>
+                    <h4><%= index + 1 %></h4>
                   </div>
                   <div class="portfolio-name crypto-name">
                     <%= image_tag "#{portfolio.cryptocurrency.ticker_code}.png", class: "portfolio-icon" %>
@@ -139,13 +143,13 @@
                   </div>
                   <div class="portfolio-price crypto-price">
                     <% current_price = @portfolio_overview[portfolio.cryptocurrency.ticker_name][portfolio.cryptocurrency.ticker_code] %>
-                    <h4><%= current_price.round(4) %></h4>
+                    <h4>$<%= number_with_delimiter(current_price.round(4), delimeter: ',') %></h4>
                   </div>
                   <div class="portfolio-value-held crypto-value-held">
-                    <h4><%= (current_price * portfolio.crypto_amount_held).round(3) %></h4>
+                    <h4>$<%= number_with_delimiter((current_price * portfolio.crypto_amount_held).round(2), delimeter: ',') %></h4>
                   </div>
                   <div class="portfolio-profit-loss crypto-profit-loss">
-                    <h4><span class="positive">$ <%= (portfolio.fiat_amount_cents - current_price).round(2) %></span></h4>
+                    <h4><span class="positive">$<%= number_with_delimiter((portfolio.fiat_amount_cents - current_price).round(0), delimeter: ',') %></span></h4>
                   </div>
                 </div>
               </div>
@@ -176,7 +180,8 @@
         <div class="winners-losers-cols">
           <div class="winners-losers-col">
             <% @top5_winners.each do |key, value| %>
-              <%= link_to 'dashboards' do  %>
+            <% crypto = Cryptocurrency.find_by(ticker_code: key) %>
+              <%= link_to "cryptocurrencies?crypto_id=#{crypto.id}" do  %>
                 <div class="winner-loser-card">
                   <%= image_tag "#{key}.png", class: "portfolio-icon" %>
                   <h4><%= key %></h4>
@@ -187,7 +192,8 @@
           </div>
           <div class="winners-losers-col">
             <% @top5_losers.each do |key, value| %>
-              <%= link_to 'dashboard' do %>
+            <% crypto = Cryptocurrency.find_by(ticker_code: key) %>
+              <%= link_to "cryptocurrencies?crypto_id=#{crypto.id}" do  %>
                 <div class="winner-loser-card">
                   <h4><span class="loser"><%= value.round(2) %>%</span></h4>
                   <h4><%= key %></h4>
@@ -234,7 +240,8 @@
         <div class="top-traded">
           <% rank_top_five = 0 %>
           <% @top_five_traded.each do |key, value|  %>
-            <%= link_to 'dashboards' do %>
+          <% crypto = Cryptocurrency.find_by(ticker_code: value) %>
+            <%= link_to "cryptocurrencies?crypto_id=#{crypto.id}" do  %>
             <% rank_top_five += 1 %>
             <div class="top-traded-card">
               <h4 style="padding-right: 20px; color: #969696;"><%= rank_top_five %></h4>
