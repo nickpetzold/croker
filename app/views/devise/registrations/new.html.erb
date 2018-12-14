@@ -1,6 +1,9 @@
 <div class="login-flex">
   <div class="login-wrapper">
     <h2 class="text-center">Sign up</h2>
+      <div class="text-center facebook-button">
+        <%= render "devise/shared/facebook_login" %>
+      </div>
 
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= f.error_notification %>
@@ -13,9 +16,6 @@
         <%= f.input :last_name,
                     required: false,
                     input_html: { autocomplete: "last_name" }%>
-        <%= f.input :country,
-                    required: false,
-                    input_html: { autocomplete: "country" }%>
         <%= f.input :email,
                     required: true,
                     input_html: { autocomplete: "email" }%>
