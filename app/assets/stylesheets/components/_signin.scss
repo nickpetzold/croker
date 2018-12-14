@@ -3,6 +3,13 @@
   justify-content: space-around;
 }
 
+.payment-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .login-wrapper {
   margin-top: 30px;
   background-color: #ffffff;
