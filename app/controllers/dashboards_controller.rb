@@ -28,9 +28,13 @@ class DashboardsController < ApplicationController
   end
 
   def days_since_last_trade
-    ts_now = Time.now.day
-    ts_last = current_user.trades.last.date_of_trade.day
-    @days_since_last_trade = ts_now - ts_last
+    unless current_user.trades
+      ts_now = Time.now.day
+      ts_last = current_user.trades.last.date_of_trade.day
+      @days_since_last_trade = ts_now - ts_last
+    else
+      @days_since_last_trade = 100000
+    end
   end
 
   def portfolio_overview
