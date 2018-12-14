@@ -30,6 +30,7 @@ class DashboardsController < ApplicationController
   def days_since_last_trade
     if current_user.trades.nil?
       @days_since_last_trade = 100000
+     # Hello
     else
       ts_now = Time.now.day
       ts_last = current_user.trades.last.date_of_trade.day
