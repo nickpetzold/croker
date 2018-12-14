@@ -1,2 +1,87 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+<div class="landing-wrapper">
+  <div class="landing-row-wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+            Menu <i class="fa fa-bars"></i>
+          </button>
+          <a class="navbar-brand page-scroll" href="#page-top">
+
+            <i class=""></i> <span class="light"><%#= image_tag 'logo.png' %>Croker</span>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+          <ul class="nav navbar-nav">
+            <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+            <li class="hidden">
+              <a href="#page-top"></a>
+            </li>
+            <li>
+              <a class="page-scroll" href="#about">Why Croker</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="#download">How it works</a>
+            </li>
+            <li>
+              <%= link_to "Login",  new_user_session_path, method: :get, class: "sign-up my-btn" %>
+            </li>
+            <li>
+             <%= link_to "Sign Up", new_user_registration_path, class: "sign-up my-btn" %>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container -->
+    </nav>
+
+    <!-- Intro Header -->
+    <div class="landing-intro">
+      <div class="intro-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <h1 class="brand-heading">Crypto trading made easy</h1>
+              <p class="intro-text">Croker is your <strong>gateway</strong> into the <strong>cryptosphere</strong>.
+              </p>
+            <!--   <a href="#" class="btn btn-success buy-coins">Sign Up</a>
+            </a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <!-- <div id="why-croker" class="container content-section text-center"> -->
+    <div id="about" class="why-croker-wrapper">
+      <div class="why-croker-container text-center">
+        <h2>Ask yourself...</h2>
+        <p>Calling on crypto newbies and veterans alike</p>
+      </div>
+    </div>
+
+    <div class="why-croker-wrapper">
+      <div class="why-croker-container">
+       <h3>Are you tired of confusing trading platforms?</h3>
+       <%= image_tag 'confusion.png', :class => "style_image" %>
+     </div>
+     <div class="why-croker-container">
+      <h3>Is this your first time investing?</h3>
+       <%= image_tag 'planting.png', :class => "style_image" %>
+    </div>
+    <div class="why-croker-container">
+      <h3>Are you searching for a simple interface?</h3>
+       <%= image_tag 'search.png', :class => "style_image" %>
+    </div>
+  </div>
+
+
+</div>
+
+
+
