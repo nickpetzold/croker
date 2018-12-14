@@ -50,7 +50,7 @@
           </div>
           <div class="value-content">
             <%= image_tag 'coins.png', class: "portfolio-image coins" %>
-            <span class="content-headline-figure text-center"><%= humanized_money_with_symbol(@portfolio_value) %></span>
+            <span class="content-headline-figure text-center">$<%= number_with_delimiter(@portfolio_value.round(0), :delimeter => ",") %></span>
           </div>
           <div class="change-timescale">
             <!-- Empty div to ensure border spacing -->
@@ -67,7 +67,7 @@
             <%= image_tag 'title_icon.png', class: "icon" %>
           </div>
           <div class="title-header">
-            <h2>Portfolio Change</h2>
+            <h2>Portfolio Stats</h2>
           </div>
         </div>
         <div class="stats-content">

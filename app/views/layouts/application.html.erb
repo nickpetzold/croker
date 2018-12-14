@@ -17,7 +17,7 @@
   <%= render 'shared/navbar_croker_sign_up' %>
   <% end %>
   <%= render 'shared/flashes' %>
-  <div style="min-height: calc(100vh - 130px);">
+  <div style="min-height: calc(100vh - 160px);">
     <%= yield %>
   </div>
   <% if controller.class == DashboardsController && controller.action_name == 'dashboard' || controller.class == PagesController && controller.action_name == 'home'%>

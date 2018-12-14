@@ -1,8 +1,13 @@
-<h1>How much would you like to top up?</h1>
-<%= simple_form_for [@user, @top_up] do |f| %>
-  <%= f.input :fiat_amount %>
-  <%= f.hidden_field :transaction_type, value: 'top_up' %>
-  <%= f.hidden_field :date_of_top_up, value: DateTime.now %>
-  <%= f.hidden_field :state, value: 'pending' %>
-  <%= f.button :submit %>
-<% end %>
+<div class="login-flex">
+  <div class="login-wrapper">
+    <h2 class="text-center" style="margin-top: 0; margin-bottom: 40px;">How much would you like to top up?</h2>
+    <%= simple_form_for [@user, @top_up] do |f| %>
+      <%= f.label "Top-Up Amount ($)" %>
+      <%= f.input :fiat_amount, label: false %>
+      <%= f.hidden_field :transaction_type, value: 'top_up' %>
+      <%= f.hidden_field :date_of_top_up, value: DateTime.now %>
+      <%= f.hidden_field :state, value: 'pending' %>
+      <%= f.button :submit, class: "btn btn-success btn-login" %>
+    <% end %>
+  </div>
+</div>
