@@ -2,16 +2,37 @@ class DashboardsController < ApplicationController
   before_action :set_portfolio, only: [:dashboard, :portfolio_overview, :value_held, :profit_or_loss]
 
   def dashboard
-   @portfolio_overview = portfolio_overview
-   @value_held = value_held
-   @profit_or_loss = profit_or_loss
-   @top_five = top_five_traded
-   @top5_winners = top5_winners
-   @top5_losers = top5_losers
-   @latest_news = latest_news
+    @portfolio_value = portfolio_value
+    @number_of_coins = number_of_coins
+    @number_of_trades = number_of_trades
+    @profit_factor = profit_factor
+    @portfolio_overview = portfolio_overview
+    @value_held = value_held
+    @profit_or_loss = profit_or_loss
+    @top_five = top_five_traded
+    @top5_winners = top5_winners
+    @top5_losers = top5_losers
+    @latest_news = latest_news
   end
 
   private
+
+
+  def portfolio_value
+    @portfolios.sum(:fiat_amount_cents)
+  end
+
+  def number_of_coins
+    @portfolios.count
+  end
+
+  def number_of_trades
+    current_user.trades.count
+  end
+
+  def profit_factor
+    # TODO
+  end
 
   def portfolio_overview
     # {"Bitcoin"=>{"BTC"=>3443.67}, "Ethereum"=>{"ETH"=>200.04}}
