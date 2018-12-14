@@ -26,7 +26,7 @@ puts "---------- CRYPTOCURRENCIES CREATED ----------"
 
 puts "---------- CREATING TRADES FOR USER ----------"
 
-amount_of_trades = 500
+amount_of_trades = 300
 1.upto(amount_of_trades) do |i|
 puts "--------------------------------------------------------------------------------------------"
 random_crypto_id = (1..CryptoCompareService::CRYPTO_HASH.count).to_a.sample
@@ -37,7 +37,7 @@ trades_params = {
   fiat_price_cents: rand(1..100000),
   fiat_amount_cents: rand(1..100000),
   cryptocurrency_amount: rand(1..10000),
-  date_of_trade: Date.today
+  date_of_trade: DateTime.now - 5
 }
   trade = Trade.new(trades_params)
   trade.save

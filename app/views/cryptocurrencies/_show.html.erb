@@ -1,8 +1,11 @@
-<div class="car-card-title">
-  <div class="green-line">
-    <%= image_tag @cryptocurrency.ticker_code, class: "crypto-logo-show" %>
+
+<div class="title">
+  <div class="title-icon">
+    <%= image_tag "#{@cryptocurrency.ticker_code}", class: "crypto-logo-show" %>
   </div>
-  <h3 class="title-show"><%= @cryptocurrency.ticker_name %></h3>
+  <div class="title-header">
+    <h2 style="padding-top: 9px; padding-bottom: 9px;"><%= @cryptocurrency.ticker_name %></h2>
+  </div>
 </div>
 <!-- This is where we show the price of the coin -->
 <div class="price-wrapper">
