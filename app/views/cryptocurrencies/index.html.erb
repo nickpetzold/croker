@@ -18,7 +18,7 @@
             <li>Coin</li>
           </div>
           <ul class="list-inline product-controls">
-            <li>Price</li>
+            <li>Price <span class="hide-dot">.</span></li>
             <li>Value Held</li>
           </ul>
         </div>
@@ -28,15 +28,14 @@
         <% @cryptocurrencies.each do |crypto| %>
           <%= link_to cryptocurrencies_path(crypto_id: crypto.id) do %>
 
-          <div class="product">
+          <div class="product each-crypto">
             <%= image_tag "#{crypto.ticker_code}.png", class: "product-image" %>
             <div class='product-body'>
               <h4><%= crypto.ticker_name %> <span class="crypto-code"><%= crypto.ticker_code %></span></h4>
             </div>
             <ul class="list-inline product-controls price-values">
-              <li>
-                <%= "$#{number_with_delimiter(@live_prices[crypto.ticker_name][crypto.ticker_code].round(4), :delimeter => ",")}" %>
-              </li>
+              <li><%= "$#{number_with_delimiter(@live_prices[crypto.ticker_name][crypto.ticker_code].round(4), :delimeter => ",")}" %></li>
+              <li></li>
               <li>$4.321</li>
             </ul>
           </div>
