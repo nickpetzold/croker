@@ -85,9 +85,9 @@
           </div>
           <div class="stats-entry">
             <div class="stats-title">
-              <h3>Profit Factor:</h3><h3>4.81</h3>
+              <h3>Last trade:</h3><h3><%= @days_since_last_trade %></h3>
             </div>
-            <p>Profit factor is defined as profits divided by losses</p>
+            <p>Days since last trade</p>
           </div>
         </div>
       </div>
@@ -126,171 +126,30 @@
         </div>
         <div class="crypto-rows">
           <!-- Row for each crypto here -->
-          <%= link_to 'dashboards' do %>
-          <div class="portfolio-link">
-            <div class="portfolio-crypto portfolio-row">
-              <div class="portfolio-rank crypto-rank">
-                <h4>1</h4>
+          <% @portfolios.each do |portfolio|  %>
+            <%= link_to 'dashboard' do %>
+              <div class="portfolio-link">
+                <div class="portfolio-crypto portfolio-row">
+                  <div class="portfolio-rank crypto-rank">
+                    <h4>2</h4>
+                  </div>
+                  <div class="portfolio-name crypto-name">
+                    <%= image_tag "#{portfolio.cryptocurrency.ticker_code}.png", class: "portfolio-icon" %>
+                    <h4><%= portfolio.cryptocurrency.ticker_name %> <span class="crypto-code"><%= portfolio.cryptocurrency.ticker_code %></span></h4>
+                  </div>
+                  <div class="portfolio-price crypto-price">
+                    <% current_price = @portfolio_overview[portfolio.cryptocurrency.ticker_name][portfolio.cryptocurrency.ticker_code] %>
+                    <h4><%= current_price.round(4) %></h4>
+                  </div>
+                  <div class="portfolio-value-held crypto-value-held">
+                    <h4><%= (current_price * portfolio.crypto_amount_held).round(3) %></h4>
+                  </div>
+                  <div class="portfolio-profit-loss crypto-profit-loss">
+                    <h4><span class="positive">$ <%= (portfolio.fiat_amount_cents - current_price).round(2) %></span></h4>
+                  </div>
+                </div>
               </div>
-              <div class="portfolio-name crypto-name">
-                <%= image_tag 'BTC.png', class: "portfolio-icon" %>
-                <h4>Bitcoin <span class="crypto-code">BTC</span></h4>
-              </div>
-              <div class="portfolio-price crypto-price">
-                <h4>$3,234.02</h4>
-              </div>
-              <div class="portfolio-value-held crypto-value-held">
-                <h4>$100.34</h4>
-              </div>
-              <div class="portfolio-profit-loss crypto-profit-loss">
-                <h4><span class="positive">$10.12</span></h4>
-              </div>
-            </div>
-          </div>
-          <% end %>
-          <!-- Row for each crypto here -->
-          <!-- Row for each crypto here -->
-          <%= link_to 'dashboards' do %>
-          <div class="portfolio-link">
-            <div class="portfolio-crypto portfolio-row">
-              <div class="portfolio-rank crypto-rank">
-                <h4>2</h4>
-              </div>
-              <div class="portfolio-name crypto-name">
-                <%= image_tag 'XMR.png', class: "portfolio-icon" %>
-                <h4>Monero <span class="crypto-code">XMR</span></h4>
-              </div>
-              <div class="portfolio-price crypto-price">
-                <h4>$78.90</h4>
-              </div>
-              <div class="portfolio-value-held crypto-value-held">
-                <h4>$1,030.34</h4>
-              </div>
-              <div class="portfolio-profit-loss crypto-profit-loss">
-                <h4><span class="positive">$500.73</span></h4>
-              </div>
-            </div>
-          </div>
-          <% end %>
-          <!-- Row for each crypto here -->
-          <!-- Row for each crypto here -->
-          <%= link_to 'dashboards' do %>
-          <div class="portfolio-link">
-            <div class="portfolio-crypto portfolio-row">
-              <div class="portfolio-rank crypto-rank">
-                <h4>3</h4>
-              </div>
-              <div class="portfolio-name crypto-name">
-                <%= image_tag 'BCH.png', class: "portfolio-icon" %>
-                <h4>Bitcoin Cash <span class="crypto-code">BCH</span></h4>
-              </div>
-              <div class="portfolio-price crypto-price">
-                <h4>$120.74</h4>
-              </div>
-              <div class="portfolio-value-held crypto-value-held">
-                <h4>$23.76</h4>
-              </div>
-              <div class="portfolio-profit-loss crypto-profit-loss">
-                <h4><span class="negative">$38.09</span></h4>
-              </div>
-            </div>
-          </div>
-          <% end %>
-          <!-- Row for each crypto here -->
-          <!-- Row for each crypto here -->
-          <%= link_to 'dashboards' do %>
-          <div class="portfolio-link">
-            <div class="portfolio-crypto portfolio-row">
-              <div class="portfolio-rank crypto-rank">
-                <h4>4</h4>
-              </div>
-              <div class="portfolio-name crypto-name">
-                <%= image_tag 'USDT.png', class: "portfolio-icon" %>
-                <h4>Tehter <span class="crypto-code">USDT</span></h4>
-              </div>
-              <div class="portfolio-price crypto-price">
-                <h4>$23.77</h4>
-              </div>
-              <div class="portfolio-value-held crypto-value-held">
-                <h4>$189.99</h4>
-              </div>
-              <div class="portfolio-profit-loss crypto-profit-loss">
-                <h4><span class="positive">$2.99</span></h4>
-              </div>
-            </div>
-          </div>
-          <% end %>
-          <!-- Row for each crypto here -->
-          <!-- Row for each crypto here -->
-          <%= link_to 'dashboards' do %>
-          <div class="portfolio-link">
-            <div class="portfolio-crypto portfolio-row">
-              <div class="portfolio-rank crypto-rank">
-                <h4>5</h4>
-              </div>
-              <div class="portfolio-name crypto-name">
-                <%= image_tag 'ETH.png', class: "portfolio-icon" %>
-                <h4>Ethereum <span class="crypto-code">ETH</span></h4>
-              </div>
-              <div class="portfolio-price crypto-price">
-                <h4>$1.88</h4>
-              </div>
-              <div class="portfolio-value-held crypto-value-held">
-                <h4>$409.65</h4>
-              </div>
-              <div class="portfolio-profit-loss crypto-profit-loss">
-                <h4><span class="negative">$28.99</span></h4>
-              </div>
-            </div>
-          </div>
-          <% end %>
-          <!-- Row for each crypto here -->
-          <!-- Row for each crypto here -->
-          <%= link_to 'dashboards' do %>
-          <div class="portfolio-link">
-            <div class="portfolio-crypto portfolio-row">
-              <div class="portfolio-rank crypto-rank">
-                <h4>6</h4>
-              </div>
-              <div class="portfolio-name crypto-name">
-                <%= image_tag 'XLM.png', class: "portfolio-icon" %>
-                <h4>Stellar <span class="crypto-code">XLM</span></h4>
-              </div>
-              <div class="portfolio-price crypto-price">
-                <h4>$88.87</h4>
-              </div>
-              <div class="portfolio-value-held crypto-value-held">
-                <h4>$10.66</h4>
-              </div>
-              <div class="portfolio-profit-loss crypto-profit-loss">
-                <h4><span class="negative">$9.76</span></h4>
-              </div>
-            </div>
-          </div>
-          <% end %>
-          <!-- Row for each crypto here -->
-          <!-- Row for each crypto here -->
-          <%= link_to 'dashboards' do %>
-          <div class="portfolio-link">
-            <div class="portfolio-crypto portfolio-row">
-              <div class="portfolio-rank crypto-rank">
-                <h4>7</h4>
-              </div>
-              <div class="portfolio-name crypto-name">
-                <%= image_tag 'XRP.png', class: "portfolio-icon" %>
-                <h4>Ripple <span class="crypto-code">XRP</span></h4>
-              </div>
-              <div class="portfolio-price crypto-price">
-                <h4>$0.87</h4>
-              </div>
-              <div class="portfolio-value-held crypto-value-held">
-                <h4>$390.88</h4>
-              </div>
-              <div class="portfolio-profit-loss crypto-profit-loss">
-                <h4><span class="positive">$130.12</span></h4>
-              </div>
-            </div>
-          </div>
+            <% end %>
           <% end %>
           <!-- Row for each crypto here -->
         </div>
@@ -374,7 +233,7 @@
         </div>
         <div class="top-traded">
           <% rank_top_five = 0 %>
-          <% @top_five.each do |key, value|  %>
+          <% @top_five_traded.each do |key, value|  %>
             <%= link_to 'dashboards' do %>
             <% rank_top_five += 1 %>
             <div class="top-traded-card">
