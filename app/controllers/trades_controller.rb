@@ -14,6 +14,7 @@ class TradesController < ApplicationController
     # assign the date
     @trade.date_of_trade = Date.today
     # call the buy or sell private method
+    # byebug
     buy_or_sell
   end
 

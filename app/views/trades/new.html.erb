@@ -2,13 +2,13 @@
 
 
 
-<div class=“booking-form”>
- <%= simple_form_for [@cryptocurrency, @trade] do |f| %>
+<div class=“trade-form”>
+ <%= simple_form_for [@cryptocurrency, @trade], method: :post do |f| %>
   <div class=“form-inline text-center”><%= f.input :cryptocurrency_amount, as: :decimal %></div>
   <div class=“form-inline text-center”><%= f.input :fiat_amount_cents, as: :integer%></div>
   <div class=“form-inline text-center”><%= f.input :fiat_price_cents, as: :integer%></div>
   <div class=“form-inline text-center”><%= f.input :transaction_type, collection: Trade.list_transaction_types %></div>
-  <%= f.button :submit, class: "btn btn-success" %>
+  <%= submit_tag "Confirm", class: "btn delete-btn sweet-alert-demo" %>
  <% end %>
 </div>
 
