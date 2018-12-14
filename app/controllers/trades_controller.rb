@@ -11,6 +11,8 @@ class TradesController < ApplicationController
     @trade.user = current_user
     # assign this trade to the cryptocurrency associated
     @trade.cryptocurrency = @cryptocurrency
+    # assign the date
+    @trade.date_of_trade = Date.today
     # call the buy or sell private method
     buy_or_sell
   end

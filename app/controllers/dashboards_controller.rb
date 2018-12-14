@@ -1,50 +1,61 @@
 class DashboardsController < ApplicationController
-  before_action :top_five_traded, :latest_news, :top5_winners, :top5_losers
   before_action :set_portfolio, only: [:dashboard, :portfolio_overview]
 
   def dashboard
-    @portfolio_overview = portfolio_overview
-  end
-
-  def portfolio_change_pct
-
-  end
-
-  def portfolio_change_value
-
-  end
-
-  def portfolio_change_resume
-
-  end
-
-  def portfolio_overview
-     # {"Bitcoin"=>{"BTC"=>3443.67}, "Ethereum"=>{"ETH"=>200.04}}
-    live_prices = crypto_service.call_current_prices
-
-    portfolio_hash = {}
-
-    @portfolios.each do |portfolio|
-      portfolio_hash[portfolio.cryptocurrency.ticker_name] = live_prices[portfolio.cryptocurrency.ticker_name.capitalize][portfolio.cryptocurrency.ticker_code]
-    end
-    # {"Bitcoin"=>3443.67, "Ethereum"=>200.04}
-    portfolio_hash
+    portfolio_value
+    number_of_coins
+    number_of_trades
+    portfolio_overview
+    top_five_traded
+    top5_winners
+    top5_losers
+    latest_news
+    days_since_last_trade
   end
 
   private
+
+  def portfolio_value
+    @portfolio_value = current_user.portfolios.sum(:fiat_amount_cents)
+  end
+
+  def number_of_coins
+    @number_of_coins = @portfolios.count
+  end
+
+  def number_of_trades
+    @number_of_trades = current_user.trades.count
+  end
+
+  def days_since_last_trade
+    ts_now = Time.now.day
+    ts_last = current_user.trades.last.date_of_trade.day
+    @days_since_last_trade = ts_now - ts_last
+  end
+
+  def portfolio_overview
+    # {"Bitcoin"=>{"BTC"=>3443.67}, "Ethereum"=>{"ETH"=>200.04}}
+    live_prices = crypto_service.call_current_prices
+    # ---- THIS IS WHERE WE CALCULATE THE CURRENT PRICE FOR EVERY
+    # ---- CRYPTOCURRENCY OWNED BY THE USER
+    portfolio_price_hash = {}
+    @portfolios.each do |portfolio|
+      live_price = live_prices[tname(portfolio)][tcode(portfolio)]
+      # this will return an hash of hashes like this
+      # {"Ripple"=>{"XRP"=>0.2997}, "Stellar"=>{"XLM"=>0.1036}, "Cardano"=>{"ADA"=>0.02926}, "Bitcoin"=>{"BTC"=>3318.46}}
+      portfolio_price_hash[tname(portfolio)] = { tcode(portfolio) => live_price }
+    end
+    @portfolio_overview = portfolio_price_hash
+  end
 
   def top_five_traded
     # this returns an hash with the top5 most traded by volume
     # across all the different exchanges
     # Also, it comes sorted from the API
     # ex: {:Bitcoin=>"BTC", :Ethereum=>"ETH", :EOS=>"EOS", :XRP=>"XRP", :ZCash=>"ZEC"}
-    @top_five = crypto_service.call_top5_traded
+    @top_five_traded = crypto_service.call_top5_traded
   end
 
-  def latest_news
-    # This returns an array of hashes with news articles
-    @latest_news = crypto_service.call_latest_news
-  end
 
   def top5_winners
     # this returns an hash like this
@@ -58,6 +69,11 @@ class DashboardsController < ApplicationController
     @top5_losers = crypto_service.call_top5_losers
   end
 
+  def latest_news
+    # This returns an array of hashes with news articles
+    @latest_news = crypto_service.call_latest_news
+  end
+
   def crypto_service
     # API MEMOIZATION CODE
     @crypto_service ||= CryptoCompareService.new
@@ -65,5 +81,14 @@ class DashboardsController < ApplicationController
 
   def set_portfolio
     @portfolios = current_user.portfolios
+  end
+
+  def tcode(portfolio)
+    portfolio.cryptocurrency.ticker_code
+  end
+
+  def tname(portfolio)
+    # IF THIS STARTS BREAKING TRY OUT WITH .capitalize !!!
+    portfolio.cryptocurrency.ticker_name
   end
 end

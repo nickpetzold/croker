@@ -11,7 +11,7 @@ class CryptoCompareService
     Ethereum: "ETH",
     Stellar: "XLM",
     BitcoinCash: "BCH",
-    EOS: "EOS",
+    Eos: "EOS",
     Litecoin: "LTC",
     Cardano: "ADA",
     BinanceCoin: "BNB",

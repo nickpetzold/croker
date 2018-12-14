@@ -74,7 +74,8 @@
 .product-image {
   border-radius: 10px;
   margin-right: 20px;
-  width: 30px;
+  width: 35px;
+  height: 35px;
 }
 
 /* Upvote design */
@@ -133,13 +134,26 @@
   }
 }
 
+.crypto-search {
+  padding: 0;
+  .form-control {
+    background-color: #ffffff;
+    border-radius: 0;
+    margin: 0;
+  }
+}
+
 .price-values li {
   color: $header-gray;
   font-weight: bold;
 }
 
+.hide-dot {
+  color: #ffffff;
+}
+
 /* Hover effects */
-.product:hover {
+.each-crypto:hover {
   background: #ffffff;
   cursor: pointer;
 }
