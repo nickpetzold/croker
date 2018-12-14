@@ -1,4 +1,6 @@
 puts "Cleaning database..."
+Trade.destroy_all
+Portfolio.destroy_all
 TopUp.destroy_all
 Cryptocurrency.destroy_all
 User.destroy_all
@@ -47,6 +49,7 @@ trades_params = {
   portfolio.save
   puts "  #{i} - #{trade.fiat_amount_cents} USD #{trade.transaction_type} order of #{trade.cryptocurrency_amount} #{trade.cryptocurrency.ticker_name} for #{trade.user.first_name} successfully created!"
 end
+
 
 puts "---------- #{amount_of_trades} TRADES Successfully CREATED!! ----------"
 puts "---------- PORTFOLIO UPDATED!! ---------------"

@@ -85,7 +85,7 @@
           </div>
           <div class="stats-entry">
             <div class="stats-title">
-              <h3>Days since last trade:</h3><h3><%= @days_since_last_trade %></h3>
+              <h3>Days since last trade:</h3><h3><%= number_with_delimiter(@days_since_last_trade, delimiter: ",") %></h3>
             </div>
             <% if @days_since_last_trade > 0 %>
             <p>I think you should make a trade...</p>
