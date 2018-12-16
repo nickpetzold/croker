@@ -5,6 +5,7 @@ class DashboardsController < ApplicationController
     portfolio_value
     # Commented this out as it's now in the
     # portfolio_overview
+    portfolio_change
     number_of_coins
     number_of_trades
     top_five_traded
@@ -25,6 +26,18 @@ class DashboardsController < ApplicationController
     end
     current_user.current_portfolio_value = @portfolio_value
     current_user.save!
+  end
+
+  def portfolio_change
+    current_user_portfolio_value = 0
+    if current_user.portfolios.empty?
+      @portfolio_change = 0
+    else
+      current_user.portfolios.each do |portfolio|
+        current_user_portfolio_value += portfolio.fiat_amount_cents / 100
+      end
+      @portfolio_change = ((@portfolio_value - current_user_portfolio_value) / current_user_portfolio_value) * 100
+    end
   end
 
   def number_of_coins

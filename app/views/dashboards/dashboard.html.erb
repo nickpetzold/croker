@@ -31,24 +31,24 @@
             </div>
           </div>
           <div class="change-content">
-            <% @change_percentage = 8 %>
-            <% if @change_percentage < -50 %>
+            <%# @change_percentage = 8 %>
+            <% if @portfolio_change < -50 %>
             <%= image_tag 'minus50.png', class: "portfolio-image" %>
-            <% elsif @change_percentage < -25 %>
+            <% elsif @portfolio_change < -25 %>
             <%= image_tag 'minus25.png', class: "portfolio-image" %>
-            <% elsif @change_percentage < -5 %>
+            <% elsif @portfolio_change < -5 %>
             <%= image_tag 'minus5.png', class: "portfolio-image" %>
-            <% elsif @change_percentage < 5 %>
+            <% elsif @portfolio_change < 5 %>
             <%= image_tag 'nochange_owl.png', class: "portfolio-image launch" %>
-            <% elsif @change_percentage < 20 %>
+            <% elsif @portfolio_change < 20 %>
             <%= image_tag 'plus10.png', class: "portfolio-image" %>
             <% else %>
             <%= image_tag 'plus20.png', class: "portfolio-image launch" %>
             <% end %>
-            <% if @change_percentage < 0 %>
-            <span class="negative content-headline-figure text-center"><%= @change_percentage %>%</span>
+            <% if @portfolio_change < 0 %>
+            <span class="negative content-headline-figure text-center"><%= @portfolio_change %>%</span>
             <% else %>
-            <span class="positive content-headline-figure text-center">+<%= @change_percentage %>%</span>
+            <span class="positive content-headline-figure text-center">+<%= @portfolio_change %>%</span>
             <% end %>
           </div>
          <!--  <div class="change-timescale">
