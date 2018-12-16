@@ -1,22 +1,22 @@
 
 <div class="login-flex">
-  <div class="login-wrapper payment-flex">
+  <div class="login-wrapper payment-flex" style="padding-top: 20px;">
     <div class="cont">
-      <h2 class="text-center">Please confirm your top up of <%= humanized_money_with_symbol(@top_up.fiat_amount) %></h2>
+      <h2 class="text-center" style="margin-bottom: 40px;">Please confirm your top up of <%= money_without_cents_and_with_symbol(@top_up.fiat_amount.round) %></h2>
     </div>
     <div class="cont">
     <%= form_tag top_up_payments_path(@top_up) do %>
-      <article>
-        <label class="amount">
-          <span class="text-center">Amount: <%= humanized_money_with_symbol(@top_up.fiat_amount) %></span>
+<!--       <article>
+        <label class="amount-label text-center">
+          <span class="text-center">Amount: <%#= money_without_cents_and_with_symbol(@top_up.fiat_amount.round) %></span>
         </label>
-      </article>
+      </article> -->
 
       <script src="https://checkout.stripe.com/checkout.js" class="stripe-button btn-success"
         data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-        data-name="Top up my Croker account"
+        data-name="Croker 🐸"
         data-email="<%= current_user.email %>"
-        data-description="TopUp <%= humanized_money_with_symbol(@top_up.fiat_amount) %>"
+        data-description="TopUp <%= money_without_cents_and_with_symbol(@top_up.fiat_amount) %>"
         data-amount="<%= @top_up.fiat_amount_cents %>"
         data-currency="<%= @top_up.fiat_amount.currency %>"></script>
     <% end %>
