@@ -31,8 +31,25 @@
             </div>
           </div>
           <div class="change-content">
-            <%= image_tag 'launch.png', class: "portfolio-image launch" %>
-            <span class="positive content-headline-figure text-center">+50.83%</span>
+            <% @change_percentage = 8 %>
+            <% if @change_percentage < -50 %>
+            <%= image_tag 'minus50.png', class: "portfolio-image" %>
+            <% elsif @change_percentage < -25 %>
+            <%= image_tag 'minus25.png', class: "portfolio-image" %>
+            <% elsif @change_percentage < -5 %>
+            <%= image_tag 'minus5.png', class: "portfolio-image" %>
+            <% elsif @change_percentage < 5 %>
+            <%= image_tag 'nochange_owl.png', class: "portfolio-image launch" %>
+            <% elsif @change_percentage < 20 %>
+            <%= image_tag 'plus10.png', class: "portfolio-image" %>
+            <% else %>
+            <%= image_tag 'plus20.png', class: "portfolio-image launch" %>
+            <% end %>
+            <% if @change_percentage < 0 %>
+            <span class="negative content-headline-figure text-center"><%= @change_percentage %>%</span>
+            <% else %>
+            <span class="positive content-headline-figure text-center">+<%= @change_percentage %>%</span>
+            <% end %>
           </div>
          <!--  <div class="change-timescale">
             <h4>1D <span class="selected">1W</span> 1M 1Y ALL</h4>
@@ -85,13 +102,13 @@
           </div>
           <div class="stats-entry">
             <div class="stats-title">
-              <!-- <h3>Days since last trade:</h3><h3><%#= number_with_delimiter(@days_since_last_trade, delimiter: ",") %></h3> -->
+              <h3>Days since last trade:</h3><h3><%= number_with_delimiter(@days_since_last_trade, delimiter: ",") %></h3>
             </div>
-            <%# if @days_since_last_trade > 0 %>
-            <!-- <p>I think you should make a trade...</p> -->
-            <%# else %>
-            <!-- <p>That doesn't mean you should stop...</p> -->
-            <%# end %>
+            <% if @days_since_last_trade > 0 %>
+            <p>I think you should make a trade...</p>
+            <% else %>
+            <p>That doesn't mean you should stop...</p>
+            <% end %>
           </div>
         </div>
       </div>

@@ -35,7 +35,8 @@ class CryptoCompareService
     Qtum: "QTUM",
     Waves: "WAVES",
     Augur: "REP",
-    Stratis: "STRAT"
+    Stratis: "STRAT",
+    OKEX: "OKB"
   }
 
   FIAT_CURRENCIES = "USD"
