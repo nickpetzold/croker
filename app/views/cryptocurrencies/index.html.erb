@@ -3,12 +3,14 @@
     <!-- here starts the div that wraps the coins list on the left and the (buy/sell, chart) div on the right -->
     <div class="half-wrapper list">
       <div class="crypto-search text-center">
-        <%= form_tag cryptocurrencies_path, method: :get do %>
-          <%= text_field_tag :query,
-          params[:query],
-          class: "form-control",
-          placeholder: "🔍 (Bitcoin, Ethereum, etc)"
-          %>
+        <div id= "search-data" class="form-search search-data" data-skills="<%= @cryptocurrencies.to_json %>">
+          <%= form_tag cryptocurrencies_path, method: :get do %>
+            <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "🔍 (Bitcoin, Ethereum, etc)"
+            %>
+        </div>
         <% end %>
       </div>
       <!-- Headers (COIN, PRICE, VALUE HELD) -->
