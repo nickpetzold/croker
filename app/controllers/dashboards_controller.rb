@@ -3,9 +3,10 @@ class DashboardsController < ApplicationController
 
   def dashboard
     portfolio_value
+    # Commented this out as it's now in the
+    # portfolio_overview
     number_of_coins
     number_of_trades
-    portfolio_overview
     top_five_traded
     top5_winners
     top5_losers
@@ -16,7 +17,14 @@ class DashboardsController < ApplicationController
   private
 
   def portfolio_value
-    @portfolio_value = current_user.portfolios.sum(:fiat_amount_cents)
+    portfolio_overview
+    @portfolio_value = 0
+    current_user.portfolios.each do |portfolio|
+      crypto = portfolio.cryptocurrency
+      @portfolio_value += portfolio.crypto_amount_held * @live_prices[crypto.ticker_name][crypto.ticker_code]
+    end
+    current_user.current_portfolio_value = @portfolio_value
+    current_user.save!
   end
 
   def number_of_coins
@@ -39,12 +47,12 @@ class DashboardsController < ApplicationController
 
   def portfolio_overview
     # {"Bitcoin"=>{"BTC"=>3443.67}, "Ethereum"=>{"ETH"=>200.04}}
-    live_prices = crypto_service.call_current_prices
+    @live_prices = crypto_service.call_current_prices
     # ---- THIS IS WHERE WE CALCULATE THE CURRENT PRICE FOR EVERY
     # ---- CRYPTOCURRENCY OWNED BY THE USER
     portfolio_price_hash = {}
     @portfolios.each do |portfolio|
-      live_price = live_prices[tname(portfolio)][tcode(portfolio)]
+      live_price = @live_prices[tname(portfolio)][tcode(portfolio)]
       # this will return an hash of hashes like this
       # {"Ripple"=>{"XRP"=>0.2997}, "Stellar"=>{"XLM"=>0.1036}, "Cardano"=>{"ADA"=>0.02926}, "Bitcoin"=>{"BTC"=>3318.46}}
       portfolio_price_hash[tname(portfolio)] = { tcode(portfolio) => live_price }
@@ -59,7 +67,6 @@ class DashboardsController < ApplicationController
     # ex: {:Bitcoin=>"BTC", :Ethereum=>"ETH", :EOS=>"EOS", :XRP=>"XRP", :ZCash=>"ZEC"}
     @top_five_traded = crypto_service.call_top5_traded
   end
-
 
   def top5_winners
     # this returns an hash like this
