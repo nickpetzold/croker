@@ -7,10 +7,10 @@ User.destroy_all
 
 puts "---------- Creating Users ----------"
 
-user = User.new(email: "wheelsnocoiner@wheels.com", first_name: "filipe", last_name: "Custodio", password: 123456, country: "Portugal")
+user = User.new(email: "wheelsnocoiner@wheels.com", first_name: "filipe", last_name: "Custodio", password: 123456)
 user.save
 puts "#{user.email} Successfully Created!"
-user = User.new(email: "wheelscoiner@wheels.com", first_name: "Nick", last_name: "Petzold", password: 123456, country: "England")
+user = User.new(email: "wheelscoiner@wheels.com", first_name: "Nick", last_name: "Petzold", password: 123456)
 user.save
 puts "#{user.email} Successfully Created!"
 
