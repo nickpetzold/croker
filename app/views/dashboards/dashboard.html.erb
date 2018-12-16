@@ -67,7 +67,7 @@
           </div>
           <div class="value-content">
             <%= image_tag 'coins.png', class: "portfolio-image coins" %>
-            <span class="content-headline-figure text-center">$<%= number_with_delimiter(@portfolio_value.round(0), delimeter: ",") %></span>
+            <span class="content-headline-figure text-center">$<%= number_with_delimiter(@portfolio_value.round, delimeter: ",") %></span>
           </div>
           <div class="change-timescale">
             <!-- Empty div to ensure border spacing -->

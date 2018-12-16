@@ -31,7 +31,7 @@
     <ul class= "list-inline">
       <% if current_user %>
       <li><h3>Balance:</h3></li>
-      <li class="balance">$<%= humanized_money_with_symbol(current_user.fiat_balance) %></li>
+      <li class="balance"><%= humanized_money_with_symbol(current_user.fiat_balance) %></li>
       <% else %>
       <li><h3>Balance:</h3></li>
       <li class="balance">$ --.--</li>
