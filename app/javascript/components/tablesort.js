@@ -1,7 +1,6 @@
 import Tablesort from 'tablesort';
-// import TableNumbers from 'tablesort/src/sorts/tablesort.number.js'
-// import 'tablesort.min.js' from 'tablesort';
-// import 'tablesort.number.js' from 'tablesort';
+
+const table = document.getElementById('crypto-table');
 
 function extendNumbers(Tablesort){
   var cleanNumber = function(i) {
@@ -30,25 +29,23 @@ function extendNumbers(Tablesort){
   });
 };
 
-const table = document.getElementById('crypto-table');
+extendNumbers(Tablesort);
 
-if (table) {
+const initTables = function() {
+  if (table) {
+  const sortTable = new Tablesort(table, {
+    descending: true
+  });
+
   table.addEventListener('afterSort', function() {
     const ranks = document.querySelectorAll('.body-rank');
     ranks.forEach((element, index) => {
       element.innerText = index + 1;
-    })
-  });
-
-  console.log(Tablesort)
-  extendNumbers(Tablesort);
-
-  const sortTable = new Tablesort(table, {
-    descending: true
-  });
-}
-// console.log(TableNumbers)
+      })
+    });
+  }
+};
 
 
 
-export { sortTable };
+export { initTables };
