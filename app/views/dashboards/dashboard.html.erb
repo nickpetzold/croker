@@ -264,7 +264,7 @@
           <% rank_top_five = 0 %>
           <% @top_five_traded.each do |key, value|  %>
           <% crypto = Cryptocurrency.find_by(ticker_code: value) %>
-            <%= link_to "cryptocurrencies?crypto_id=#{crypto.id}" do  %>
+            <%= link_to "cryptocurrencies?crypto_id=#{crypto.id}" do %>
             <% rank_top_five += 1 %>
             <div class="top-traded-card">
               <h4 style="padding-right: 20px; color: #969696;"><%= rank_top_five %></h4>
