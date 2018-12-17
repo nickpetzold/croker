@@ -163,10 +163,16 @@
                     <h4>$<%= number_with_delimiter(current_price.round(4), delimeter: ',') %></h4>
                   </div>
                   <div class="portfolio-value-held crypto-value-held">
-                    <h4>$<%= number_with_delimiter((current_price * portfolio.crypto_amount_held).round(2), delimeter: ',') %></h4>
+                    <% value_held = (current_price * portfolio.crypto_amount_held).round %>
+                    <h4>$<%= number_with_delimiter(value_held, delimeter: ',') %></h4>
                   </div>
                   <div class="portfolio-profit-loss crypto-profit-loss">
-                    <h4><span class="positive">$<%= number_with_delimiter((portfolio.fiat_amount_cents - current_price).round(0), delimeter: ',') %></span></h4>
+                    <% profit_loss = value_held - (portfolio.fiat_amount_cents / 100) %>
+                    <% if profit_loss < 0 %>
+                      <h4><span class="negative">$<%= number_with_delimiter(profit_loss.round * -1, delimeter: ',') %></span></h4>
+                    <% else %>
+                      <h4><span class="positive">$<%= number_with_delimiter(profit_loss.round, delimeter: ',') %></span></h4>
+                    <% end %>
                   </div>
                 </div>
               </div>
