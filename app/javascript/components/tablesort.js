@@ -31,20 +31,24 @@ function extendNumbers(Tablesort){
 };
 
 const table = document.getElementById('crypto-table');
-table.addEventListener('afterSort', function() {
+
+if (table) {
+  table.addEventListener('afterSort', function() {
     const ranks = document.querySelectorAll('.body-rank');
     ranks.forEach((element, index) => {
       element.innerText = index + 1;
     })
   });
+
+  console.log(Tablesort)
+  extendNumbers(Tablesort);
+
+  const sortTable = new Tablesort(table, {
+    descending: true
+  });
+}
 // console.log(TableNumbers)
 
-console.log(Tablesort)
-extendNumbers(Tablesort);
-
-const sortTable = new Tablesort(table, {
-  descending: true
-});
 
 
 export { sortTable };
