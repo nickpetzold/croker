@@ -4,6 +4,12 @@ class CryptocurrenciesController < ApplicationController
   def index
     # this is an array of instances
     @cryptocurrencies = Cryptocurrency.all
+    @value_held_hash = Hash.new(0)
+    @cryptocurrencies.each do |crypto|
+      if Portfolio.find_by(cryptocurrency: crypto, user: current_user)
+        @value_held_hash[crypto.ticker_code] += Portfolio.find_by(cryptocurrency: crypto, user: current_user).crypto_amount_held
+      end
+    end
     # this is an hash of hashes with current prices fetched from the api
     @live_prices = crypto_service.call_current_prices
 

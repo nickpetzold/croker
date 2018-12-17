@@ -19,6 +19,7 @@
           </div>
           <ul class="list-inline product-controls">
             <li>Price <span class="hide-dot">.</span></li>
+            <li></li>
             <li>Value Held</li>
           </ul>
         </div>
@@ -34,9 +35,10 @@
               <h4><%= crypto.ticker_name %> <span class="crypto-code"><%= crypto.ticker_code %></span></h4>
             </div>
             <ul class="list-inline product-controls price-values">
-              <li><%= "$#{number_with_delimiter(@live_prices[crypto.ticker_name][crypto.ticker_code].round(4), :delimeter => ",")}" %></li>
+              <% price = @live_prices[crypto.ticker_name][crypto.ticker_code] %>
+              <li><%= "$#{number_with_delimiter(price.round(4), delimeter: ",")}" %></li>
               <li></li>
-              <li>$4.321</li>
+              <li>$<%= number_with_delimiter((@value_held_hash[crypto.ticker_code] * price).round, delimeter: ',') %></li>
             </ul>
           </div>
           <% end %>
