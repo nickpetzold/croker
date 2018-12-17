@@ -7,10 +7,10 @@ User.destroy_all
 
 puts "---------- Creating Users ----------"
 
-user = User.new(email: "wheelsnocoiner@wheels.com", first_name: "filipe", last_name: "Custodio", password: 123456)
+user = User.new(email: "anandha@gmail.com", first_name: "Anandha", last_name: "Khaou", password: 123456)
 user.save
 puts "#{user.email} Successfully Created!"
-user = User.new(email: "wheelscoiner@wheels.com", first_name: "Nick", last_name: "Petzold", password: 123456)
+user = User.new(email: "nick@gmail.com", first_name: "Nick", last_name: "Petzold", password: 123456)
 user.save
 puts "#{user.email} Successfully Created!"
 
@@ -28,28 +28,133 @@ puts "---------- CRYPTOCURRENCIES CREATED ----------"
 
 puts "---------- CREATING TRADES FOR USER ----------"
 
-amount_of_trades = 300
-1.upto(amount_of_trades) do |i|
-puts "--------------------------------------------------------------------------------------------"
-random_crypto_id = (1..CryptoCompareService::CRYPTO_HASH.count).to_a.sample
-trades_params = {
-  transaction_type: ["buy","sell"].sample,
-  user_id: 2,
-  cryptocurrency_id: random_crypto_id,
-  fiat_price_cents: rand(1..100000),
-  fiat_amount_cents: rand(1..100000),
-  cryptocurrency_amount: rand(1..10000),
-  date_of_trade: DateTime.now - 5
-}
-  trade = Trade.new(trades_params)
-  trade.save
-  portfolio = Portfolio.where(cryptocurrency_id: trade.cryptocurrency, user_id: trades_params[:user_id]).first_or_create
-  portfolio.crypto_amount_held = trade.cryptocurrency_amount
-  portfolio.fiat_amount_cents = trade.fiat_amount_cents
-  portfolio.save
-  puts "  #{i} - #{trade.fiat_amount_cents} USD #{trade.transaction_type} order of #{trade.cryptocurrency_amount} #{trade.cryptocurrency.ticker_name} for #{trade.user.first_name} successfully created!"
-end
+trade = Trade.new(transaction_type: 0)
+trade.user = User.find_by(email: "anandha@gmail.com")
+trade.cryptocurrency = Cryptocurrency.find_by(ticker_code: "BTC")
+trade.fiat_price_cents = 295023
+trade.fiat_amount_cents = 25000000
+trade.cryptocurrency_amount = trade.fiat_amount_cents / trade.fiat_price_cents
+trade.date_of_trade = Date.new(2018, 12, 01)
+trade.save
+portfolio = Portfolio.new(cryptocurrency_id: trade.cryptocurrency.id)
+portfolio.crypto_amount_held = trade.cryptocurrency_amount
+portfolio.user = User.find_by(email: "anandha@gmail.com")
+portfolio.fiat_amount_cents = trade.fiat_amount_cents
+portfolio.save
+
+puts "Created new trade and portfolio entry for #{trade.cryptocurrency.ticker_name}"
+
+trade = Trade.new(transaction_type: 0)
+trade.user = User.find_by(email: "anandha@gmail.com")
+trade.cryptocurrency = Cryptocurrency.find_by(ticker_code: "XRP")
+trade.fiat_price_cents = 26.94
+trade.fiat_amount_cents = 1000000
+trade.cryptocurrency_amount = trade.fiat_amount_cents / trade.fiat_price_cents
+trade.date_of_trade = Date.new(2018, 11, 23)
+trade.save
+portfolio = Portfolio.new(cryptocurrency_id: trade.cryptocurrency.id)
+portfolio.crypto_amount_held = trade.cryptocurrency_amount
+portfolio.user = User.find_by(email: "anandha@gmail.com")
+portfolio.fiat_amount_cents = trade.fiat_amount_cents
+portfolio.save
+
+puts "Created new trade and portfolio entry for #{trade.cryptocurrency.ticker_name}"
+
+trade = Trade.new(transaction_type: 0)
+trade.user = User.find_by(email: "anandha@gmail.com")
+trade.cryptocurrency = Cryptocurrency.find_by(ticker_code: "XLM")
+trade.fiat_price_cents = 12.34
+trade.fiat_amount_cents = 500000
+trade.cryptocurrency_amount = trade.fiat_amount_cents / trade.fiat_price_cents
+trade.date_of_trade = Date.new(2018, 12, 01)
+trade.save
+portfolio = Portfolio.new(cryptocurrency_id: trade.cryptocurrency.id)
+portfolio.crypto_amount_held = trade.cryptocurrency_amount
+portfolio.user = User.find_by(email: "anandha@gmail.com")
+portfolio.fiat_amount_cents = trade.fiat_amount_cents
+portfolio.save
+
+puts "Created new trade and portfolio entry for #{trade.cryptocurrency.ticker_name}"
+
+trade = Trade.new(transaction_type: 0)
+trade.user = User.find_by(email: "anandha@gmail.com")
+trade.cryptocurrency = Cryptocurrency.find_by(ticker_code: "EOS")
+trade.fiat_price_cents = 232
+trade.fiat_amount_cents = 2500000
+trade.cryptocurrency_amount = trade.fiat_amount_cents / trade.fiat_price_cents
+trade.date_of_trade = Date.new(2018, 11, 13)
+trade.save
+portfolio = Portfolio.new(cryptocurrency_id: trade.cryptocurrency.id)
+portfolio.crypto_amount_held = trade.cryptocurrency_amount
+portfolio.user = User.find_by(email: "anandha@gmail.com")
+portfolio.fiat_amount_cents = trade.fiat_amount_cents
+portfolio.save
+
+puts "Created new trade and portfolio entry for #{trade.cryptocurrency.ticker_name}"
+
+trade = Trade.new(transaction_type: 0)
+trade.user = User.find_by(email: "anandha@gmail.com")
+trade.cryptocurrency = Cryptocurrency.find_by(ticker_code: "XMR")
+trade.fiat_price_cents = 3899
+trade.fiat_amount_cents = 10000000
+trade.cryptocurrency_amount = trade.fiat_amount_cents / trade.fiat_price_cents
+trade.date_of_trade = Date.new(2018, 11, 13)
+trade.save
+portfolio = Portfolio.new(cryptocurrency_id: trade.cryptocurrency.id)
+portfolio.crypto_amount_held = trade.cryptocurrency_amount
+portfolio.user = User.find_by(email: "anandha@gmail.com")
+portfolio.fiat_amount_cents = trade.fiat_amount_cents
+portfolio.save
+
+puts "Created new trade and portfolio entry for #{trade.cryptocurrency.ticker_name}"
+
+trade = Trade.new(transaction_type: 0)
+trade.user = User.find_by(email: "anandha@gmail.com")
+trade.cryptocurrency = Cryptocurrency.find_by(ticker_code: "ETH")
+trade.fiat_price_cents = 8681
+trade.fiat_amount_cents = 7500000
+trade.cryptocurrency_amount = trade.fiat_amount_cents / trade.fiat_price_cents
+trade.date_of_trade = Date.new(2018, 12, 16)
+trade.save
+portfolio = Portfolio.new(cryptocurrency_id: trade.cryptocurrency.id)
+portfolio.crypto_amount_held = trade.cryptocurrency_amount
+portfolio.user = User.find_by(email: "anandha@gmail.com")
+portfolio.fiat_amount_cents = trade.fiat_amount_cents
+portfolio.save
+
+puts "Created new trade and portfolio entry for #{trade.cryptocurrency.ticker_name}"
+
+trade = Trade.new(transaction_type: 0)
+trade.user = User.find_by(email: "anandha@gmail.com")
+trade.cryptocurrency = Cryptocurrency.find_by(ticker_code: "LTC")
+trade.fiat_price_cents = 3299
+trade.fiat_amount_cents = 5000000
+trade.cryptocurrency_amount = trade.fiat_amount_cents / trade.fiat_price_cents
+trade.date_of_trade = Date.new(2018, 12, 04)
+trade.save
+portfolio = Portfolio.new(cryptocurrency_id: trade.cryptocurrency.id)
+portfolio.crypto_amount_held = trade.cryptocurrency_amount
+portfolio.user = User.find_by(email: "anandha@gmail.com")
+portfolio.fiat_amount_cents = trade.fiat_amount_cents
+portfolio.save
+
+puts "Created new trade and portfolio entry for #{trade.cryptocurrency.ticker_name}"
+
+trade = Trade.new(transaction_type: 0)
+trade.user = User.find_by(email: "anandha@gmail.com")
+trade.cryptocurrency = Cryptocurrency.find_by(ticker_code: "AE")
+trade.fiat_price_cents = 34.39
+trade.fiat_amount_cents = 1000000
+trade.cryptocurrency_amount = trade.fiat_amount_cents / trade.fiat_price_cents
+trade.date_of_trade = Date.new(2018, 12, 02)
+trade.save
+portfolio = Portfolio.new(cryptocurrency_id: trade.cryptocurrency.id)
+portfolio.crypto_amount_held = trade.cryptocurrency_amount
+portfolio.user = User.find_by(email: "anandha@gmail.com")
+portfolio.fiat_amount_cents = trade.fiat_amount_cents
+portfolio.save
+
+puts "Created new trade and portfolio entry for #{trade.cryptocurrency.ticker_name}"
 
 
-puts "---------- #{amount_of_trades} TRADES Successfully CREATED!! ----------"
-puts "---------- PORTFOLIO UPDATED!! ---------------"
+puts "Seeding completed!"
