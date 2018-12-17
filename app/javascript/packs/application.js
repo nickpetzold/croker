@@ -4,7 +4,11 @@ import "bootstrap";
 import { initCharts } from '../components/charts';
 import { bindSweetAlertButtonDemo } from '../components/sweetalert';
 import { removeFlashes } from '../components/removeFlashes';
+
+import '../components/buysellcharts';
+
 import { tablesort } from '../components/tablesort';
+
 initCharts();
 bindSweetAlertButtonDemo();
 removeFlashes();
