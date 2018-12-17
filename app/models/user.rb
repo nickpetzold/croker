@@ -31,4 +31,8 @@ class User < ApplicationRecord
 
     return user
   end
+
+  def has_portfolios?
+    portfolios.any?
+  end
 end

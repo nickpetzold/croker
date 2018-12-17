@@ -71,8 +71,10 @@
     </div>
 
     <div class="buy-input-container sell-window hidden">
-
+      <% if current_user.has_portfolios? %>
       <%= hidden_field_tag :crypto_amount_held, current_user.portfolios.where(cryptocurrency_id: @cryptocurrency).first.crypto_amount_held , class: "user_crypto_balance" %>
+      <% end %>
+
 
       <%= form_for :trade, html: { autocomplete: "off" }, url: cryptocurrency_trades_path(@cryptocurrency), class: 'buy-input-container' do |f| %>
         <input type="text" name="crypto_amount" class="crypto-search-input form-control text-right" id="tradeValueCryptoSell" placeholder="20000 <%=@cryptocurrency.ticker_code %>">
