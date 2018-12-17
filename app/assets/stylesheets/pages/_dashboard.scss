@@ -213,9 +213,108 @@
 }
 
 // Third box styling
+.portfolio-table {
+  width: 100%;
+}
+
+.rank-column {
+  width: 60px;
+  text-align: center;
+}
+
+.name-column {
+  text-align: left;
+  width: 600px;
+}
+
+th {
+  font-size: 16px;
+  font-weight: bold;
+  color: #919191;
+  padding: 5px 0px 5px 0px;
+  border-bottom: 1px solid $light-gray;
+}
+
+thead tr {
+  display: block;
+  width: 100%;
+}
+
+tbody {
+  display: block;
+  width: 100%;
+  max-height: 360px;
+  overflow: auto;
+}
+
+.table-body {
+  height: 300px;
+}
+
+.portfolio-table {
+  padding: 0 10px;
+}
+
+.price-column {
+  width: 140px;
+  text-align: right;
+}
+
+.value-column {
+  width: 140px;
+  text-align: right;
+}
+
+.profit-column {
+  width: 170px;
+  text-align: right;
+}
+
+td {
+  font-size: 16px;
+  font-weight: bold;
+  color: $header-gray;
+  height: 60px;
+  h4 {
+    font-weight: bold;
+  }
+}
+
+tr {
+  border-bottom: 1px solid $light-gray;
+}
+
+tr:last-child {
+  border-bottom: none;
+}
+
+.end-col {
+  padding-right: 20px;
+}
+
+.name-col {
+  padding-left: 60px;
+  width: 600px;
+}
+
+.body-rank {
+  text-align: center;
+  width: 60px;
+}
+
+.name-field-table {
+  display: flex;
+  align-items: center;
+}
+
+.body-value {
+  text-align: right;
+}
+
 .portfolio-overview {
   width: 100%;
 }
+
 
 .portfolio-headers {
   border-bottom: 1px solid $light-gray;
