@@ -46,9 +46,9 @@
             <%= image_tag 'plus20.png', class: "portfolio-image launch" %>
             <% end %>
             <% if @portfolio_change < 0 %>
-            <span class="negative content-headline-figure text-center"><%= @portfolio_change %>%</span>
+            <span class="negative content-headline-figure text-center"><%= @portfolio_change.round(2) %>%</span>
             <% else %>
-            <span class="positive content-headline-figure text-center">+<%= @portfolio_change %>%</span>
+            <span class="positive content-headline-figure text-center">+<%= @portfolio_change.round(2) %>%</span>
             <% end %>
           </div>
          <!--  <div class="change-timescale">
