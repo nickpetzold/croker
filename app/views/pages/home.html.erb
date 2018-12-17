@@ -2,32 +2,32 @@
 
     <!-- Navigation -->
   <div class="navbar landing-navbar-custom navbar-fixed-top">
-    <div class="container">
+    <div class="nav-container ">
       <div class="croker-navbar-header">
+        <div class="landing-nav-tabs navbar-collapse navbar-right navbar-main-collapse">
+          <ul class="nav navbar-nav">
+              <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+            <li class="hidden">
+              <a href="#page-top"></a>
+            </li>
+            <li>
+              <a class="page-scroll" href="#why-croker">Why Croker</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="#our-solution">Our Solution</a>
+            </li>
+            <li>
+              <%= link_to "Login",  new_user_session_path, method: :get, class: "nav-sign-up-btn" %>
+            </li>
+            <li>
+              <%= link_to "Sign Up", new_user_registration_path, class: "nav-sign-up-btn"  %>
+            </li>
+          </ul>
+        </div>
         <a class="navbar-brand page-scroll" href="#page-top">
-          <span class="landing-navbar-font-specs"><%#= image_tag 'logo.png' %>Croker</span>
-          <%#= image_tag 'logo.png', :class => "logo" %>
+          <span class="landing-navbar-font-specs">Croker</span>
         </a>
-      </div>
-      <div class="landing-nav-tabs navbar-collapse navbar-right navbar-main-collapse">
-        <ul class="nav navbar-nav">
-            <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-          <li class="hidden">
-            <a href="#page-top"></a>
-          </li>
-          <li>
-            <a class="page-scroll" href="#why-croker">Why Croker</a>
-          </li>
-          <li>
-            <a class="page-scroll" href="#our-solution">Our Solution</a>
-          </li>
-          <li>
-            <%= link_to "Login",  new_user_session_path, method: :get, class: "nav-sign-up-btn" %>
-          </li>
-          <li>
-            <%= link_to "Sign Up", new_user_registration_path, class: "nav-sign-up-btn"  %>
-          </li>
-        </ul>
+        <%= image_tag 'logo.png', class: 'logo-navbar', style: "height: 50px" %>
       </div>
        <!-- /.navbar-collapse -->
     </div>
@@ -36,95 +36,108 @@
 
    <!-- Intro Header -->
   <div class="landing-intro">
-    <!-- <div class="intro-body"> -->
     <div class="container">
-        <!-- <div class="row"> -->
-          <!-- <div class="col-md-8 col-md-offset-2"> -->
       <h1 class="brand-heading">Crypto Trading Made Easy</h1>
       <p class="intro-text"><strong>Croker</strong> is your <strong>gateway</strong> into the <strong>cryptosphere</strong>.
       </p>
-      <%= link_to "Sign Up", new_user_registration_path, class: "nav-sign-up-btn"  %>
+      <%= link_to "Sign Up", new_user_registration_path, class: "lp-sign-up-btn"  %>
     </div>
   </div>
+
+  <!-- #################################################### -->
+
           <!-- About Section -->
  <div class="landing-section-wrapper">
-  <div id="why-croker" class="landing-compo-top-wrapper">
-    <div class="landing-compo-top-container text-center">
-      <h2>Ask Yourself...</h2>
-      <p>Calling on crypto newbies and veterans alike</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-xs-6 col-md-4 col-icons">
-      <%= image_tag 'lp-confusion.png', class: "style_image" %>
-      <h3>Are you tired of confusing trading platforms?</h3>
-    </div>
-    <div class="col-xs-6 col-md-4 col-icons">
-      <%= image_tag 'lp-investing.png', class: "style_image" %>
-        <h3>Is this your first time investing?</h3>
+  <div class='landing-compo-main-wrapper'>
+    <div id="why-croker" class="landing-compo-top-wrapper">
+      <div class="landing-compo-top-container text-center">
+        <h2>Ask Yourself...</h2>
+        <p>Calling on crypto newbies and veterans alike</p>
       </div>
-    <div class="col-xs-6 col-md-4 col-icons">
-      <%= image_tag 'lp-research.png', class: "style_image" %>
-      <h3>Are you searching for a simple interface?</h3>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-6 col-md-4 col-icons">
+        <%= image_tag 'lp-confusion.png', class: "style_image" %>
+        <h3>Are you fed up with confusing trading platforms?</h3>
+      </div>
+      <div class="col-xs-6 col-md-4 col-icons">
+        <%= image_tag 'lp-investing.png', class: "style_image" %>
+          <h3>Is this your first time investing?</h3>
+        </div>
+      <div class="col-xs-6 col-md-4 col-icons">
+        <%= image_tag 'lp-research.png', class: "style_image" %>
+        <h3>Are you searching for a simple interface?</h3>
+      </div>
     </div>
   </div>
 
-  <div id="our-solution" class="landing-compo-top-wrapper">
-    <div class="landing-compo-top-container text-center">
-      <h2>Our Solution</h2>
-      <p>We strive to meet your needs</p>
+  <!-- #################################################### -->
+  <div class='landing-compo-main-wrapper'>
+    <div id="our-solution" class="landing-compo-top-wrapper">
+      <div class="landing-compo-top-container text-center">
+        <h2>Our Solution</h2>
+        <p>We strive to meet your needs</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-6 col-md-4 col-icons">
+        <%= image_tag 'lp-cryptos.png', class: "style_image" %>
+        <h3>Buy and sell instantaneously the top 30 cryptos</h3>
+      </div>
+      <div class="col-xs-6 col-md-4 col-icons">
+        <%= image_tag 'lp-portfolio.png', class: "style_image" %>
+          <h3>Manage your portfolio from a simple dashboard</h3>
+      </div>
+      <div class="col-xs-6 col-md-4 col-icons">
+        <%= image_tag 'lp-usd-denominated.png', class: "style_image" %>
+        <h3>Trade in only USD denominated pairs</h3>
+      </div>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-xs-6 col-md-4 col-icons">
-      <%= image_tag 'lp-cryptos.png', class: "style_image" %>
-      <h3>Buy and sell instantaneously the top 30 cryptos</h3>
+  <!-- #################################################### -->
+
+  <div class='landing-compo-main-wrapper'>
+     <div id="our-solution" class="landing-compo-top-wrapper">
+      <div class="landing-compo-top-container text-center">
+        <h2>Launch into the cryptosphere within minutes</h2>
+        <p>The three-step process</p>
+      </div>
     </div>
-    <div class="col-xs-6 col-md-4 col-icons">
-      <%= image_tag 'lp-portfolio.png', class: "style_image" %>
-        <h3>Manage your portfolio from a simple dashboard</h3>
-    </div>
-    <div class="col-xs-6 col-md-4 col-icons">
-      <%= image_tag 'lp-dollar-hand.png', class: "style_image" %>
-      <h3>Only USD denominated pairs</h3>
+
+    <div class="row">
+      <div class="col-xs-6 col-md-4 col-icons">
+        <%= image_tag 'lp-user-verified.png', class: "style_image" %>
+        <h3>Create your account</h3>
+      </div>
+      <div class="col-xs-6 col-md-4 col-icons">
+        <%= image_tag 'lp-credit-card.png', class: "style_image" %>
+          <h3>Link your credit card</h3>
+      </div>
+      <div class="col-xs-6 col-md-4 col-icons">
+        <%= image_tag 'lp-rocket.png', class: "style_image" %>
+        <h3>Reach for the moon</h3>
+      </div>
     </div>
   </div>
-
-   <div id="our-solution" class="landing-compo-top-wrapper">
-    <div class="landing-compo-top-container text-center">
-      <h2>Launch into the cryptosphere within minutes</h2>
-      <p>ajhbsdaasd knasdk lasfkdnasd</p>
-    </div>
-  </div>
-
-
-  <div class="row">
-    <div class="col-xs-6 col-md-4 col-icons">
-      <%= image_tag 'lp-user-verified.png', class: "style_image" %>
-      <h3>Create your account</h3>
-    </div>
-    <div class="col-xs-6 col-md-4 col-icons">
-      <%= image_tag 'lp-credit-card.png', class: "style_image" %>
-        <h3>Link your credit card</h3>
-    </div>
-    <div class="col-xs-6 col-md-4 col-icons">
-      <%= image_tag 'lp-rocket.png', class: "style_image" %>
-      <h3>Reach for the moon</h3>
-    </div>
-  </div>
+ </div>
 
   <div class="row">
     <div class="landing-ending">
       <div class="container">
         <h1>Ready to fill your crypto bags?</h1>
-        <h2 class="intro-text">Get started with as little as $20</h2>
+        <p><strong>Get started</strong> with as little as <strong>$20</strong> and enjoy the ride.</p>
         <%#= link_to "Sign Up", new_user_registration_path, class: "sign-up my-btn" %>
-        <%= link_to "Sign Up", new_user_registration_path, class: "nav-sign-up-btn btn-success"  %>
+        <%= link_to "Sign Up", new_user_registration_path, class: "lp-sign-up-btn"  %>
       </div>
     </div>
   </div>
+
+
+  <!-- #################################################### -->
+
 
 
 </div>
