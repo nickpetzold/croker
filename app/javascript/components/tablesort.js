@@ -40,7 +40,6 @@ if (table) {
     })
   });
 
-  console.log(Tablesort)
   extendNumbers(Tablesort);
 
   const sortTable = new Tablesort(table, {

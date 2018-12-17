@@ -4,10 +4,10 @@ import "bootstrap";
 import { initCharts } from '../components/charts';
 import { bindSweetAlertButtonDemo } from '../components/sweetalert';
 import { removeFlashes } from '../components/removeFlashes';
+import { sortTable } from '../components/tablesort';
 
 import '../components/buysellcharts';
 
-import { sortTable } from '../components/tablesort';
 
 initCharts();
 bindSweetAlertButtonDemo();
