@@ -144,7 +144,7 @@
             </thead>
             <tbody>
               <% @portfolios.each_with_index do |portfolio, index|  %>
-                <tr data-link="<%= "cryptocurrencies?crypto_id=#{portfolio.cryptocurrency.id}" %>">
+                <tr onclick="window.location='<%= "cryptocurrencies?crypto_id=#{portfolio.cryptocurrency.id}" %>';">
                   <td class="body-rank rank-column"><%= index + 1 %></td>
                   <td class="body-name name-col" data-sort='<%= portfolio.cryptocurrency.ticker_name %>'>
                     <div class="name-field-table">
