@@ -7,10 +7,11 @@ import { removeFlashes } from '../components/removeFlashes';
 
 import '../components/buysellcharts';
 
-import { tablesort } from '../components/tablesort';
+import { sortTable } from '../components/tablesort';
 
 initCharts();
 bindSweetAlertButtonDemo();
 removeFlashes();
-tablesort();
+sortTable();
+
 
