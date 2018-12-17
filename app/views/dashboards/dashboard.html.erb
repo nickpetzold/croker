@@ -28,6 +28,7 @@
             </div>
             <div class="title-header">
               <h2>Portfolio Change</h2>
+              <span><i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" title= "Portfolio Change"></i></span>
             </div>
           </div>
           <div class="change-content">
@@ -63,6 +64,7 @@
             </div>
             <div class="title-header">
               <h2>Portfolio Value</h2>
+              <span><i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" title= "Your Portfolio Value"></i></span>
             </div>
           </div>
           <div class="value-content">
@@ -85,6 +87,7 @@
           </div>
           <div class="title-header">
             <h2>Portfolio Stats</h2>
+            <span><i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" title= "Your Portfolio Stats"></i></span>
           </div>
         </div>
         <div class="stats-content">
@@ -126,6 +129,7 @@
           </div>
           <div class="title-header">
             <h2>Portfolio Overview</h2>
+            <span><i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" title= "Your Portfolio Overview"></i></span>
           </div>
         </div>
         <div class="portfolio-headers portfolio-row">
@@ -198,13 +202,16 @@
           </div>
           <div class="title-header">
             <h2>Top 5 Winners/Losers</h2>
+            <span><i class="far fa-question-circle winner-tip" data-toggle="tooltip" data-placement="left" title= "Winners/Losers of Last 24h"></i></span>
           </div>
         </div>
         <div class="winners-losers-cols">
           <div class="winners-losers-col">
             <% @top5_winners.each do |key, value| %>
             <% crypto = Cryptocurrency.find_by(ticker_code: key) %>
+
               <%= link_to "cryptocurrencies?crypto_id=#{crypto.id}" do  %>
+
                 <div class="winner-loser-card">
                   <%= image_tag "#{key}.png", class: "portfolio-icon" %>
                   <h4><%= key %></h4>
@@ -236,6 +243,7 @@
           </div>
           <div class="title-header">
             <h2>Crypto News</h2>
+            <span><i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" title= "News of the Crypto World"></i></span>
           </div>
         </div>
         <div class="news-pane">
@@ -258,6 +266,7 @@
           </div>
           <div class="title-header">
             <h2>Top Traded Cryptos</h2>
+            <span><i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" title= "Top Traded in the World"></i></span>
           </div>
         </div>
         <div class="top-traded">

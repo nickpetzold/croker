@@ -56,9 +56,12 @@
 
 .title-header {
   padding-bottom: 12px;
-  border-bottom: 2px solid $light-gray;
+  border-bottom: 2px solid #EAEAEA;
   margin: 0;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   h2 {
     margin: 0;
     padding: 3px 5px 3px 10px;
@@ -406,4 +409,10 @@ a:link {
 
 .top-traded-card:hover {
   background-color: #F4F4F4;
+}
+
+.title-header span {
+  font-size: 15px;
+  color: $green;
+  margin-left: 5px;
 }
