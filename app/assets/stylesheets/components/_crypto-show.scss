@@ -96,7 +96,7 @@
 
 .buy-input-container {
   display: flex;
-  margin-top: 45px;
+  margin-top: 0px;
   justify-content: center;
   align-items: center;
 
@@ -107,8 +107,11 @@
 
 .buy-sell-button {
   padding-top: 40px;
+  width: 560px;
+  height: 81px;
   .btn {
     padding: 10px 120px;
+    margin: 0px;
   }
 }
 
