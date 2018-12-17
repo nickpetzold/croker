@@ -81,13 +81,13 @@
 
 
 .landing-intro {
-  padding: 100px 0;
+  padding: 100px 0px 0px 0px;
   text-align: center;
   // background-color: #60CD44;
-  height: 100vh;
+  // height: 100vh;
   h1 {
     font-size: 40px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
   }
   p {
     font-size: 35px;
@@ -105,6 +105,19 @@
   // -o-background-size: cover;
 }
 
+.lp-dashboard-container {
+  // background-image: image_tag 'lp-dashboard.png'
+  // height: auto;
+  padding-top: 30px;
+  // text-align: center;
+}
+
+.dashboard-lp {
+  width: 800px;
+  height: auto;
+  border: solid 1px #60CD45;
+  text-align: center;
+}
 
 
 .landing-section-wrapper {
