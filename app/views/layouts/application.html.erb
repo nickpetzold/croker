@@ -23,7 +23,7 @@
 
   </script>
 
-    <% if controller.class == PagesController && controller.action_name == 'home' %>
+    <% if controller.class == PagesController && controller.action_name == 'home' || controller.action_name == "new" %>
 
     <% elsif current_user %>
       <%= render 'shared/navbar_croker_logged_in' %>
@@ -34,7 +34,10 @@
     <div style="min-height: calc(100vh - 130px);">
       <%= yield %>
     </div>
-    <% if controller.class == DashboardsController && controller.action_name == 'dashboard' || controller.class == PagesController && controller.action_name == 'home'%>
+
+    <% if controller.action_name == "new" %>
+
+    <% elsif controller.class == DashboardsController && controller.action_name == 'dashboard' || controller.class == PagesController && controller.action_name == 'home'%>
       <%= render 'shared/footer' %>
     <% else %>
       <%= render 'shared/slim_footer' %>
