@@ -25,7 +25,10 @@ width: 100%;
   margin-right: 5px;
 }
 
-.facebook-button {
+.facebook-google-button {
   border-bottom: 1px solid #EAEAEA;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

@@ -14,7 +14,7 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = '7a9d55ec92ed6e39b04cbf9aacf679b5093610154eca5de61ad7dd2e71b0f1efcb5cce192a5aba5a634b910d23c100eaf4995c36c0f53c14607b851c0dfd3039'
-
+config.omniauth :google_oauth2, 'GOOGLE_CLIENT_ID', 'GOOGLE_CLIENT_SECRET', {}
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
