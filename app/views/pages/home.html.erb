@@ -4,11 +4,9 @@
   <div class="navbar landing-navbar-custom navbar-fixed-top">
     <div class="container">
       <div class="croker-navbar-header">
-          <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-            Menu <i class="fa fa-bars"></i>
-          </button> -->
         <a class="navbar-brand page-scroll" href="#page-top">
           <span class="landing-navbar-font-specs"><%#= image_tag 'logo.png' %>Croker</span>
+          <%#= image_tag 'logo.png', :class => "logo" %>
         </a>
       </div>
       <div class="landing-nav-tabs navbar-collapse navbar-right navbar-main-collapse">
@@ -24,10 +22,10 @@
             <a class="page-scroll" href="#our-solution">Our Solution</a>
           </li>
           <li>
-            <%= link_to "Login",  new_user_session_path, method: :get, class: "sign-up my-btn" %>
+            <%= link_to "Login",  new_user_session_path, method: :get, class: "nav-sign-up-btn" %>
           </li>
           <li>
-            <%= link_to "Sign Up", new_user_registration_path, class: "sign-up my-btn" %>
+            <%= link_to "Sign Up", new_user_registration_path, class: "nav-sign-up-btn"  %>
           </li>
         </ul>
       </div>
@@ -45,10 +43,11 @@
       <h1 class="brand-heading">Crypto Trading Made Easy</h1>
       <p class="intro-text"><strong>Croker</strong> is your <strong>gateway</strong> into the <strong>cryptosphere</strong>.
       </p>
+      <%= link_to "Sign Up", new_user_registration_path, class: "nav-sign-up-btn"  %>
     </div>
   </div>
-
-        <!-- About Section -->
+          <!-- About Section -->
+ <div class="landing-section-wrapper">
   <div id="why-croker" class="landing-compo-top-wrapper">
     <div class="landing-compo-top-container text-center">
       <h2>Ask Yourself...</h2>
@@ -56,22 +55,21 @@
     </div>
   </div>
 
-  <div class="landing-compo-wrapper">
-    <div class="landing-compo-container">
-      <%= image_tag 'confusion.png', :class => "style_image" %>
+  <div class="row">
+    <div class="col-xs-6 col-md-4 col-icons">
+      <%= image_tag 'lp-confusion.png', class: "style_image" %>
       <h3>Are you tired of confusing trading platforms?</h3>
     </div>
-    <div class="landing-compo-container">
-      <%= image_tag 'planting.png', :class => "style_image" %>
+    <div class="col-xs-6 col-md-4 col-icons">
+      <%= image_tag 'lp-investing.png', class: "style_image" %>
         <h3>Is this your first time investing?</h3>
-    </div>
-    <div class="landing-compo-container">
-      <%= image_tag 'search.png', :class => "style_image" %>
+      </div>
+    <div class="col-xs-6 col-md-4 col-icons">
+      <%= image_tag 'lp-research.png', class: "style_image" %>
       <h3>Are you searching for a simple interface?</h3>
     </div>
   </div>
 
-          <!-- <div class="our-solution-main-wrapper"> -->
   <div id="our-solution" class="landing-compo-top-wrapper">
     <div class="landing-compo-top-container text-center">
       <h2>Our Solution</h2>
@@ -79,49 +77,54 @@
     </div>
   </div>
 
-  <div class="landing-compo-wrapper">
-    <div class="landing-compo-container">
-      <%= image_tag 'bitcoin-landing.png', :class => "style_image" %>
+  <div class="row">
+    <div class="col-xs-6 col-md-4 col-icons">
+      <%= image_tag 'lp-cryptos.png', class: "style_image" %>
       <h3>Buy and sell instantaneously the top 30 cryptos</h3>
     </div>
-    <div class="landing-compo-container">
-      <%= image_tag 'landing-portfolio-icon.png', :class => "style_image" %>
-      <h3>Manage your portfolio from a simple dashboard</h3>
+    <div class="col-xs-6 col-md-4 col-icons">
+      <%= image_tag 'lp-portfolio.png', class: "style_image" %>
+        <h3>Manage your portfolio from a simple dashboard</h3>
     </div>
-    <div class="landing-compo-container">
-      <%= image_tag 'landing-dollar.png', :class => "style_image" %>
+    <div class="col-xs-6 col-md-4 col-icons">
+      <%= image_tag 'lp-dollar-hand.png', class: "style_image" %>
       <h3>Only USD denominated pairs</h3>
     </div>
   </div>
 
-  <div id="our-solution" class="landing-compo-top-wrapper">
+   <div id="our-solution" class="landing-compo-top-wrapper">
     <div class="landing-compo-top-container text-center">
       <h2>Launch into the cryptosphere within minutes</h2>
-      <p>We strive to meet your needs</p>
+      <p>ajhbsdaasd knasdk lasfkdnasd</p>
     </div>
   </div>
 
-  <div class="landing-compo-wrapper">
-    <div class="landing-compo-container">
-      <%= image_tag 'user-verfied.png', :class => "style_image" %>
+
+  <div class="row">
+    <div class="col-xs-6 col-md-4 col-icons">
+      <%= image_tag 'lp-user-verified.png', class: "style_image" %>
       <h3>Create your account</h3>
     </div>
-    <div class="landing-compo-container">
-      <%= image_tag 'landing-credit-card.png', :class => "style_image" %>
-      <h3>Link your credit card</h3>
+    <div class="col-xs-6 col-md-4 col-icons">
+      <%= image_tag 'lp-credit-card.png', class: "style_image" %>
+        <h3>Link your credit card</h3>
     </div>
-    <div class="landing-compo-container">
-      <%= image_tag 'landing-rocket.png', :class => "style_image" %>
-      <h3>Reach for the Moon</h3>
+    <div class="col-xs-6 col-md-4 col-icons">
+      <%= image_tag 'lp-rocket.png', class: "style_image" %>
+      <h3>Reach for the moon</h3>
     </div>
   </div>
 
-  <div class="landing-ending">
-    <div class="container">
-      <h1>Ready to fill your crypto bags?</h1>
-      <h2 class="intro-text">Get started with as little as $20</h2>
-      <%= link_to "Sign Up", new_user_registration_path, class: "sign-up my-btn" %>
+  <div class="row">
+    <div class="landing-ending">
+      <div class="container">
+        <h1>Ready to fill your crypto bags?</h1>
+        <h2 class="intro-text">Get started with as little as $20</h2>
+        <%#= link_to "Sign Up", new_user_registration_path, class: "sign-up my-btn" %>
+        <%= link_to "Sign Up", new_user_registration_path, class: "nav-sign-up-btn btn-success"  %>
+      </div>
     </div>
   </div>
+
 
 </div>
