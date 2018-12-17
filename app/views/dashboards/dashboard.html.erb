@@ -115,7 +115,6 @@
     </div>
   </div>
   <!-- This is the end of the second box!!!!! -->
-
   <!-- This is the start of the third box!!!!! -->
   <div class="dashboard-row-wrapper">
     <div class="dashboard-container">
@@ -129,14 +128,14 @@
           </div>
         </div>
         <div class="portfolio-table">
-          <table class="portfolio-table">
+          <table id="portfolio-overview-table"class="portfolio-table">
             <thead>
               <tr>
-                <th class="rank-column">Rank</th>
-                <th class="name-column name-col">Name</th>
-                <th class="price-column">Price</th>
-                <th class="value-column">Value Held</th>
-                <th class="profit-column end-col">Profit/Loss</th>
+                <th data-sort-method='number' class="rank-column left-header">Rank</th>
+                <th class="name-column name-col left-header">Name</th>
+                <th data-sort-method='number' class="price-column right-header">Price</th>
+                <th data-sort-method='number' class="value-column right-header">Value Held</th>
+                <th data-sort-method='number' class="profit-column end-col right-header">Profit/Loss</th>
               </tr>
             </thead>
             <tbody>
@@ -144,21 +143,21 @@
                 <%= link_to "cryptocurrencies?crypto_id=#{portfolio.cryptocurrency.id}" do %>
                 <tr>
                   <td class="body-rank rank-column"><%= index + 1 %></td>
-                  <td class="body-name name-col">
+                  <td class="body-name name-col" data-sort='<%= portfolio.cryptocurrency.ticker_name %>'>
                     <div class="name-field-table">
                       <%= image_tag "#{portfolio.cryptocurrency.ticker_code}.png", class: "portfolio-icon" %>
                       <h4><%= portfolio.cryptocurrency.ticker_name %> <span class="crypto-code"><%= portfolio.cryptocurrency.ticker_code %></span></h4>
                     </div>
                   </td>
                   <% current_price = @portfolio_overview[portfolio.cryptocurrency.ticker_name][portfolio.cryptocurrency.ticker_code] %>
-                  <td class="body-value price-column">$<%= number_with_delimiter(current_price.round(4), delimeter: ',') %></td>
+                  <td class="body-value price-column" data-sort='<%= current_price %>'>$<%= number_with_delimiter(current_price.round(4), delimeter: ',') %></td>
                   <% value_held = (current_price * portfolio.crypto_amount_held).round %>
-                  <td class="body-value value-column">$<%= number_with_delimiter(value_held, delimeter: ',') %></td>
+                  <td class="body-value value-column" data-sort='<%= value_held %>'>$<%= number_with_delimiter(value_held, delimeter: ',') %></td>
                   <% profit_loss = value_held - (portfolio.fiat_amount_cents / 100) %>
                   <% if profit_loss >= 0 %>
-                  <td class="body-value profit-column end-col positive">$<%= number_with_delimiter(profit_loss.round, delimeter: ',') %></td>
+                  <td class="body-value profit-column end-col positive" data-sort='<%= profit_loss %>'>$<%= number_with_delimiter(profit_loss.round, delimeter: ',') %></td>
                   <% else %>
-                  <td class="body-value profit-column end-col negative">$<%= number_with_delimiter(profit_loss.round * -1, delimeter: ',') %></td>
+                  <td class="body-value profit-column end-col negative" data-sort='<%= profit_loss %>'>$<%= number_with_delimiter(profit_loss.round * -1, delimeter: ',') %></td>
                   <% end %>
                 </tr>
                 <% end %>
@@ -166,41 +165,6 @@
             </tbody>
           </table>
         </div>
-        <!-- <div class="crypto-rows"> -->
-          <!-- Row for each crypto here -->
-          <%# @portfolios.each_with_index do |portfolio, index|  %>
-            <%#= link_to "cryptocurrencies?crypto_id=#{portfolio.cryptocurrency.id}" do %>
-              <!-- <div class="portfolio-link"> -->
-                <!-- <div class="portfolio-crypto portfolio-row"> -->
-                  <!-- <div class="portfolio-rank crypto-rank">
-                    <h4><%#= index + 1 %></h4>
-                  </div>
-                  <div class="portfolio-name crypto-name">
-                    <%#= image_tag "#{portfolio.cryptocurrency.ticker_code}.png", class: "portfolio-icon" %>
-                    <h4><%#= portfolio.cryptocurrency.ticker_name %> <span class="crypto-code"><%#= portfolio.cryptocurrency.ticker_code %></span></h4>
-                  </div>
-                  <div class="portfolio-price crypto-price">
-                    <%# current_price = @portfolio_overview[portfolio.cryptocurrency.ticker_name][portfolio.cryptocurrency.ticker_code] %>
-                    <h4>$<%#= number_with_delimiter(current_price.round(4), delimeter: ',') %></h4>
-                  </div>
-                  <div class="portfolio-value-held crypto-value-held">
-                    <%# value_held = (current_price * portfolio.crypto_amount_held).round %>
-                    <h4>$<%#= number_with_delimiter(value_held, delimeter: ',') %></h4>
-                  </div>
-                  <div class="portfolio-profit-loss crypto-profit-loss">
-                    <%# profit_loss = value_held - (portfolio.fiat_amount_cents / 100) %>
-                    <%# if profit_loss < 0 %>
-                      <h4><span class="negative">$<%#= number_with_delimiter(profit_loss.round * -1, delimeter: ',') %></span></h4>
-                    <%# else %>
-                      <h4><span class="positive">$<%#= number_with_delimiter(profit_loss.round, delimeter: ',') %></span></h4>
-                    <%# end %>
-                  </div>
-                </div>
-              </div> -->
-            <%# end %>
-          <%# end %>
-          <!-- Row for each crypto here -->
-        <!-- </div> -->
       </div>
     </div>
   </div>

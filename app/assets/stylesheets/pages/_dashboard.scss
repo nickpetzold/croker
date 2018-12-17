@@ -233,6 +233,7 @@ th {
   color: #919191;
   padding: 5px 0px 5px 0px;
   border-bottom: 1px solid $light-gray;
+  cursor: pointer;
 }
 
 thead tr {
@@ -287,6 +288,7 @@ tr {
 tr:last-child {
   border-bottom: none;
 }
+
 
 .end-col {
   padding-right: 20px;

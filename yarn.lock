@@ -6251,6 +6251,11 @@ sweetalert@^2.1.2:
     es6-object-assign "^1.1.0"
     promise-polyfill "^6.0.2"
 
+tablesort@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/tablesort/-/tablesort-5.1.0.tgz#3fb123f88c079c897b11052425b103c7dd747e95"
+  integrity sha512-1w6u6h2yMMo+ghEgkD05pdsuvHh7yaqX3RSISaYhBi7lGvy7q9MRREEFEw+qEBGVyGNH46Zszt69xNPjMsBmSA==
+
 tapable@^0.2.7:
   version "0.2.9"
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-0.2.9.tgz#af2d8bbc9b04f74ee17af2b4d9048f807acd18a8"

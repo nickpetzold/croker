@@ -13,7 +13,6 @@ class DashboardsController < ApplicationController
     top5_losers
     latest_news
     days_since_last_trade
-    @portfolios = Portfolio.ransack
   end
 
   private
