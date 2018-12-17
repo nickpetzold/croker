@@ -53,12 +53,15 @@
 .buy-sell-tabs {
   display: flex;
   height: 60px;
+
   .buy-tab {
     width: 50%;
   }
+
   .sell-tab {
     width: 50%;
   }
+
   .tab {
     margin: 0;
     padding-left: 0;
@@ -96,7 +99,8 @@
   margin-top: 45px;
   justify-content: center;
   align-items: center;
-  form {
+
+  input {
     margin: 10px;
   }
 }
