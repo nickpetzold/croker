@@ -11,8 +11,43 @@
           %>
         <% end %>
       </div>
+      <div class="index-table-container">
+        <table id="crypto-table" class="crypto-index-table">
+          <thead>
+            <tr>
+              <th class="index-name">Name</th>
+              <th data-sort-method='number' class="index-value">Price</th>
+              <th data-sort-method='number' class="index-value">Value Held</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @cryptocurrencies.each do |crypto| %>
+              <%= link_to cryptocurrencies_path(crypto_id: crypto.id) do %>
+              <tr class="index-row">
+                <td class="index-name" data-sort='<%= crypto.ticker_name %>'>
+                  <div class="name-field-table">
+                    <%= image_tag "#{crypto.ticker_code}.png", class: "portfolio-icon" %>
+                    <h4><%= crypto.ticker_name %> <span class="crypto-code"><%= crypto.ticker_code %></span></h4>
+                  </div>
+                </td>
+                <% price = @live_prices[crypto.ticker_name][crypto.ticker_code] %>
+                <td class="index-value" data-sort='<%= price %>'>$<%= number_with_delimiter(price.round(4), delimeter: ",") %></td>
+                <% value_held = @value_held_hash[crypto.ticker_code] * price %>
+                <% if value_held == 0 %>
+                  <td class="index-value" data-sort='<%= value_held %>'>-</td>
+                <% else %>
+                  <td class="index-value" data-sort='<%= value_held %>'>$<%= number_with_delimiter(value_held.round, delimeter: ',') %></td>
+                <% end %>
+              </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+
       <!-- Headers (COIN, PRICE, VALUE HELD) -->
-      <div class="crypto-list-headers">
+      <!-- <div class="crypto-list-headers">
         <div class="product list-headers">
           <div class='list-inline product-controls product-body'>
             <li>Coin</li>
@@ -26,24 +61,24 @@
       </div>
       <div class="scrollable-crypto-list">
 
-        <% @cryptocurrencies.each do |crypto| %>
-          <%= link_to cryptocurrencies_path(crypto_id: crypto.id) do %>
+        <%# @cryptocurrencies.each do |crypto| %>
+          <%#= link_to cryptocurrencies_path(crypto_id: crypto.id) do %>
 
           <div class="product each-crypto">
-            <%= image_tag "#{crypto.ticker_code}.png", class: "product-image" %>
+            <%#= image_tag "#{crypto.ticker_code}.png", class: "product-image" %>
             <div class='product-body'>
-              <h4><%= crypto.ticker_name %> <span class="crypto-code"><%= crypto.ticker_code %></span></h4>
+              <h4><%#= crypto.ticker_name %> <span class="crypto-code"><%#= crypto.ticker_code %></span></h4>
             </div>
             <ul class="list-inline product-controls price-values">
-              <% price = @live_prices[crypto.ticker_name][crypto.ticker_code] %>
-              <li><%= "$#{number_with_delimiter(price.round(4), delimeter: ",")}" %></li>
+              <%# price = @live_prices[crypto.ticker_name][crypto.ticker_code] %>
+              <li><%#= "$#{number_with_delimiter(price.round(4), delimeter: ",")}" %></li>
               <li></li>
-              <li>$<%= number_with_delimiter((@value_held_hash[crypto.ticker_code] * price).round, delimeter: ',') %></li>
+              <li>$<%#= number_with_delimiter((@value_held_hash[crypto.ticker_code] * price).round, delimeter: ',') %></li>
             </ul>
           </div>
-          <% end %>
-        <% end %>
-      </div>
+          <%# end %>
+        <%# end %>
+      </div> -->
     </div>
 
     <!-- here starts the show page, that has the coin chart, buy/sell option, etc -->

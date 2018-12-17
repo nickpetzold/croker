@@ -9,3 +9,4 @@ initCharts();
 bindSweetAlertButtonDemo();
 removeFlashes();
 tablesort();
+

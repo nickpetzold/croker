@@ -30,7 +30,7 @@ function extendNumbers(Tablesort){
   });
 };
 
-const table = document.getElementById('portfolio-overview-table');
+const table = document.getElementById('crypto-table');
 table.addEventListener('afterSort', function() {
     const ranks = document.querySelectorAll('.body-rank');
     ranks.forEach((element, index) => {

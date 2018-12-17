@@ -177,3 +177,25 @@
   border: 0;
   box-shadow: none;
 }
+
+.index-name {
+  width: 280px;
+  padding-left: 20px;
+}
+
+.index-value {
+  width: 150px;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.index-table-container {
+  padding: 10px;
+}
+
+.crypto-index-table tbody {
+  display: block;
+  width: 100%;
+  max-height: 650px;
+  overflow: auto;
+}
