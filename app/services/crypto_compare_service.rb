@@ -30,13 +30,24 @@ class CryptoCompareService
     DigiByte: "DGB",
     Zilliqa: "ZIL",
     Decentraland: "MANA",
-    Vechain: "VET",
+    VeChain: "VET",
     Gifto: "GTO",
     Qtum: "QTUM",
     Waves: "WAVES",
     Augur: "REP",
     Stratis: "STRAT",
-    OKEX: "OKB"
+    OKEX: "OKB",
+    Dash: "DASH",
+    BitcoinSV: "BSV",
+    Tether: "USDT",
+    NEM: "XEM",
+    Dogecoin: "DOGE",
+    Tezos: "XTZ",
+    TrueUSD: "TUSD",
+    USDCoin: "USDC",
+    BitcoinGold: "BTG",
+    BasicAttentionToken: "BAT",
+    Paxos: "PAX"
   }
 
   FIAT_CURRENCIES = "USD"
