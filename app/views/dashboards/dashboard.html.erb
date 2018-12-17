@@ -132,7 +132,7 @@
           </div>
         </div>
         <div class="portfolio-table">
-          <table id="portfolio-overview-table"class="portfolio-table">
+          <table id="crypto-table"class="portfolio-table">
             <thead>
               <tr>
                 <th data-sort-method='number' class="rank-column left-header">Rank</th>
@@ -144,8 +144,7 @@
             </thead>
             <tbody>
               <% @portfolios.each_with_index do |portfolio, index|  %>
-                <%= link_to "cryptocurrencies?crypto_id=#{portfolio.cryptocurrency.id}" do %>
-                <tr>
+                <tr data-link="<%= "cryptocurrencies?crypto_id=#{portfolio.cryptocurrency.id}" %>">
                   <td class="body-rank rank-column"><%= index + 1 %></td>
                   <td class="body-name name-col" data-sort='<%= portfolio.cryptocurrency.ticker_name %>'>
                     <div class="name-field-table">
@@ -164,7 +163,6 @@
                   <td class="body-value profit-column end-col negative" data-sort='<%= profit_loss %>'>$<%= number_with_delimiter(profit_loss.round * -1, delimeter: ',') %></td>
                   <% end %>
                 </tr>
-                <% end %>
               <% end %>
             </tbody>
           </table>

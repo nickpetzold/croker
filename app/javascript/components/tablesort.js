@@ -30,7 +30,7 @@ function extendNumbers(Tablesort){
   });
 };
 
-const table = document.getElementById('portfolio-overview-table');
+const table = document.getElementById('crypto-table');
 
 if (table) {
   table.addEventListener('afterSort', function() {
