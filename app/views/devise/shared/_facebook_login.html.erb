@@ -1,1 +1,6 @@
-<%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path%><br />
+<%= link_to user_facebook_omniauth_authorize_path do %>
+  <div class= "btn btn-primary facebook-login-button">
+    <i class="fab fa-facebook-f"></i>
+    <p>Sign in with Facebook</p>
+  </div>
+<% end %>
