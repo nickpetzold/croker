@@ -99,6 +99,7 @@
     margin: 0;
     padding-left: 0;
     padding-right: 0;
+    padding: 15px;
   }
 }
 
@@ -110,6 +111,8 @@
 
 .tab-selected {
   border-bottom: 4px solid $green !important;
+  transition: all 0.3s ease;
+  padding: 15px;
   h3 {
     color: $header-gray !important;
     font-weight: bold;
