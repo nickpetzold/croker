@@ -35,4 +35,9 @@ class User < ApplicationRecord
   def has_portfolios?
     portfolios.any?
   end
+
+  def has_crypto?
+    # returns false if the user doesnt have any crypto
+    portfolios.where(cryptocurrency_id: @cryptocurrency).any?
+  end
 end

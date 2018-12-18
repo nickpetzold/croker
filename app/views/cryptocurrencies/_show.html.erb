@@ -51,11 +51,10 @@
   </div>
 
   <div class="">
-
-    <%= hidden_field_tag :buy_price, @latest_price , id:"latest_price" %>
-
-    <%= hidden_field_tag :user_fiat_balance, current_user.fiat_balance, id:"user_fiat_balance" %>
-
+    <% if current_user %>
+      <%= hidden_field_tag :user_fiat_balance, current_user.fiat_balance, id:"user_fiat_balance" %>
+    <% end %>
+      <%= hidden_field_tag :buy_price, @latest_price , id:"latest_price" %>
     <div class="buy-window">
       <%= form_for :trade, html: { autocomplete: "off" }, url: cryptocurrency_trades_path(@cryptocurrency), class: 'buy-input-container' do |f| %>
         <div class="inputs-wrapper">
@@ -73,8 +72,12 @@
     </div>
 
     <div class="buy-input-container sell-window hidden">
-      <% if current_user.has_portfolios? %>
-      <%= hidden_field_tag :crypto_amount_held, current_user.portfolios.where(cryptocurrency_id: @cryptocurrency).first.crypto_amount_held , class: "user_crypto_balance" %>
+      <% if current_user %>
+        <% if current_user.has_portfolios? && current_user.has_crypto? %>
+          <%= hidden_field_tag :crypto_amount_held, current_user.portfolios.where(cryptocurrency_id: @cryptocurrency).first.crypto_amount_held , class: "user_crypto_balance" %>
+          <% else %>
+          <%= hidden_field_tag :crypto_amount_held, '0' , class: "user_crypto_balance" %>
+        <% end %>
       <% end %>
 
 

@@ -51,8 +51,11 @@ buyWindowFiatAmount.addEventListener('keyup', (event) => {
   let userBalance = parseFloat(document.getElementById('user_fiat_balance').value);
   let fiatAmount = parseFloat(document.getElementById('tradeValueFiatBuy').value);
   if (fiatAmount > userBalance ) {
-    alert("NOT ENOUGH USD BALANCE");
-    location.reload();
+    swal("Oops.. something went wrong...")
+      .then((value) => {
+        swal(`Seems like your balance is : ${userBalance} USD`);
+    });
+    // location.reload();
   } else if (isNaN(fiatAmount / lastPrice)) {
     buyWindowCryptoAmount.value = 0
   } else {
@@ -79,9 +82,13 @@ sellTab.addEventListener('click', (event) => {
 sellWindowCryptoAmount.addEventListener('keyup', (event) => {
   let cryptoBalance = parseFloat(document.querySelector('.user_crypto_balance').value)
   let cryptoAmount = parseFloat(sellWindowCryptoAmount.value)
+  let cryptoName = document.getElementById('tradeValueCryptoSell').placeholder.split(' ')[1]
   if (cryptoAmount > cryptoBalance) {
-    alert ("NOT ENOUGH CRYPTO BALANCE");
-    location.reload();
+    swal("Oops.. something went wrong...")
+      .then((value) => {
+        swal(`Seems like you have ${cryptoBalance} - ${cryptoName}`);
+    });
+    // location.reload();
   } else if (isNaN(lastPrice * cryptoAmount)) {
     sellWindowFiatAmount.value = 0
   } else {
@@ -92,9 +99,13 @@ sellWindowCryptoAmount.addEventListener('keyup', (event) => {
 // THIS IS THE CODE IN THE SELL TO ON KEYUP DISPLAY THE AMOUNT OF CRYPTO THAT YOU WILL SELL AUTOMATICALLY
 sellWindowFiatAmount.addEventListener('keyup', (event) => {
   let fiatAmount = parseFloat(document.getElementById('tradeValueFiatSell').value);
-  let cryptoBalance = parseFloat(document.querySelector('.user_crypto_balance').value)
+  let cryptoBalance = parseFloat(document.querySelector('.user_crypto_balance').value);
+  let cryptoName = document.getElementById('tradeValueCryptoSell').placeholder.split(' ')[1]
   if ((fiatAmount / lastPrice) > cryptoBalance ) {
-    alert("NOT ENOUGH CRYPTO BALANCE");
+    swal("Oops.. something went wrong...")
+      .then((value) => {
+        swal(`Seems like you have ${cryptoBalance} ${cryptoName}`);
+    });
   } else if (isNaN(fiatAmount / lastPrice)) {
     sellWindowCryptoAmount.value = 0;
   } else {
