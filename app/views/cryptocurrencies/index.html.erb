@@ -5,18 +5,8 @@
       <%= form_tag(cryptocurrencies_path, method: 'get', class: "form-inline") do %>
         <div id="search-data" class="form-search search-data" data-cryptocurrencies="<%= @crypto_autocomplete.to_json %>">
           <%= text_field_tag :query, params[:query], autocomplete: :off, class: "form-control search-input", placeholder: "Search by crypto..." %>
-          <%#= submit_tag "Search", class: "btn btn-success button-home" %>
         </div>
       <% end %>
-      <!-- <div class="crypto-search text-center">
-        <%#= form_tag cryptocurrencies_path, method: :get do %>
-          <%#= text_field_tag :query,
-          params[:query],
-          class: "form-control",
-          placeholder: "🔍 (Bitcoin, Ethereum, etc)"
-          %>
-        <%# end %>
-      </div> -->
       <div class="index-table-container">
         <table id="crypto-table" class="crypto-index-table">
           <thead>
@@ -38,11 +28,11 @@
                 <% price = @live_prices[crypto.ticker_name][crypto.ticker_code] %>
                 <% value_held = @value_held_hash[crypto.ticker_code] * price %>
                 <% if value_held == 0 %>
-                  <td class="index-value" data-sort='<%= value_held %>'>-</td>
+                  <td class="index-value table-value" data-sort='<%= value_held %>'>-</td>
                 <% else %>
-                  <td class="index-value" data-sort='<%= value_held %>'>$<%= number_with_delimiter(value_held.round, delimeter: ',') %></td>
+                  <td class="index-value table-value" data-sort='<%= value_held %>'>$<%= number_with_delimiter(value_held.round, delimeter: ',') %></td>
                 <% end %>
-                <td class="index-value price-value" data-sort='<%= price %>'>$<%= number_with_delimiter(price.round(4), delimeter: ",") %></td>
+                <td class="index-value table-value price-value" data-sort='<%= price %>'>$<%= number_with_delimiter(price.round(4), delimeter: ",") %></td>
               </tr>
             <% end %>
           </tbody>

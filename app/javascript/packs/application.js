@@ -8,14 +8,29 @@ import { initTables } from '../components/tablesort';
 import { autocompleteSearch } from '../components/autocomplete';
 import { toggleActiveClass } from '../components/toggleActiveClass';
 
-import '../components/buysellcharts';
+
+
+
+import { buyAndSellAnimations } from '../components/buysellcharts';
+
 
 
 initCharts();
 bindSweetAlertButtonDemo();
 removeFlashes();
 initTables();
-autocompleteSearch();
 toggleActiveClass();
+
+
+
+const path = window.location.pathname;
+if (path == '/cryptocurrencies') {
+  autocompleteSearch();
+}
+
+const href = window.location.href;
+if (href.includes('cryptocurrencies?crypto_id')) {
+  buyAndSellAnimations();
+}
 
 
