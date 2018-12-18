@@ -15,14 +15,12 @@ class TradesController < ApplicationController
     # assign the date
     @trade.date_of_trade = Date.today
     # call the buy or sell private method
-
     buy_or_sell
   end
 
   private
 
   def buy_trade
-    puts "BUY BUY BUY BUY BUY BUY"
     # avaluate if user has enough USD balance to buy the cryptocurrency
     if current_user.fiat_balance_cents >= @trade.fiat_amount_cents
       # if user has enough balance, verify if he entered all the required fields in the form
@@ -105,7 +103,7 @@ class TradesController < ApplicationController
   def buy_or_sell
     # verify if its a trade or a sell
     # if true = buy
-    if params[:transaction_type] == 'BUY'
+    if @trade.buy?
       buy_trade
     else
       # if false = sell
