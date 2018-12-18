@@ -6,6 +6,7 @@ import { bindSweetAlertButtonDemo } from '../components/sweetalert';
 import { removeFlashes } from '../components/removeFlashes';
 import { initTables } from '../components/tablesort';
 import { autocompleteSearch } from '../components/autocomplete';
+import { toggleActiveClass } from '../components/toggleActiveClass';
 
 // import '../components/buysellcharts';
 
@@ -15,4 +16,5 @@ bindSweetAlertButtonDemo();
 removeFlashes();
 initTables();
 autocompleteSearch();
+toggleActiveClass();
 
