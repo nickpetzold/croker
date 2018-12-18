@@ -27,44 +27,75 @@
   align-items: center;
   justify-content: space-around;
   height: 60px;
-  padding: 2px 8px;
+  padding: 10px 4px;
   font-weight: bold;
-  font-size: 12px;
+  font-size: 8px;
   cursor: pointer;
   color: rgb(204, 204, 204);
-  border: 1px solid rgb(204, 204, 204);
+  border: 1px solid rgb(225, 225, 225);
   transition: all 0.15s ease;
 }
 
 .btn-max:hover {
   color: rgb(170, 170, 170);
-  border: 1px solid rgb(170, 170, 170);
+  border-color: rgb(170, 170, 170);
 }
 
 .btn-max-left {
   border-top-left-radius: 2px;
   border-bottom-left-radius: 2px;
+  // border-right: none;
 }
 
 .btn-max-right {
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
+  // border-left: none;
 }
 
-.trade-buy-btn {
-  width: 260px;
+.trade-btn {
+  width: 180px;
   font-size: 24px;
   font-weight: bold;
 }
 
 .buy-sell-button {
-  padding-top: 60px;
+  padding-top: 10px;
   width: 560px;
   height: 81px;
   .btn {
     margin: 0px;
   }
 }
+
+.fund-warning {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  padding-top: 2px;
+  background-color: transparent;
+  p {
+  color: $red;
+  }
+}
+
+.crypto-warning {
+  margin-right: 12px;
+  padding-left: 10px;
+  height: 44px;
+}
+
+.fiat-warning {
+  margin-left: 15px;
+  padding-left: 10px;
+  height: 44px;
+}
+
+.trade-warning-message {
+  width: 194px;
+}
+
 
 // Here starts CSS for the form inputs
 
@@ -73,6 +104,7 @@
   font-size: 20px;
   font-weight: normal;
   border: 0.5px solid $light-gray;
+  border-left: none;
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
 }
@@ -82,6 +114,7 @@
   font-size: 20px;
   font-weight: normal;
   border: 0.5px solid $light-gray;
+  border-right: none;
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
 }
