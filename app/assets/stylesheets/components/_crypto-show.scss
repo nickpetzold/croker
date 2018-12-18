@@ -11,6 +11,10 @@
 .price-wrapper {
   text-align: right;
   margin: 20px;
+  h3 {
+    margin-right: 20px;
+    font-weight: normal;
+  }
 }
 
 .chart-wrapper {
@@ -20,19 +24,41 @@
 }
 
 .empty {
-  flex: 0 1 70%;
+  flex: 0 1 75%;
 }
 
 .timeframe-wrapper {
   display: flex;
-  margin: 0px 20px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0px 0px;
+  padding: 0 20px;
   li {
     padding: 0px;
     color: $gray;
   }
   .selected {
-    color: black;
+    color: $header-gray;
+    border-bottom: 2px solid $header-gray;
   }
+}
+
+.timeframe-btns {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 130px;
+}
+
+.btn-timescale {
+  // border: 1px solid $green;
+  // border-radius: 4px;
+  background-color: white;
+  color: $green;
+  cursor: pointer;
+  padding: 5px 5px;
+  display: flex;
+  justify-content: space-around;
 }
 
 .balance-container {
@@ -46,20 +72,27 @@
 }
 
 .buy-sell-container {
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-top: 10px;
 }
 
 .buy-sell-tabs {
   display: flex;
   height: 60px;
+  h3 {
+    color: #919191;
+    font-weight: normal;
+  }
 
   .buy-tab {
     width: 50%;
+    border-bottom: 1px solid $light-gray;
+    cursor: pointer;
   }
 
   .sell-tab {
     width: 50%;
+    border-bottom: 1px solid $light-gray;
+    cursor: pointer;
   }
 
   .tab {
@@ -69,12 +102,18 @@
   }
 }
 
-.balance {
+#balance {
   color: $gray;
+  font-weight: normal !important;
+  font-size: 14px;
 }
 
 .tab-selected {
-  border-bottom: 4px solid $green;
+  border-bottom: 4px solid $green !important;
+  h3 {
+    color: $header-gray !important;
+    font-weight: bold;
+  }
 }
 
 .crypto-search {
@@ -105,16 +144,6 @@
   }
 }
 
-.buy-sell-button {
-  padding-top: 40px;
-  width: 560px;
-  height: 81px;
-  .btn {
-    padding: 10px 120px;
-    margin: 0px;
-  }
-}
-
 .half-wrapper {
   .show {
     background-color: #ffffff;
@@ -130,3 +159,17 @@
   top: 0px;
   right: 0px;
 }
+
+.exchange-arrow {
+  color: $header-gray;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+
+.buy-window {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
