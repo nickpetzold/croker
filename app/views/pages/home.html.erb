@@ -16,10 +16,10 @@
               <a class="page-scroll" href="#our-solution">Our Solution</a>
             </li>
             <li>
-              <%= link_to "Login",  new_user_session_path, method: :get, class: "nav-sign-up-btn" %>
+              <%= link_to "Login",  new_user_session_path, class: "nav-sign-up-btn sign-up my-btn", "data-toggle" => "modal", "data-target" => "#myModal" %>
             </li>
             <li>
-              <%= link_to "Sign Up", new_user_registration_path, class: "nav-sign-up-btn"  %>
+             <%= link_to "Sign Up", new_user_registration_path, class: "nav-sign-up-btn sign-up my-btn", "data-toggle" => "modal", "data-target" => "#myModal"%>
             </li>
           </ul>
         </div>
@@ -33,6 +33,7 @@
      <!-- /.container -->
   </div>
 
+
    <!-- Intro Header -->
   <div class="landing-intro">
     <div class="container">
@@ -43,6 +44,15 @@
     </div>
     <div class="lp-dashboard-container text-center">
       <%= image_tag 'lp-dash-final.png', class: 'dashboard-lp' %>
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <%#= render "devise/registrations/new" %>
+        </div>
+      </div>
+    </div>
     </div>
   </div>
 

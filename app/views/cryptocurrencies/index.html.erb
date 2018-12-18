@@ -11,36 +11,36 @@
           %>
         <% end %>
       </div>
-      <!-- Headers (COIN, PRICE, VALUE HELD) -->
-      <div class="crypto-list-headers">
-        <div class="product list-headers">
-          <div class='list-inline product-controls product-body'>
-            <li>Coin</li>
-          </div>
-          <ul class="list-inline product-controls">
-            <li>Price <span class="hide-dot">.</span></li>
-            <li>Value Held</li>
-          </ul>
-        </div>
-      </div>
-      <div class="scrollable-crypto-list">
-
-        <% @cryptocurrencies.each do |crypto| %>
-          <%= link_to cryptocurrencies_path(crypto_id: crypto.id) do %>
-
-          <div class="product each-crypto">
-            <%= image_tag "#{crypto.ticker_code}.png", class: "product-image" %>
-            <div class='product-body'>
-              <h4><%= crypto.ticker_name %> <span class="crypto-code"><%= crypto.ticker_code %></span></h4>
-            </div>
-            <ul class="list-inline product-controls price-values">
-              <li><%= "$#{number_with_delimiter(@live_prices[crypto.ticker_name][crypto.ticker_code].round(4), :delimeter => ",")}" %></li>
-              <li></li>
-              <li>$4.321</li>
-            </ul>
-          </div>
-          <% end %>
-        <% end %>
+      <div class="index-table-container">
+        <table id="crypto-table" class="crypto-index-table">
+          <thead>
+            <tr>
+              <th class="index-name">Name</th>
+              <th data-sort-method='number' class="index-value">Price</th>
+              <th data-sort-method='number' class="index-value">Value Held</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @cryptocurrencies.each do |crypto| %>
+              <tr class="index-row" onclick="window.location='<%= "#{cryptocurrencies_path(crypto_id: crypto.id)}" %>';">
+                <td class="index-name" data-sort='<%= crypto.ticker_name %>'>
+                  <div class="name-field-table">
+                    <%= image_tag "#{crypto.ticker_code}.png", class: "portfolio-icon" %>
+                    <h4><%= crypto.ticker_name %> <span class="crypto-code"><%= crypto.ticker_code %></span></h4>
+                  </div>
+                </td>
+                <% price = @live_prices[crypto.ticker_name][crypto.ticker_code] %>
+                <td class="index-value" data-sort='<%= price %>'>$<%= number_with_delimiter(price.round(4), delimeter: ",") %></td>
+                <% value_held = @value_held_hash[crypto.ticker_code] * price %>
+                <% if value_held == 0 %>
+                  <td class="index-value" data-sort='<%= value_held %>'>-</td>
+                <% else %>
+                  <td class="index-value" data-sort='<%= value_held %>'>$<%= number_with_delimiter(value_held.round, delimeter: ',') %></td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
 

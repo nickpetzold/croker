@@ -56,9 +56,12 @@
 
 .title-header {
   padding-bottom: 12px;
-  border-bottom: 2px solid $light-gray;
+  border-bottom: 2px solid #EAEAEA;
   margin: 0;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   h2 {
     margin: 0;
     padding: 3px 5px 3px 10px;
@@ -213,9 +216,110 @@
 }
 
 // Third box styling
+.portfolio-table {
+  width: 100%;
+}
+
+.rank-column {
+  width: 60px;
+  text-align: center;
+}
+
+.name-column {
+  text-align: left;
+  width: 600px;
+}
+
+th {
+  font-size: 16px;
+  font-weight: bold;
+  color: #919191;
+  padding: 5px 0px 5px 0px;
+  border-bottom: 1px solid $light-gray;
+  cursor: pointer;
+}
+
+thead tr {
+  display: block;
+  width: 100%;
+}
+
+.portfolio-table tbody {
+  display: block;
+  width: 100%;
+  max-height: 360px;
+  overflow: auto;
+}
+
+.table-body {
+  height: 300px;
+}
+
+.portfolio-table {
+  padding: 0 10px;
+}
+
+.price-column {
+  width: 140px;
+  text-align: right;
+}
+
+.value-column {
+  width: 140px;
+  text-align: right;
+}
+
+.profit-column {
+  width: 170px;
+  text-align: right;
+}
+
+td {
+  font-size: 16px;
+  font-weight: bold;
+  color: $header-gray;
+  height: 60px;
+  h4 {
+    font-weight: bold;
+  }
+}
+
+tr {
+  border-bottom: 1px solid $light-gray;
+}
+
+tr:last-child {
+  border-bottom: none;
+}
+
+
+.end-col {
+  padding-right: 20px;
+}
+
+.name-col {
+  padding-left: 60px;
+  width: 600px;
+}
+
+.body-rank {
+  text-align: center;
+  width: 60px;
+}
+
+.name-field-table {
+  display: flex;
+  align-items: center;
+}
+
+.body-value {
+  text-align: right;
+}
+
 .portfolio-overview {
   width: 100%;
 }
+
 
 .portfolio-headers {
   border-bottom: 1px solid $light-gray;
@@ -298,7 +402,7 @@ a:link {
 .portfolio-icon {
   width: 35px;
   height: 35px;
-  margin: 0 15px 0 0;
+  margin: 0 8px;
 }
 
 .crypto-rank {
@@ -407,3 +511,10 @@ a:link {
 .top-traded-card:hover {
   background-color: #F4F4F4;
 }
+
+.title-header span {
+  font-size: 15px;
+  color: $gray;
+  margin-left: 5px;
+}
+

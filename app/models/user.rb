@@ -2,8 +2,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-  devise :omniauthable, omniauth_providers: [:facebook]
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: [:facebook]
 
   has_many :top_ups
   has_many :trades
@@ -30,5 +30,9 @@ class User < ApplicationRecord
     end
 
     return user
+  end
+
+  def has_portfolios?
+    portfolios.any?
   end
 end
