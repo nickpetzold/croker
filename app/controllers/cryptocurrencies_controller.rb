@@ -44,6 +44,7 @@ class CryptocurrenciesController < ApplicationController
       # CALL THE CHART ON THE SHOW
       # CALL THE USER BALANCE ON THE SHOWD
       # DISPLAY THE TIMEFRAME
+      @crypto_autocomplete = Cryptocurrency.pluck(:ticker_name).sort
     end
   end
 

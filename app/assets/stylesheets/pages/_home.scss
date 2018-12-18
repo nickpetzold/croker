@@ -31,9 +31,9 @@ html {
 
 
 .landing-navbar-font-specs {
-  font-weight: 400;
   font-weight: bold;
   font-size: 20px;
+  color: $header-gray;
 }
 
 .landing-navbar-custom {
@@ -41,6 +41,7 @@ html {
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   text-transform: uppercase;
   font-family: 'Lato', 'sans-serif';
+  color: $header-gray;
   padding: 0px 40px;
 }
 
