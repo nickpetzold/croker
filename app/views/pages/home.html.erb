@@ -9,24 +9,36 @@
             <li class="hidden">
               <a href="#page-top"></a>
             </li>
+            <% if user_signed_in? %>
+              <li>
+                <%= link_to dashboard_path do %> Dashboard
+                <% end %>
+              </li>
+            <% end %>
             <li>
               <a class="page-scroll" href="#why-croker">Why Croker</a>
             </li>
             <li>
               <a class="page-scroll" href="#our-solution">Our Solution</a>
             </li>
-            <li>
-              <%= link_to "Login",  new_user_session_path, class: "nav-sign-up-btn sign-up my-btn", "data-toggle" => "modal", "data-target" => "#myModal" %>
-            </li>
-            <li>
-             <%= link_to "Sign Up", new_user_registration_path, class: "nav-sign-up-btn sign-up my-btn", "data-toggle" => "modal", "data-target" => "#myModal"%>
-            </li>
+            <% unless user_signed_in?  %>
+              <li>
+                <%= link_to "Login",  new_user_session_path, class: "nav-sign-up-btn sign-up my-btn", "data-toggle" => "modal", "data-target" => "#myModal" %>
+              </li>
+              <li>
+               <%= link_to "Sign Up", new_user_registration_path, class: "nav-sign-up-btn sign-up my-btn", "data-toggle" => "modal", "data-target" => "#myModal"%>
+              </li>
+            <% end  %>
           </ul>
         </div>
         <a class="navbar-brand page-scroll" href="#page-top">
+        <%= link_to dashboard_path do %>
           <span class="landing-navbar-font-specs">Croker</span>
         </a>
+        <% end %>
+        <%= link_to dashboard_path do %>
         <%= image_tag 'logo.png', class: 'logo-navbar', style: "height: 50px" %>
+        <% end %>
       </div>
        <!-- /.navbar-collapse -->
     </div>
@@ -40,7 +52,7 @@
       <h1 class="brand-heading">Crypto Trading Made Easy</h1>
       <p class="intro-text"><strong>Croker</strong> is your <strong>gateway</strong> into the <strong>cryptosphere</strong>.
       </p>
-      <%= link_to "Sign Up", new_user_registration_path, class: "lp-sign-up-btn"  %>
+        <%= link_to "Start Trading Now", cryptocurrencies_path, class: "lp-sign-up-btn"  %>
     </div>
     <div class="lp-dashboard-container text-center">
       <%= image_tag 'lp-dash-final.png', class: 'dashboard-lp' %>
@@ -104,7 +116,7 @@
       </div>
       <div class="col-xs-6 col-md-4 col-icons">
         <%= image_tag 'lp-usd-denominated.png', class: "style_image" %>
-        <h3>Trade in only USD denominated pairs</h3>
+        <h3>Trade in USD denominated pairs</h3>
       </div>
     </div>
   </div>
@@ -112,7 +124,7 @@
   <!-- #################################################### -->
 
   <div class='landing-compo-main-wrapper'>
-     <div id="our-solution" class="landing-compo-top-wrapper">
+     <div class="landing-compo-top-wrapper">
       <div class="landing-compo-top-container text-center">
         <h2>Launch into the cryptosphere within minutes</h2>
         <p>The three-step process</p>
@@ -141,7 +153,11 @@
       <div class="container">
         <h1>Ready to fill your crypto bags?</h1>
         <p><strong>Get started</strong> with as little as <strong>$20</strong> and enjoy the ride.</p>
-        <%= link_to "Sign Up", new_user_registration_path, class: "lp-sign-up-btn"  %>
+        <% if user_signed_in? %>
+          <%= link_to "Start Trading Now", cryptocurrencies_path, class: "lp-sign-up-btn"  %>
+        <% else %>
+          <%= link_to "Start Trading Now", new_user_registration_path, class: "lp-sign-up-btn"  %>
+        <% end %>
       </div>
     </div>
  </div>
