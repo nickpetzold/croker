@@ -8,6 +8,7 @@
     "chartkick": "^3.0.1",
     "highcharts": "^7.0.0",
     "jquery": "^3.3.1",
+    "js-autocomplete": "^1.0.4",
     "sweetalert": "^2.1.2",
     "tablesort": "^5.1.0"
   },

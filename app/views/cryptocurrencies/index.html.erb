@@ -2,15 +2,21 @@
   <div class="page-wrapper">
     <!-- here starts the div that wraps the coins list on the left and the (buy/sell, chart) div on the right -->
     <div class="half-wrapper list">
-      <div class="crypto-search text-center">
-        <%= form_tag cryptocurrencies_path, method: :get do %>
-          <%= text_field_tag :query,
+      <%= form_tag(cryptocurrencies_path, method: 'get', class: "form-inline") do %>
+        <div id="search-data" class="form-search search-data" data-cryptocurrencies="<%= @crypto_autocomplete.to_json %>">
+          <%= text_field_tag :query, params[:query], autocomplete: :off, class: "form-control search-input", placeholder: "Search by crypto..." %>
+          <%#= submit_tag "Search", class: "btn btn-success button-home" %>
+        </div>
+      <% end %>
+      <!-- <div class="crypto-search text-center">
+        <%#= form_tag cryptocurrencies_path, method: :get do %>
+          <%#= text_field_tag :query,
           params[:query],
           class: "form-control",
           placeholder: "🔍 (Bitcoin, Ethereum, etc)"
           %>
-        <% end %>
-      </div>
+        <%# end %>
+      </div> -->
       <div class="index-table-container">
         <table id="crypto-table" class="crypto-index-table">
           <thead>
