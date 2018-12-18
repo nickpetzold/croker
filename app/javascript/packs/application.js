@@ -8,7 +8,7 @@ import { initTables } from '../components/tablesort';
 import { autocompleteSearch } from '../components/autocomplete';
 import { toggleActiveClass } from '../components/toggleActiveClass';
 
-// import '../components/buysellcharts';
+import '../components/buysellcharts';
 
 
 initCharts();
@@ -17,4 +17,5 @@ removeFlashes();
 initTables();
 autocompleteSearch();
 toggleActiveClass();
+
 
