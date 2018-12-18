@@ -58,14 +58,15 @@
         <div class="inputs-wrapper">
           <%= f.text_field :cryptocurrency_amount, class: 'crypto-search-input form-control text-right', id: 'tradeValueCryptoBuy', placeholder: "2 #{@cryptocurrency.ticker_code}" %>
           <i class="fas fa-exchange-alt"></i>
-          <input type="text" name="fiat_amount_cents" class="crypto-search-input form-control text-right" id="tradeValueFiatBuy" placeholder="80 USD">
+          <%= f.text_field :fiat_amount, class: 'crypto-search-input form-control text-right', id: 'tradeValueFiatBuy', placeholder: '80 USD' %>
         </div>
         <div class="buy-sell-button text-center">
           <%= f.submit 'BUY',:name=>"transaction_type", class: 'btn btn-success' %>
         </div>
-      <%= hidden_field_tag :fiat_price_cents, @latest_price , id:"latest_price" %>
+      <%= f.hidden_field :fiat_price_cents, value: @latest_price, id:"latest_price" %>
       <% end %>
     </div>
+
 
     <div class="buy-input-container sell-window hidden">
       <% if current_user %>
@@ -77,14 +78,14 @@
       <% end %>
       <%= form_for :trade, html: { autocomplete: "off" }, url: cryptocurrency_trades_path(@cryptocurrency), class: 'buy-input-container' do |f| %>
         <div class="inputs-wrapper">
-          <input type="text" name="cryptocurrency_amount" class="crypto-search-input form-control text-right" id="tradeValueCryptoSell" placeholder="20000 <%=@cryptocurrency.ticker_code %>">
+          <%= f.text_field :cryptocurrency_amount, class: 'crypto-search-input form-control text-right', id: 'tradeValueCryptoSell', placeholder: "20000 #{@cryptocurrency.ticker_code}" %>
           <i class="fas fa-exchange-alt"></i>
-          <input type="text" name="fiat_amount_cents" class="crypto-search-input form-control text-right" id="tradeValueFiatSell" placeholder="2000 USD">
+          <%= f.text_field :fiat_amount, class: 'crypto-search-input form-control text-right', id: 'tradeValueFiatSell', placeholder: '2000 USD'  %>
         </div>
         <div class="buy-sell-button text-center">
           <%= f.submit 'SELL',:name=>"transaction_type", class: 'btn btn-success' %>
         </div>
-        <%= hidden_field_tag :fiat_price_cents, @latest_price %>
+        <%= f.hidden_field :fiat_price_cents, value: @latest_price %>
       <% end %>
     </div>
   </div>
