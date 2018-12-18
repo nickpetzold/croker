@@ -49,49 +49,42 @@
       <h3>SELL</h3>
     </a>
   </div>
-
   <div class="">
     <% if current_user %>
       <%= hidden_field_tag :user_fiat_balance, current_user.fiat_balance, id:"user_fiat_balance" %>
     <% end %>
-      <%= hidden_field_tag :buy_price, @latest_price , id:"latest_price" %>
     <div class="buy-window">
       <%= form_for :trade, html: { autocomplete: "off" }, url: cryptocurrency_trades_path(@cryptocurrency), class: 'buy-input-container' do |f| %>
         <div class="inputs-wrapper">
-          <input type="text" name="crypto_amount" class="crypto-search-input form-control text-right" id="tradeValueCryptoBuy" placeholder="2 <%=@cryptocurrency.ticker_code %>">
-
+          <input type="text" name="cryptocurrency_amount" class="crypto-search-input form-control text-right" id="tradeValueCryptoBuy" placeholder="2 <%=@cryptocurrency.ticker_code %>">
           <i class="fas fa-exchange-alt"></i>
-
-          <input type="text" name="fiat_amount" class="crypto-search-input form-control text-right" id="tradeValueFiatBuy" placeholder="80 USD">
+          <input type="text" name="fiat_amount_cents" class="crypto-search-input form-control text-right" id="tradeValueFiatBuy" placeholder="80 USD">
         </div>
-
         <div class="buy-sell-button text-center">
-          <%= f.submit 'BUY', class: 'btn btn-success' %>
+          <%= f.submit 'BUY',:name=>"transaction_type", class: 'btn btn-success' %>
         </div>
+      <%= hidden_field_tag :fiat_price_cents, @latest_price , id:"latest_price" %>
       <% end %>
     </div>
 
     <div class="buy-input-container sell-window hidden">
       <% if current_user %>
-        <% if current_user.has_portfolios? && current_user.has_crypto? %>
+        <% if current_user.has_portfolios? && current_user.portfolios.where(cryptocurrency_id: @cryptocurrency).any? %>
           <%= hidden_field_tag :crypto_amount_held, current_user.portfolios.where(cryptocurrency_id: @cryptocurrency).first.crypto_amount_held , class: "user_crypto_balance" %>
           <% else %>
           <%= hidden_field_tag :crypto_amount_held, '0' , class: "user_crypto_balance" %>
         <% end %>
       <% end %>
-
-
       <%= form_for :trade, html: { autocomplete: "off" }, url: cryptocurrency_trades_path(@cryptocurrency), class: 'buy-input-container' do |f| %>
         <div class="inputs-wrapper">
-          <input type="text" name="crypto_amount" class="crypto-search-input form-control text-right" id="tradeValueCryptoSell" placeholder="20000 <%=@cryptocurrency.ticker_code %>">
-
+          <input type="text" name="cryptocurrency_amount" class="crypto-search-input form-control text-right" id="tradeValueCryptoSell" placeholder="20000 <%=@cryptocurrency.ticker_code %>">
           <i class="fas fa-exchange-alt"></i>
-
-          <input type="text" name="fiat_amount" class="crypto-search-input form-control text-right" id="tradeValueFiatSell" placeholder="2000 USD">
+          <input type="text" name="fiat_amount_cents" class="crypto-search-input form-control text-right" id="tradeValueFiatSell" placeholder="2000 USD">
         </div>
         <div class="buy-sell-button text-center">
-          <%= f.submit 'SELL', class: 'btn btn-success' %>
+          <%= f.submit 'SELL',:name=>"transaction_type", class: 'btn btn-success' %>
         </div>
+        <%= hidden_field_tag :fiat_price_cents, @latest_price %>
       <% end %>
     </div>
   </div>
