@@ -31,9 +31,9 @@ html {
 
 
 .landing-navbar-font-specs {
-  font-weight: 400;
   font-weight: bold;
   font-size: 20px;
+  color: $header-gray;
 }
 
 .landing-navbar-custom {
@@ -61,7 +61,7 @@ html {
 }
 
 .landing-navbar-custom a {
-  color: black;
+  color: $header-gray;
 }
 
 .landing-navbar-custom .nav li a:hover {
