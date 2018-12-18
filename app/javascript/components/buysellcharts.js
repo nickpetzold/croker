@@ -10,15 +10,24 @@ const buyAndSellAnimations = (() => {
   const buyWindowCryptoAmount = document.getElementById('tradeValueCryptoBuy');
   // WITHIN THE BUY FORM THIS IS THE AMOUNT OF FIAT THE USER WILL TYPE IN/PAY
   const buyWindowFiatAmount = document.getElementById('tradeValueFiatBuy');
-
   // WITHIN THE SELL FORM THIS IS THE AMOUNT OF CRYPTO THE USER WILL TYPE IN/SELL
   const sellWindowCryptoAmount = document.getElementById('tradeValueCryptoSell');
   // WITHIN THE SELL FORM THIS IS THE AMOUNT OF FIAT THE USER WILL TYPE IN/RECEIVE
   const sellWindowFiatAmount = document.getElementById('tradeValueFiatSell');
+  // MAX BUTTONS DEFINED BELOW
+  const buyCyptoMaxBtn = document.getElementById('buy-crypto-max');
+  const buyFiatMaxBtn = document.getElementById('buy-fiat-max');
+
+  // TRADE BUTTONS DEFINED BELOW
+  const buyTradeBtn = document.querySelector('.buy-trade-btn');
 
   // THIS IS USED ACROSS SEVERAL FUNCTIONS TO FETCH THE LAST LIVE RATE PRICE
   let lastPrice = parseFloat(document.getElementById('latest_price').value);
 
+  // THIS IS THE USER BALANCE AT THE TIME OF PAGE LOADING
+  let userBalance = parseFloat(document.getElementById('user_fiat_balance').value);
+  // THIS SETS THE FIAT LABEL BACK TO USD ONCE THE PAGE LOADS
+  buyWindowFiatAmount.value = 'USD';
   // BE VERY CAREFUL WHILE INTERPRETING THIS PART OF CODE
   // SO HOW THIS IS WORKS IS LIKE THIS. WE HAVE THE BUY TAB AND SELL
   // SINCE WE ARE RENDING TWO FORMS, ONE BUY AND ONE SELL, THE SELL IS HIDDEN BY DEFAULT BTW
@@ -41,30 +50,57 @@ const buyAndSellAnimations = (() => {
   // THIS IS THE CODE IN THE BUY TO ON KEYUP DISPLAY THE AMOUNT TO PAY AUTOMATICALLY
   buyWindowCryptoAmount.addEventListener('keyup', (event) => {
     if (isNaN(parseFloat(document.getElementById('latest_price').value) * parseFloat(buyWindowCryptoAmount.value))) {
-      buyWindowFiatAmount.value = 0
+      buyWindowFiatAmount.value = 'USD';
     } else {
-      buyWindowFiatAmount.value = parseFloat(document.getElementById('latest_price').value) * parseFloat(buyWindowCryptoAmount.value)
+      buyWindowFiatAmount.value = (parseFloat(document.getElementById('latest_price').value) * parseFloat(buyWindowCryptoAmount.value)).toFixed(2);
+      if (buyWindowFiatAmount.value > userBalance) {
+        document.querySelector('.crypto-trade-warning-message').innerText = 'You have insufficient funds.';
+      } else {
+        document.querySelector('.crypto-trade-warning-message').innerText = '';
+      }
     };
   });
 
+  buyWindowCryptoAmount.addEventListener('click', (event) => {
+    buyWindowCryptoAmount.value = '';
+  });
+
+  buyCyptoMaxBtn.addEventListener('click', (event) => {
+    buyWindowCryptoAmount.value = userBalance / lastPrice;
+    buyWindowFiatAmount.value = userBalance;
+  });
 
   // THIS IS THE CODE IN THE BUY TO ON KEYUP DISPLAY THE AMOUNT OF CRYPTO THAT YOU WILL BUY AUTOMATICALLY
   buyWindowFiatAmount.addEventListener('keyup', (event) => {
-    let userBalance = parseFloat(document.getElementById('user_fiat_balance').value);
     let fiatAmount = parseFloat(document.getElementById('tradeValueFiatBuy').value);
-    if (fiatAmount > userBalance ) {
-      swal("Oops.. something went wrong...")
-        .then((value) => {
-          swal(`Seems like your balance is : ${userBalance} USD`);
-      });
-      // location.reload();
-    } else if (isNaN(fiatAmount / lastPrice)) {
-      buyWindowCryptoAmount.value = 0
-    } else {
-      buyWindowCryptoAmount.value = fiatAmount / lastPrice
-    };
+    if (isNaN(fiatAmount / lastPrice)) {
+        buyWindowCryptoAmount.value = 'BTC'
+      } else {
+        const cryptoAmount = fiatAmount / lastPrice;
+        if (cryptoAmount < 10) {
+          buyWindowCryptoAmount.value = cryptoAmount.toFixed(4)
+        } else {
+          buyWindowCryptoAmount.value = cryptoAmount.toFixed(2)
+        }
+
+      if (buyWindowFiatAmount.value > userBalance) {
+          document.querySelector('.fiat-trade-warning-message').innerText = 'You have insufficient funds.';
+          buyTradeBtn.disabled = true;
+        } else {
+          document.querySelector('.fiat-trade-warning-message').innerText = '';
+          buyTradeBtn.disabled = false;
+        }
+      };
   });
 
+  buyWindowFiatAmount.addEventListener('click', (event) => {
+    buyWindowFiatAmount.value = '';
+  });
+
+  buyFiatMaxBtn.addEventListener('click', (event) => {
+    buyWindowFiatAmount.value = userBalance;
+    buyWindowCryptoAmount.value = userBalance / lastPrice;
+  });
 
   // ------------------ THIS IS WHERE THE SELL PART STARTS ---------------------
   // THIS IS THE CODE TO SHOW THE SELL FORM AFTER CLICKING THE SELL TAB AND HIDE THE BUY FORM

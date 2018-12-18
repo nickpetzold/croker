@@ -63,23 +63,31 @@
     <div class="buy-window">
       <%= form_for Trade.new, html: { autocomplete: "off" }, url: cryptocurrency_trades_path(@cryptocurrency), class: 'buy-input-container' do |f| %>
         <div class="inputs-wrapper">
-          <div class="btn-max btn-max-left">
+          <div id="buy-crypto-max" class="btn-max btn-max-left">
             <div>M</div>
             <div>A</div>
             <div>X</div>
           </div>
-          <%= f.text_field :cryptocurrency_amount, class: 'crypto-search-input form-control text-right', id: 'tradeValueCryptoBuy', placeholder: "2 #{@cryptocurrency.ticker_code}" %>
+          <%= f.text_field :cryptocurrency_amount, class: 'crypto-search-input form-control text-right', id: 'tradeValueCryptoBuy', placeholder: "#{@cryptocurrency.ticker_code}" %>
           <i class="material-icons exchange-arrow">compare_arrows</i>
-          <%= f.text_field :fiat_amount, class: 'crypto-search-input form-control text-right', id: 'tradeValueFiatBuy', placeholder: '80 USD' %>
-          <div class="btn-max btn-max-right">
+          <%= f.text_field :fiat_amount, class: 'crypto-search-input form-control text-right', id: 'tradeValueFiatBuy', placeholder: 'USD' %>
+          <div id="buy-fiat-max" class="btn-max btn-max-right">
             <div>M</div>
             <div>A</div>
             <div>X</div>
           </div>
         </div>
+        <div class="fund-warning">
+          <div class="crypto-warning">
+            <p class="crypto-trade-warning-message trade-warning-message"></p>
+          </div>
+          <div class="fiat-warning">
+            <p class="fiat-trade-warning-message trade-warning-message"></p>
+          </div>
+        </div>
         <div class="buy-sell-button text-center">
           <%= f.hidden_field :transaction_type, value: 'buy' %>
-          <%= f.submit 'BUY',:name=>"transaction_type", class: 'trade-buy-btn btn btn-success sweet-alert-demo' %>
+          <%= f.submit 'BUY',:name=>"transaction_type", id: 'buy-trade-btn', class: 'buy-trade-btn trade-btn btn btn-success sweet-alert-demo' %>
         </div>
       <%= f.hidden_field :fiat_price_cents, value: @latest_price, id:"latest_price" %>
       <% end %>
