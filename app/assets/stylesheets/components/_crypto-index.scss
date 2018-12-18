@@ -196,16 +196,17 @@
   width: 150px;
   text-align: right;
   padding-right: 10px;
+  // font-weight: normal;
 }
 
 .index-table-container {
-  padding: 10px 0 10px 10px;
+  padding: 5px 0 10px 10px;
 }
 
 .crypto-index-table tbody {
   display: block;
   width: 100%;
-  max-height: 650px;
+  max-height: 620px;
   overflow: auto;
 }
 
@@ -213,11 +214,23 @@ tr {
   cursor: pointer;
   margin-right: 0;
   padding-right: 0;
-  .active {
+}
+
+.active-row {
+  background-color: white !important;
+}
+
+thead {
+  padding-right: 5px;
+}
+
+tbody {
+  tr:hover {
     background-color: white;
   }
 }
 
-tbody tr:hover {
-  background-color: white;
+.price-value {
+  padding-right: 20px;
 }
+

@@ -22,13 +22,13 @@
           <thead>
             <tr>
               <th class="index-name">Name</th>
-              <th data-sort-method='number' class="index-value">Price</th>
               <th data-sort-method='number' class="index-value">Value Held</th>
+              <th data-sort-method='number' class="index-value price-value">Price</th>
             </tr>
           </thead>
           <tbody>
             <% @cryptocurrencies.each do |crypto| %>
-              <tr class="index-row" onclick="window.location='<%= "#{cryptocurrencies_path(crypto_id: crypto.id)}" %>';">
+              <tr class="index-row <%= crypto == @cryptocurrency ? 'active-row' : '' %>" onclick="window.location='<%= "#{cryptocurrencies_path(crypto_id: crypto.id)}" %>';">
                 <td class="index-name" data-sort='<%= crypto.ticker_name %>'>
                   <div class="name-field-table">
                     <%= image_tag "#{crypto.ticker_code}.png", class: "portfolio-icon" %>
@@ -36,13 +36,13 @@
                   </div>
                 </td>
                 <% price = @live_prices[crypto.ticker_name][crypto.ticker_code] %>
-                <td class="index-value" data-sort='<%= price %>'>$<%= number_with_delimiter(price.round(4), delimeter: ",") %></td>
                 <% value_held = @value_held_hash[crypto.ticker_code] * price %>
                 <% if value_held == 0 %>
                   <td class="index-value" data-sort='<%= value_held %>'>-</td>
                 <% else %>
                   <td class="index-value" data-sort='<%= value_held %>'>$<%= number_with_delimiter(value_held.round, delimeter: ',') %></td>
                 <% end %>
+                <td class="index-value price-value" data-sort='<%= price %>'>$<%= number_with_delimiter(price.round(4), delimeter: ",") %></td>
               </tr>
             <% end %>
           </tbody>
