@@ -1,9 +1,9 @@
 
 <div class="title">
-  <div class="title-icon">
+  <div class="title-icon" style="padding-bottom: 10px;">
     <%= image_tag "#{@cryptocurrency.ticker_code}.png", class: "portfolio-icon" %>
   </div>
-  <div class="title-header">
+  <div class="title-header" style="padding-bottom: 6px;">
     <h2 style="padding-top: 9px; padding-bottom: 9px;"><%= @cryptocurrency.ticker_name %></h2>
   </div>
 </div>
@@ -18,36 +18,42 @@
 <div id="chart-container" data-historical-prices="<%= @data.to_json %>" class="chart-wrapper"></div>
 <!-- This div contains the timeframe selectors for the chart [1D, 1W, 1M, 1Y, Since Ever] -->
 <div class="timeframe-wrapper">
-  <div class="empty"></div>
-  <ul class= "list-inline timeframe-list">
-    <li class="one-day selected"><button>1D</button></li>
-    <li class="one-week"><button>1W</button></li>
-    <li class="one-month"><button>1M</button></li>
-    <li class="one-year"><button>1Y</button></li>
-  </ul>
-</div>
-<div class="balance-container">
   <div class="show-balance">
-    <ul class= "list-inline">
-      <% if current_user %>
-      <li><h3>Balance:</h3></li>
-      <li class="balance"><%= humanized_money_with_symbol(current_user.fiat_balance) %></li>
-      <% else %>
-      <li><h3>Balance:</h3></li>
-      <li class="balance">$ --.--</li>
-      <% end %>
-    </ul>
+    <% if current_user %>
+    <h3>Balance:  <span id="balance" class="balance"><%= humanized_money_with_symbol(current_user.fiat_balance) %></span></h3>
+    <% else %>
+    <h3> </h3>
+    <% end %>
+  </div>
+  <div class="timeframe-btns">
+    <div class="btn-timescale one-day selected">1D</div>
+    <div class="btn-timescale one-week">1W</div>
+    <div class="btn-timescale one-month">1M</div>
+    <div class="btn-timescale one-year">1Y</div>
   </div>
 </div>
+<!-- <div class="balance-container">
+  <div class="show-balance">
+    <ul class= "list-inline">
+      <%# if current_user %>
+      <li><h3>Balance:</h3></li>
+      <li class="balance"><%#= humanized_money_with_symbol(current_user.fiat_balance) %></li>
+      <%# else %>
+      <li><h3>Balance:</h3></li>
+      <li class="balance">$ --.--</li>
+      <%# end %>
+    </ul>
+  </div>
+</div> -->
 <!-- Beggining of the BUY/SELL div -->
 <div class="buy-sell-container">
   <div class="buy-sell-tabs">
-    <a href="#" id="buy-trade" class="buy-tab tab-selected text-center">
+    <div id="buy-trade" class="buy-tab tab-selected text-center">
       <h3>BUY</h3>
-    </a>
-    <a href="#" id="sell-trade" class="sell-tab text-center">
+    </div>
+    <div id="sell-trade" class="sell-tab text-center">
       <h3>SELL</h3>
-    </a>
+    </div>
   </div>
   <div class="">
     <% if current_user %>
@@ -56,12 +62,22 @@
     <div class="buy-window">
       <%= form_for Trade.new, html: { autocomplete: "off" }, url: cryptocurrency_trades_path(@cryptocurrency), class: 'buy-input-container' do |f| %>
         <div class="inputs-wrapper">
+          <div class="btn-max btn-max-left">
+            <div>M</div>
+            <div>A</div>
+            <div>X</div>
+          </div>
           <%= f.text_field :cryptocurrency_amount, class: 'crypto-search-input form-control text-right', id: 'tradeValueCryptoBuy', placeholder: "2 #{@cryptocurrency.ticker_code}" %>
-          <i class="fas fa-exchange-alt"></i>
+          <i class="material-icons exchange-arrow">compare_arrows</i>
           <%= f.text_field :fiat_amount, class: 'crypto-search-input form-control text-right', id: 'tradeValueFiatBuy', placeholder: '80 USD' %>
+          <div class="btn-max btn-max-right">
+            <div>M</div>
+            <div>A</div>
+            <div>X</div>
+          </div>
         </div>
         <div class="buy-sell-button text-center">
-          <%= f.submit 'BUY',:name=>"transaction_type", class: 'btn btn-success' %>
+          <%= f.submit 'BUY',:name=>"transaction_type", class: 'trade-buy-btn btn btn-success' %>
         </div>
       <%= f.hidden_field :fiat_price_cents, value: @latest_price, id:"latest_price" %>
       <% end %>
