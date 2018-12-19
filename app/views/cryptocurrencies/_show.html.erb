@@ -10,7 +10,7 @@
 <!-- This is where we show the price of the coin -->
 <div class="price-wrapper">
   <% precision =  @latest_price > 1 ? 2 : 4 %>
-  <h3>$<%= number_with_precision(@latest_price, precision: precision, locale: :en)   %></h3>
+  <h3>$<%= number_with_precision(@latest_price, precision: precision, delimiter: ',')   %></h3>
 </div>
 <!-- Start of the chart  -->
 <!-- <div class="chart-wrapper"> -->
