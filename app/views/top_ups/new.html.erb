@@ -8,17 +8,7 @@
       <%= f.hidden_field :transaction_type, value: 'top_up' %>
       <%= f.hidden_field :date_of_top_up, value: DateTime.now %>
       <%= f.hidden_field :state, value: 'pending' %>
-      <%= f.button :submit, class: "btn btn-success btn-login", "data-toggle" => "modal", "data-target" => "#myModal"  %>
+      <%= f.button :submit, class: "btn btn-success btn-login" %>
     <% end %>
   </div>
 </div>
-
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <%#= render "devise/registrations/new" %>
-    </div>
-  </div>
-</div>
-
