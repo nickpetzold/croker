@@ -9,7 +9,8 @@
 </div>
 <!-- This is where we show the price of the coin -->
 <div class="price-wrapper">
-  <h3>$<%= number_with_delimiter(@latest_price.round(2), :delimiter => ',') %></h3>
+  <% precision =  @latest_price > 1 ? 2 : 4 %>
+  <h3>$<%= number_with_precision(@latest_price, precision: precision, locale: :en)   %></h3>
 </div>
 <!-- Start of the chart  -->
 <!-- <div class="chart-wrapper"> -->
@@ -19,7 +20,7 @@
 </div>
 <!-- This div contains the timeframe selectors for the chart [1D, 1W, 1M, 1Y, Since Ever] -->
 <div class="timeframe-wrapper">
-  <div class="show-balance">
+  <div id="show-balance" class="show-balance">
     <% if current_user %>
     <h3>Balance:  <span id="balance" class="balance"><%= humanized_money_with_symbol(current_user.fiat_balance) %></span></h3>
     <% else %>
@@ -33,19 +34,6 @@
     <div class="btn-timescale one-year">1Y</div>
   </div>
 </div>
-<!-- <div class="balance-container">
-  <div class="show-balance">
-    <ul class= "list-inline">
-      <%# if current_user %>
-      <li><h3>Balance:</h3></li>
-      <li class="balance"><%#= humanized_money_with_symbol(current_user.fiat_balance) %></li>
-      <%# else %>
-      <li><h3>Balance:</h3></li>
-      <li class="balance">$ --.--</li>
-      <%# end %>
-    </ul>
-  </div>
-</div> -->
 <!-- Beggining of the BUY/SELL div -->
 <div class="buy-sell-container">
   <div class="buy-sell-tabs">
@@ -56,33 +44,33 @@
       <h3>SELL</h3>
     </div>
   </div>
-  <div class="">
+  <div class="buy-sell-tabs-combined">
     <% if current_user %>
       <%= hidden_field_tag :user_fiat_balance, current_user.fiat_balance, id:"user_fiat_balance" %>
     <% end %>
     <div class="buy-window">
       <%= form_for Trade.new, html: { autocomplete: "off" }, url: cryptocurrency_trades_path(@cryptocurrency), class: 'buy-input-container' do |f| %>
         <div class="inputs-wrapper">
-          <div id="buy-crypto-max" class="btn-max btn-max-left">
-            <div>M</div>
-            <div>A</div>
-            <div>X</div>
+          <div class="trial-buy-sell">
+            <div id="buy-crypto-max" class="trial-max-btn">
+              MAX
+            </div>
+            <%= f.text_field :cryptocurrency_amount, class: 'crypto-search-input form-control text-right', id: 'tradeValueCryptoBuy', placeholder: "#{@cryptocurrency.ticker_code}" %>
           </div>
-          <%= f.text_field :cryptocurrency_amount, class: 'crypto-search-input form-control text-right', id: 'tradeValueCryptoBuy', placeholder: "#{@cryptocurrency.ticker_code}" %>
           <i class="material-icons exchange-arrow">compare_arrows</i>
-          <%= f.text_field :fiat_amount, class: 'crypto-search-input form-control text-right', id: 'tradeValueFiatBuy', placeholder: 'USD' %>
-          <div id="buy-fiat-max" class="btn-max btn-max-right">
-            <div>M</div>
-            <div>A</div>
-            <div>X</div>
+          <div class="trial-buy-sell">
+            <div id="buy-fiat-max" class="trial-max-btn">
+              MAX
+            </div>
+            <%= f.text_field :fiat_amount, class: 'crypto-search-input form-control text-right', id: 'tradeValueFiatBuy', placeholder: 'USD' %>
           </div>
         </div>
         <div class="fund-warning">
           <div class="crypto-warning">
-            <p class="crypto-trade-warning-message trade-warning-message"></p>
+            <p class="buy-crypto-trade-warning-message trade-warning-message"></p>
           </div>
           <div class="fiat-warning">
-            <p class="fiat-trade-warning-message trade-warning-message"></p>
+            <p class="buy-fiat-trade-warning-message trade-warning-message"></p>
           </div>
         </div>
         <div class="buy-sell-button text-center">
@@ -97,20 +85,38 @@
     <div class="buy-input-container sell-window hidden">
       <% if current_user %>
         <% if current_user.has_portfolios? && current_user.portfolios.where(cryptocurrency_id: @cryptocurrency).any? %>
-          <%= hidden_field_tag :crypto_amount_held, current_user.portfolios.where(cryptocurrency_id: @cryptocurrency).first.crypto_amount_held , class: "user_crypto_balance" %>
+          <%= hidden_field_tag :crypto_amount_held, current_user.portfolios.where(cryptocurrency_id: @cryptocurrency).first.crypto_amount_held , id: 'crypto_amount_held', class: "user_crypto_balance" %>
           <% else %>
           <%= hidden_field_tag :crypto_amount_held, '0' , class: "user_crypto_balance" %>
         <% end %>
       <% end %>
       <%= form_for :trade, html: { autocomplete: "off" }, url: cryptocurrency_trades_path(@cryptocurrency), class: 'buy-input-container' do |f| %>
         <div class="inputs-wrapper">
-          <%= f.text_field :cryptocurrency_amount, class: 'crypto-search-input form-control text-right', id: 'tradeValueCryptoSell', placeholder: "20000 #{@cryptocurrency.ticker_code}" %>
-          <i class="fas fa-exchange-alt"></i>
-          <%= f.text_field :fiat_amount, class: 'crypto-search-input form-control text-right', id: 'tradeValueFiatSell', placeholder: '2000 USD'  %>
+          <div class="trial-buy-sell">
+            <div id="sell-crypto-max" class="trial-max-btn">
+              MAX
+            </div>
+          <%= f.text_field :cryptocurrency_amount, class: 'crypto-search-input form-control text-right', id: 'tradeValueCryptoSell', placeholder: "#{@cryptocurrency.ticker_code}" %>
+          </div>
+          <i class="material-icons exchange-arrow">compare_arrows</i>
+          <div class="trial-buy-sell">
+            <div id="sell-fiat-max" class="trial-max-btn">
+              MAX
+            </div>
+          <%= f.text_field :fiat_amount, class: 'crypto-search-input form-control text-right', id: 'tradeValueFiatSell', placeholder: 'USD'  %>
+          </div>
+        </div>
+        <div class="fund-warning">
+          <div class="crypto-warning">
+            <p class="sell-crypto-trade-warning-message trade-warning-message"></p>
+          </div>
+          <div class="fiat-warning">
+            <p class="sell-fiat-trade-warning-message trade-warning-message"></p>
+          </div>
         </div>
         <div class="buy-sell-button text-center">
           <%= f.hidden_field :transaction_type, value: 'sell' %>
-          <%= f.submit 'SELL', class: 'btn btn-success' %>
+          <%= f.submit 'SELL', id: 'sell-trade-btn', class: 'buy-trade-btn trade-btn btn btn-success' %>
         </div>
         <%= f.hidden_field :fiat_price, value: @latest_price, id:"latest_price"%>
       <% end %>

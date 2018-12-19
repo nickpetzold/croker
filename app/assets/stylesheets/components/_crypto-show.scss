@@ -112,7 +112,6 @@
 .tab-selected {
   border-bottom: 4px solid $green !important;
   transition: all 0.3s ease;
-  padding: 15px;
   h3 {
     color: $header-gray !important;
     font-weight: bold;
@@ -136,16 +135,6 @@
   padding: 25px;
 }
 
-.buy-input-container {
-  display: flex;
-  margin-top: 0px;
-  justify-content: center;
-  align-items: center;
-
-  input {
-    margin: 10px;
-  }
-}
 
 .half-wrapper {
   .show {
@@ -163,16 +152,4 @@
   right: 0px;
 }
 
-.exchange-arrow {
-  color: $header-gray;
-  font-size: 16px;
-  font-weight: normal;
-}
-
-
-.buy-window {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
 
