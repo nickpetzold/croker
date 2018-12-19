@@ -63,6 +63,8 @@ class TradesController < ApplicationController
         user_portfolio = check_portfolio
         # change his portfolio amount to the specific crypto he sold
         user_portfolio.crypto_amount_held -= @trade.cryptocurrency_amount
+        user_portfolio.fiat_amount_cents -= @trade.fiat_amount_cents
+        user_portfolio.fiat_amount_cents = user_portfolio.fiat_amount_cents.negative? ? 0 : user_portfolio.fiat_amount_cents
         # save the changes on his portfolio
         user_portfolio.save
         # save the user changes
