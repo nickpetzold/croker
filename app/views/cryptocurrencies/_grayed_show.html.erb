@@ -1,60 +1,66 @@
 <div class="overlay"></div>
 
-<div class="car-card-title">
-  <div class="green-line">
-    <%= image_tag 'logo.png', class: "crypto-logo-show" %>
+
+<div class="title">
+  <div class="title-icon" style="padding-bottom: 10px;">
+    <%= image_tag "logo.png", class: "crypto-logo-show" %>
   </div>
-  <h3 class="title-show"></h3>
+  <div class="title-header" style="padding-bottom: 31px;">
+    <h2 style="padding-top: 9px; padding-bottom: 9px;"><%= %></h2>
+  </div>
 </div>
 <!-- This is where we show the price of the coin -->
 <div class="price-wrapper">
   <h3>$--.--</h3>
 </div>
-<div class="chart-wrapper">
+<div id="chart-container" class="chart-wrapper">
 </div>
 <!-- This div contains the timeframe selectors for the chart [1D, 1W, 1M, 1Y, Since Ever] -->
 <div class="timeframe-wrapper">
-  <div class="empty"></div>
-  <ul class= "list-inline timeframe-list">
-    <li class="one-day"><button>1D</button></li>
-    <li class="one-week"><button>1W</button></li>
-    <li class="one-month"><button>1M</button></li>
-    <li class="one-year"><button>1Y</button></li>
-  </ul>
-</div>
-<div class="balance-container">
-  <div class="show-balance">
-    <ul class= "list-inline">
-      <% if current_user %>
-      <li><h3>Balance:</h3></li>
-      <li class="balance"><%= humanized_money_with_symbol(current_user.fiat_balance) %></li>
-      <% else %>
-      <li><h3>Balance:</h3></li>
-      <li class="balance">$ --.--</li>
-      <% end %>
-    </ul>
+  <div id="show-balance" class="show-balance">
+    <% if current_user %>
+    <h3>Balance:  <span id="balance" class="balance"><%= humanized_money_with_symbol(current_user.fiat_balance) %></span></h3>
+    <% else %>
+    <h3> </h3>
+    <% end %>
+  </div>
+  <div class="timeframe-btns">
+    <div class="btn-timescale one-day">1D</div>
+    <div class="btn-timescale one-week">1W</div>
+    <div class="btn-timescale one-month">1M</div>
+    <div class="btn-timescale one-year">1Y</div>
   </div>
 </div>
-<div class="buy-sell-container">
-  <div class="buy-sell-tabs">
-    <div class="buy-tab tab-selected text-center">
-      <h3>BUY</h3>
+<div class="buy-sell-tabs">
+  <div id="buy-trade" class="buy-tab text-center">
+    <h3>BUY</h3>
+  </div>
+  <div id="sell-trade" class="sell-tab text-center">
+    <h3>SELL</h3>
+  </div>
+</div>
+<div class="inputs-wrapper">
+  <div class="trial-buy-sell">
+    <div id="buy-crypto-max" class="trial-max-btn">
+      MAX
     </div>
-    <div class="sell-tab text-center">
-      <h3>SELL</h3>
+  </div>
+  <i class="material-icons exchange-arrow">compare_arrows</i>
+  <div class="trial-buy-sell">
+    <div id="buy-fiat-max" class="trial-max-btn">
+      MAX
     </div>
   </div>
-  <div class="buy-input-container">
-    <form>
-      <input type="name" class="crypto-search-input form-control text-right" id="tradeValue" placeholder="2 BTC">
-    </form>
-    <i class="fas fa-exchange-alt"></i>
-    <form>
-      <input type="name" class="crypto-search-input form-control text-right" id="tradeValue" placeholder="80 USD">
-    </form>
+</div>
+<div class="fund-warning">
+  <div class="crypto-warning">
+    <p class="buy-crypto-trade-warning-message trade-warning-message"></p>
   </div>
-  <div class="buy-sell-button text-center">
-    <div class="btn btn-success">BUY</div>
+  <div class="fiat-warning">
+    <p class="buy-fiat-trade-warning-message trade-warning-message"></p>
   </div>
+</div>
+<div class="buy-sell-button text-center" style="width: 100%;">
+  <div class="buy-trade-btn trade-btn btn btn-success" style="height: 50px;"></div>
 </div>
 

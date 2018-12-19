@@ -17,17 +17,29 @@ const buyAndSellAnimations = (() => {
   // MAX BUTTONS DEFINED BELOW
   const buyCyptoMaxBtn = document.getElementById('buy-crypto-max');
   const buyFiatMaxBtn = document.getElementById('buy-fiat-max');
-
+  const sellCyptoMaxBtn = document.getElementById('sell-crypto-max');
+  const sellFiatMaxBtn = document.getElementById('sell-fiat-max');
   // TRADE BUTTONS DEFINED BELOW
-  const buyTradeBtn = document.querySelector('.buy-trade-btn');
+  const buyTradeBtn = document.getElementById('buy-trade-btn');
+  const sellTradeBtn = document.getElementById('sell-trade-btn');
 
   // THIS IS USED ACROSS SEVERAL FUNCTIONS TO FETCH THE LAST LIVE RATE PRICE
   let lastPrice = parseFloat(document.getElementById('latest_price').value);
 
   // THIS IS THE USER BALANCE AT THE TIME OF PAGE LOADING
   let userBalance = parseFloat(document.getElementById('user_fiat_balance').value);
+  // THIS IS THE USER CRYPTO BALANCE AT THE TIME OF PAGE LOADING
+  let cryptoBalance = parseFloat(document.getElementById('crypto_amount_held').value);
   // THIS SETS THE FIAT LABEL BACK TO USD ONCE THE PAGE LOADS
   buyWindowFiatAmount.value = 'USD';
+
+  function numberWithCommas(x) {
+    // x = x.toString();
+    var pattern = /(-?\d+)(\d{3})/;
+    while (pattern.test(x))
+        x = x.replace(pattern, "$1,$2");
+    return x;
+  }
   // BE VERY CAREFUL WHILE INTERPRETING THIS PART OF CODE
   // SO HOW THIS IS WORKS IS LIKE THIS. WE HAVE THE BUY TAB AND SELL
   // SINCE WE ARE RENDING TWO FORMS, ONE BUY AND ONE SELL, THE SELL IS HIDDEN BY DEFAULT BTW
@@ -44,7 +56,7 @@ const buyAndSellAnimations = (() => {
     document.querySelector('.buy-sell-tabs').lastElementChild.classList.remove("tab-selected")
     document.querySelector(".buy-input-container, sell-window").classList.add("hidden")
     document.querySelector(".buy-window").classList.remove("hidden")
-    document.querySelector('.balance').innerText = document.getElementById('user_fiat_balance').value
+    document.getElementById('balance').innerText = `$${userBalance.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
   });
 
   // THIS IS THE CODE IN THE BUY TO ON KEYUP DISPLAY THE AMOUNT TO PAY AUTOMATICALLY
@@ -54,9 +66,11 @@ const buyAndSellAnimations = (() => {
     } else {
       buyWindowFiatAmount.value = (parseFloat(document.getElementById('latest_price').value) * parseFloat(buyWindowCryptoAmount.value)).toFixed(2);
       if (buyWindowFiatAmount.value > userBalance) {
-        document.querySelector('.crypto-trade-warning-message').innerText = 'You have insufficient funds.';
+        document.querySelector('.buy-crypto-trade-warning-message').innerText = 'You have insufficient funds.';
+        buyTradeBtn.disabled = true;
       } else {
-        document.querySelector('.crypto-trade-warning-message').innerText = '';
+        document.querySelector('.buy-crypto-trade-warning-message').innerText = '';
+        buyTradeBtn.disabled = false;
       }
     };
   });
@@ -84,10 +98,10 @@ const buyAndSellAnimations = (() => {
         }
 
       if (buyWindowFiatAmount.value > userBalance) {
-          document.querySelector('.fiat-trade-warning-message').innerText = 'You have insufficient funds.';
+          document.querySelector('.buy-fiat-trade-warning-message').innerText = 'You have insufficient funds.';
           buyTradeBtn.disabled = true;
         } else {
-          document.querySelector('.fiat-trade-warning-message').innerText = '';
+          document.querySelector('.buy-fiat-trade-warning-message').innerText = '';
           buyTradeBtn.disabled = false;
         }
       };
@@ -112,45 +126,75 @@ const buyAndSellAnimations = (() => {
     document.querySelector('.buy-sell-tabs').lastElementChild.classList.add("tab-selected")
     document.querySelector(".buy-window").classList.add("hidden")
     document.querySelector(".buy-input-container, sell-window, hidden").classList.remove("hidden")
-    document.querySelector('.balance').innerText = document.querySelector('.user_crypto_balance').value
+    let cryptoBalance = parseFloat(document.querySelector('.user_crypto_balance').value);
+    let cryptoName = document.getElementById('tradeValueCryptoSell').placeholder.split(' ')[0]
+    if (cryptoBalance == 0) {
+      document.getElementById('balance').innerText = `${cryptoName} ${cryptoBalance.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})}`;
+    } else if (cryptoBalance < 10) {
+      document.getElementById('balance').innerText = `${cryptoName} ${cryptoBalance.toLocaleString(undefined, {minimumFractionDigits: 4, maximumFractionDigits: 4})}`;
+    } else {
+      document.getElementById('balance').innerText = `${cryptoName} ${cryptoBalance.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2})}`;
+    }
   })
 
   // THIS IS THE CODE IN THE SELL TO ON KEYUP DISPLAY THE AMOUNT YOU WILL RECEIVE AUTOMATICALLY
 
   sellWindowCryptoAmount.addEventListener('keyup', (event) => {
-    let cryptoBalance = parseFloat(document.querySelector('.user_crypto_balance').value)
     let cryptoAmount = parseFloat(sellWindowCryptoAmount.value)
-    let cryptoName = document.getElementById('tradeValueCryptoSell').placeholder.split(' ')[1]
-    if (cryptoAmount > cryptoBalance) {
-      swal("Oops.. something went wrong...")
-        .then((value) => {
-          swal(`Seems like you have ${cryptoBalance} - ${cryptoName}`);
-      });
-      // location.reload();
-    } else if (isNaN(lastPrice * cryptoAmount)) {
-      sellWindowFiatAmount.value = 0
+    // let cryptoBalance = parseFloat(document.querySelector('.user_crypto_balance').value)
+    let cryptoName = document.getElementById('tradeValueCryptoSell').placeholder.split(' ')[0]
+    if (isNaN(lastPrice * cryptoAmount)) {
+      sellWindowFiatAmount.value = 'USD';
     } else {
-      sellWindowFiatAmount.value = lastPrice * cryptoAmount
+      sellWindowFiatAmount.value = lastPrice * cryptoAmount;
+      if (cryptoAmount > cryptoBalance) {
+        document.querySelector('.sell-crypto-trade-warning-message').innerText = `You have insufficient ${cryptoName}.`;
+        sellTradeBtn.disabled = true;
+        } else {
+        document.querySelector('.sell-crypto-trade-warning-message').innerText = '';
+        sellTradeBtn.disabled = false;
+        };
     };
   });
 
   // THIS IS THE CODE IN THE SELL TO ON KEYUP DISPLAY THE AMOUNT OF CRYPTO THAT YOU WILL SELL AUTOMATICALLY
   sellWindowFiatAmount.addEventListener('keyup', (event) => {
     let fiatAmount = parseFloat(document.getElementById('tradeValueFiatSell').value);
-    let cryptoBalance = parseFloat(document.querySelector('.user_crypto_balance').value);
-    let cryptoName = document.getElementById('tradeValueCryptoSell').placeholder.split(' ')[1]
-    if ((fiatAmount / lastPrice) > cryptoBalance ) {
-      swal("Oops.. something went wrong...")
-        .then((value) => {
-          swal(`Seems like you have ${cryptoBalance} ${cryptoName}`);
-      });
-    } else if (isNaN(fiatAmount / lastPrice)) {
-      sellWindowCryptoAmount.value = 0;
+    // let cryptoBalance = parseFloat(document.querySelector('.user_crypto_balance').value);
+    let cryptoName = document.getElementById('tradeValueCryptoSell').placeholder.split(' ')[0]
+    if (isNaN(fiatAmount / lastPrice)) {
+      sellWindowCryptoAmount.value = cryptoName;
     } else {
-      sellWindowCryptoAmount.value = fiatAmount / lastPrice
+      sellWindowCryptoAmount.value = fiatAmount / lastPrice;
+      if ((sellWindowFiatAmount.value / lastPrice) > cryptoBalance) {
+        document.querySelector('.sell-fiat-trade-warning-message').innerText = `You have insufficient ${cryptoName}.`;
+        sellTradeBtn.disabled = true;
+        } else {
+        document.querySelector('.sell-fiat-trade-warning-message').innerText = '';
+        sellTradeBtn.disabled = false;
+        };
     };
   });
 
+  sellWindowFiatAmount.addEventListener('click', (event) => {
+    sellWindowFiatAmount.value = '';
+  });
+
+  sellWindowCryptoAmount.addEventListener('click', (event) => {
+    sellWindowCryptoAmount.value = '';
+  });
+
+  sellCyptoMaxBtn.addEventListener('click', (event) => {
+    // let cryptoBalance = parseFloat(document.getElementById('crypto_amount_held').value);
+    sellWindowCryptoAmount.value = cryptoBalance;
+    sellWindowFiatAmount.value = cryptoBalance * lastPrice;
+  });
+
+  sellFiatMaxBtn.addEventListener('click', (event) => {
+    // let cryptoBalance = parseFloat(document.getElementById('crypto_amount_held').value);
+    sellWindowCryptoAmount.value = cryptoBalance;
+    sellWindowFiatAmount.value = cryptoBalance * lastPrice;
+  });
 });
 
 export { buyAndSellAnimations };
