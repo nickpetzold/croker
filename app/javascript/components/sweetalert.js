@@ -10,10 +10,11 @@ function bindSweetAlertButtonDemo() {
       const form = document.getElementById('buy-form').closest('form');
       // const form = document.querySelector('.buy-form-sweet-alert');
       const tickerName = document.getElementById('tradeValueCryptoBuy').placeholder;
-      const cryptoValue = document.getElementById('tradeValueCryptoBuy').value;
+      const cryptoValue = parseFloat(document.getElementById('tradeValueCryptoBuy').value);
+      console.log(cryptoValue);
     swal({
       title: "",
-      text: `Are you sure you would like to buy ${cryptoValue} ${tickerName}?`,
+      text: `Are you sure you would like to buy ${cryptoValue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 4})} ${tickerName}?`,
       icon: "warning",
       buttons: [
       'No, cancel it!',
@@ -24,7 +25,7 @@ function bindSweetAlertButtonDemo() {
       if (isConfirm) {
         swal({
           title: "Congratulations!",
-          text: `You have bought ${cryptoValue} ${tickerName}!`,
+          text: `You have bought ${cryptoValue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 4})} ${tickerName}!`,
           icon: "success",
         }).then (()=> {
           form.submit();
@@ -39,10 +40,10 @@ function bindSweetAlertButtonDemo() {
       const form = document.getElementById('sell-form').closest('form');
       // const form = document.querySelector('.sell-form-sweet-alert');
       const tickerName = document.getElementById('tradeValueCryptoSell').placeholder;
-      const cryptoValue = document.getElementById('tradeValueCryptoSell').value;
+      const cryptoValue = parseFloat(document.getElementById('tradeValueCryptoSell').value);
     swal({
       title: "",
-      text: `Are you sure you would like to sell ${cryptoValue} ${tickerName}?`,
+      text: `Are you sure you would like to sell ${cryptoValue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 4})} ${tickerName}?`,
       icon: "warning",
       buttons: [
       'No, cancel it!',
@@ -53,7 +54,7 @@ function bindSweetAlertButtonDemo() {
       if (isConfirm) {
         swal({
           title: "Congratulations!",
-          text: `You have sold ${cryptoValue} ${tickerName}!`,
+          text: `You have sold ${cryptoValue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} ${tickerName}!`,
           icon: "success",
         }).then (()=> {
           form.submit();

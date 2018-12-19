@@ -9,18 +9,19 @@
             <li class="hidden">
               <a href="#page-top"></a>
             </li>
-            <% if user_signed_in? %>
-              <li>
-                <%= link_to dashboard_path do %> Dashboard
-                <% end %>
-              </li>
-            <% end %>
+
             <li>
               <a class="page-scroll" href="#why-croker">Why Croker</a>
             </li>
             <li>
               <a class="page-scroll" href="#our-solution">Our Solution</a>
             </li>
+            <% if user_signed_in? %>
+              <li>
+                <%= link_to dashboard_path do %> Dashboard
+                <% end %>
+              </li>
+            <% end %>
             <% unless user_signed_in?  %>
               <li>
                 <%= link_to "Login", new_user_session_path, class: "nav-sign-up-btn sign-up my-btn", "data-toggle" => "modal", "data-target" => "#myModal"%>
@@ -55,7 +56,7 @@
         <%= link_to "Start Trading Now", cryptocurrencies_path, class: "lp-sign-up-btn"  %>
     </div>
     <div class="lp-dashboard-container text-center">
-      <%= image_tag 'lp-dash-final.png', class: 'dashboard-lp' %>
+      <%= image_tag 'lp-dashboard-snap.png', class: 'dashboard-lp' %>
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
