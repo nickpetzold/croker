@@ -486,10 +486,17 @@ a:link {
   font-weight: bold;
   margin: 0;
   color: $header-gray;
+  text-align: justify;
 }
 
 .news-body {
   font-size: 12px;
+  text-align: justify;
+}
+
+.news-image {
+  font-size: 12px;
+  width: 100%;
 }
 
 // Sixth box styling
