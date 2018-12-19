@@ -198,10 +198,6 @@ const buyAndSellAnimations = (() => {
     sellWindowFiatAmount.value = cryptoBalance * lastPrice;
     sellTradeBtn.disabled = false;
   });
-
-  // if (isNaN(buyWindowFiatAmount.value) || isNaN(buyWindowCryptoAmount.value)) {
-
-  // }
 });
 
 export { buyAndSellAnimations };
