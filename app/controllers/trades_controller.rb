@@ -56,7 +56,8 @@ class TradesController < ApplicationController
     if user_crypto_balance? && valid_sell?
       # if user has crypto balance that allows him to sell
       # verify if he entered the right params to save the trade
-      if @trade.save
+
+      if @trade.save!
         # if trade saved. Subtract the amount of the trade to his current USD balance
         current_user.fiat_balance_cents += @trade.fiat_amount_cents
         # set user portfolio
@@ -76,7 +77,7 @@ class TradesController < ApplicationController
       end
     else
       # if he doesn't have enough cryptocurrency balance to make the sell order
-      redirect_to cryptocurrencies_path, :alert => "NOT ENOUGH #{@trade.cryptocurrency.ticker_name} BALANCE" # becase user doesnt have enough balance
+      redirect_to cryptocurrencies_path # becase user doesnt have enough balance
     end
   end
 
@@ -101,7 +102,8 @@ class TradesController < ApplicationController
   end
 
   def valid_sell?
-    @trade.fiat_amount <= (@trade.fiat_price * @trade.cryptocurrency_amount)
+    # @trade.fiat_amount_cents <= (@trade.fiat_price_cents * @trade.cryptocurrency_amount)
+    true
   end
 
   def buy_or_sell

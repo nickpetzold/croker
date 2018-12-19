@@ -4,7 +4,7 @@
     <%= image_tag "#{@cryptocurrency.ticker_code}.png", class: "portfolio-icon" %>
   </div>
   <div class="title-header" style="padding-bottom: 6px;">
-    <h2 style="padding-top: 9px; padding-bottom: 9px;"><%= @cryptocurrency.ticker_name %></h2>
+    <h2 id="crypto-alert-name" style="padding-top: 9px; padding-bottom: 9px;"><%= @cryptocurrency.ticker_name %></h2>
   </div>
 </div>
 <!-- This is where we show the price of the coin -->
@@ -49,8 +49,8 @@
       <%= hidden_field_tag :user_fiat_balance, current_user.fiat_balance, id:"user_fiat_balance" %>
     <% end %>
     <div class="buy-window">
-      <%= form_for Trade.new, html: { autocomplete: "off" }, url: cryptocurrency_trades_path(@cryptocurrency), class: 'buy-input-container' do |f| %>
-        <div class="inputs-wrapper">
+      <%= form_for Trade.new, html: { autocomplete: "off" }, url: cryptocurrency_trades_path(@cryptocurrency), class: 'buy-form-sweet-alert buy-input-container' do |f| %>
+        <div id="buy-form" class="inputs-wrapper">
           <div class="trial-buy-sell">
             <div id="buy-crypto-max" class="trial-max-btn">
               MAX
@@ -90,8 +90,8 @@
           <%= hidden_field_tag :crypto_amount_held, '0' , class: "user_crypto_balance" %>
         <% end %>
       <% end %>
-      <%= form_for :trade, html: { autocomplete: "off" }, url: cryptocurrency_trades_path(@cryptocurrency), class: 'buy-input-container' do |f| %>
-        <div class="inputs-wrapper">
+      <%= form_for :trade, html: { autocomplete: "off" }, url: cryptocurrency_trades_path(@cryptocurrency), class: 'sell-form-sweet-alert buy-input-container' do |f| %>
+        <div id="sell-form" class="inputs-wrapper">
           <div class="trial-buy-sell">
             <div id="sell-crypto-max" class="trial-max-btn">
               MAX
