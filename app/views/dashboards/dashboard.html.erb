@@ -236,9 +236,10 @@
             <%= link_to news["guid"], target: :_blank do %>
             <div class="news-card">
               <h4 class="news-title"><%= news["title"] %></h4>
-              <p class="news-body"><%= news["source"] %></p>
-              <%= image_tag news["imageurl"], class: "news-image" %>
-              <p class="news-body"><%= news["body"] %></p>
+              <div class="news-content">
+                <%= image_tag news["imageurl"], class: "news-image" %>
+                <p class="news-body"><%= news["body"] %></p>
+              </div>
             </div>
             <% end %>
           <% end %>

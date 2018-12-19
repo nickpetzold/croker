@@ -33,7 +33,7 @@
                   <td class="index-value table-value" data-sort='<%= value_held %>'>$<%= number_with_delimiter(value_held.round, delimeter: ',') %></td>
                 <% end %>
                 <% price_precision = price > 1 ? 2 : 4 %>
-                <td class="index-value table-value price-value" data-sort='<%= price %>'>$<%= number_with_precision(price, precision: price_precision, locale: :en) %></td>
+                <td class="index-value table-value price-value" data-sort='<%= price %>'>$<%= number_with_precision(price, precision: price_precision, delimiter: ',') %></td>
               </tr>
             <% end %>
           </tbody>
