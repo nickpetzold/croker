@@ -108,7 +108,7 @@
     <div class="row">
       <div class="col-xs-6 col-md-4 col-icons">
         <%= image_tag 'lp-cryptos.png', class: "style_image" %>
-        <h3>Buy and sell instantaneously the top 30 cryptos</h3>
+        <h3>Buy and sell instantaneously the top 40 cryptos</h3>
       </div>
       <div class="col-xs-6 col-md-4 col-icons">
         <%= image_tag 'lp-portfolio.png', class: "style_image" %>
@@ -152,12 +152,8 @@
     <div class="landing-ending">
       <div class="container">
         <h1>Ready to fill your crypto bags?</h1>
-        <p><strong>Get started</strong> with as little as <strong>$20</strong> and enjoy the ride.</p>
-        <% if user_signed_in? %>
-          <%= link_to "Start Trading Now", cryptocurrencies_path, class: "lp-sign-up-btn"  %>
-        <% else %>
-          <%= link_to "Start Trading Now", new_user_registration_path, class: "lp-sign-up-btn"  %>
-        <% end %>
+        <p><strong>Get started</strong> with as little as <strong>$50</strong> and enjoy the ride.</p>
+         <%= link_to "Start Trading Now", cryptocurrencies_path, class: "lp-sign-up-btn"  %>
       </div>
     </div>
  </div>
