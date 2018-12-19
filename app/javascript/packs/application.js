@@ -15,7 +15,7 @@ import { buyAndSellAnimations } from '../components/buysellcharts';
 
 
 
-initCharts();
+
 bindSweetAlertButtonDemo();
 removeFlashes();
 initTables();
@@ -30,6 +30,7 @@ if (path == '/cryptocurrencies') {
 
 const href = window.location.href;
 if (href.includes('cryptocurrencies?crypto_id')) {
+  initCharts();
   buyAndSellAnimations();
 }
 
