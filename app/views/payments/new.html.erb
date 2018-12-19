@@ -1,37 +1,30 @@
 
-<div class="login-flex payment-confirmation-wrapper">
-  <div id= "payment-flex" class="login-wrapper payment-flex" style="padding-top: 20px;">
-    <div class="cont top-part">
-      <%= image_tag "topup_frog.png", class: "logo-topup"%>
-      <h2 class="text-center" style="margin-bottom: 40px;">Please confirm your top up of <%= money_without_cents_and_with_symbol(@top_up.fiat_amount.round) %></h2>
-    </div>
-    <div class="cont">
-    <%= form_tag top_up_payments_path(@top_up) do %>
-<!--       <article>
-        <label class="amount-label text-center">
-          <span class="text-center">Amount: <%#= money_without_cents_and_with_symbol(@top_up.fiat_amount.round) %></span>
-        </label>
-      </article> -->
+<div class="payment-image">
+  <div class="login-flex payment-confirmation-wrapper">
+    <div id= "payment-flex" class="login-wrapper payment-flex" style="padding-top: 20px;">
+      <div class="cont top-part">
+        <%= image_tag "topup_frog.png", class: "logo-topup"%>
+        <h2 class="text-center" style="margin-bottom: 40px;">Please confirm your top up of <%= money_without_cents_and_with_symbol(@top_up.fiat_amount.round) %></h2>
+      </div>
+      <div class="cont">
+      <%= form_tag top_up_payments_path(@top_up) do %>
+  <!--       <article>
+          <label class="amount-label text-center">
+            <span class="text-center">Amount: <%#= money_without_cents_and_with_symbol(@top_up.fiat_amount.round) %></span>
+          </label>
+        </article> -->
 
-      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button btn-success"
-        data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-        data-name="Croker 🐸"
-        data-email="<%= current_user.email %>"
-        data-description="TopUp <%= money_without_cents_and_with_symbol(@top_up.fiat_amount) %>"
-        data-amount="<%= @top_up.fiat_amount_cents %>"
-        data-currency="<%= @top_up.fiat_amount.currency %>"></script>
-    <% end %>
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button btn-success"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-name="Croker 🐸"
+          data-email="<%= current_user.email %>"
+          data-description="TopUp <%= money_without_cents_and_with_symbol(@top_up.fiat_amount) %>"
+          data-amount="<%= @top_up.fiat_amount_cents %>"
+          data-currency="<%= @top_up.fiat_amount.currency %>"></script>
+      <% end %>
+      <%= link_to "Cancel", dashboard_path, class: "btn btn-cancel" %>
+      </div>
     </div>
   </div>
-</div>
-
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <%#= render "devise/registrations/new" %>
-    </div>
-  </div>
-</div>
 
 
