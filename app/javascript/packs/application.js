@@ -8,7 +8,6 @@ import { initTables } from '../components/tablesort';
 
 import '../components/buysellcharts';
 
-
 initCharts();
 bindSweetAlertButtonDemo();
 removeFlashes();

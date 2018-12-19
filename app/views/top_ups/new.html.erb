@@ -1,24 +1,65 @@
-<div class="login-flex">
-  <div class="login-wrapper topup-wrapper">
-    <%= image_tag "inlove_frog.png", class: "logo-topup"%>
-    <h2 class="text-center" style="margin-top: 0; margin-bottom: 40px;">How much would you like to top up?</h2>
-    <%= simple_form_for [@user, @top_up] do |f| %>
-      <%= f.label "Top-Up Amount ($)" %>
-      <%= f.input :fiat_amount, label: false %>
-      <%= f.hidden_field :transaction_type, value: 'top_up' %>
-      <%= f.hidden_field :date_of_top_up, value: DateTime.now %>
-      <%= f.hidden_field :state, value: 'pending' %>
-      <%= f.button :submit, class: "btn btn-success btn-login", "data-toggle" => "modal", "data-target" => "#myModal"  %>
-    <% end %>
-  </div>
-</div>
+<div class="flip-card-3D-wrapper">
+  <div id="flip-card">
+    <div class="flip-card-front">
+      <%= image_tag "inlove_frog.png", class: "logo-topup"%>
+        <h2 class="text-center" style="margin-top: 0; margin-bottom: 40px;">How much would you like to top up?</h2>
+        <%= simple_form_for [@user, @top_up] do |f| %>
+          <%= f.label "Top-Up Amount ($)" %>
+          <%= f.input :fiat_amount, label: false %>
+          <%= f.hidden_field :transaction_type, value: 'top_up' %>
+          <%= f.hidden_field :date_of_top_up, value: DateTime.now %>
+          <%= f.hidden_field :state, value: 'pending' %>
+          <!-- <div class="btn btn-success btn-login", id="flip-card-btn-turn-to-back">Confirm amount</div> -->
+          <%= f.button :submit, class: "btn btn-success btn-login flip-button", id:"flip-card-btn-turn-to-back"%>
+        <% end %>
+      </div>
+    <div class="flip-card-back hidden">
+      <%= image_tag "topup_frog.png", class: "logo-topup"%>
+      <h2 class="text-center" style="margin-bottom: 40px;">Please confirm your top up of <%#= money_without_cents_and_with_symbol(@top_up.fiat_amount.round) %></h2>
+    </div>
+    <div class="cont">
+    <%#= form_tag top_up_payments_path(@top_up) do %>
+<!--       <article>
+        <label class="amount-label text-center">
+          <span class="text-center">Amount: <%#= money_without_cents_and_with_symbol(@top_up.fiat_amount.round) %></span>
+        </label>
+      </article> -->
 
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <%#= render "devise/registrations/new" %>
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button btn-success"
+        data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+        data-name="Croker 🐸"
+        data-email="<%= current_user.email %>"
+        data-description="TopUp <%= money_without_cents_and_with_symbol(@top_up.fiat_amount) %>"
+        data-amount="<%= @top_up.fiat_amount_cents %>"
+        data-currency="<%= @top_up.fiat_amount.currency %>"></script>
+    <%# end %>
     </div>
   </div>
 </div>
 
+
+
+<script>
+//  document.getElementById('flip-card-btn-turn-to-back').onclick = function() {
+//    document.getElementById('flip-card').classList.toggle('do-flip');
+// };
+
+  let topUpAmount = document.getElementById('top_up_fiat_amount');
+  console.log('Hello from TopupAmount');
+  console.log(topUpAmount);
+
+  topUpAmount.addEventListener('click', (event) => {
+    topUpAmount.value = ""
+  });
+
+  let topUpCard = document.querySelectorAll('.flip-button');
+  console.log('Hello from TopUpCard');
+  console.log(topUpCard);
+
+  topUpCard.addEventListener('click', (event) => {
+    event.preventDefault();
+    document.getElementById('flip-card').classList.toggle('do-flip');
+  });
+
+
+</script>
