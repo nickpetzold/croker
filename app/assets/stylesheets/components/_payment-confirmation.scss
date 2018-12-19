@@ -1,9 +1,9 @@
 .payment-confirmation-wrapper {
   width: 100%;
   height: 100vh;
-  background-color: rgba(118, 118, 118, 0.4);
   padding-bottom: 100px;
   padding-top: 31px;
+  background-color: rgba(118, 118, 118, 0.4);
   #payment-flex {
     display: flex;
     flex-direction: column;
@@ -19,3 +19,30 @@
     padding-right: 178px;
   }
 }
+
+.payment-image {
+    background: url(dashboard.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+  }
+
+  .btn-cancel {
+    background-image: none;
+    color: $red;
+    box-shadow: none;
+    text-shadow: none;
+    font-family: 'Lato', 'sans-serif';
+    font-size: 16px;
+    width: 251px;
+    height: 33px;
+    border: 1px solid $red;
+    border-radius: 2px;
+  }
+
+  .btn-cancel:hover {
+    color: #b24c4c;
+    border: 1px solid #b24c4c;
+  }
