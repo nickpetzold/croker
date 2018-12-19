@@ -1,6 +1,6 @@
 
-<div class="login-flex">
-  <div class="login-wrapper payment-flex" style="padding-top: 20px;">
+<div class="login-flex payment-confirmation-wrapper">
+  <div id= "payment-flex" class="login-wrapper payment-flex" style="padding-top: 20px;">
     <div class="cont top-part">
       <%= image_tag "topup_frog.png", class: "logo-topup"%>
       <h2 class="text-center" style="margin-bottom: 40px;">Please confirm your top up of <%= money_without_cents_and_with_symbol(@top_up.fiat_amount.round) %></h2>
