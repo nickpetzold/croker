@@ -89,7 +89,7 @@
           <%= f.hidden_field :transaction_type, value: 'buy' %>
           <%= f.submit 'BUY',:name=>"transaction_type", id: 'buy-trade-btn', class: 'buy-trade-btn trade-btn btn btn-success sweet-alert-demo' %>
         </div>
-      <%= f.hidden_field :fiat_price_cents, value: @latest_price, id:"latest_price" %>
+      <%= f.hidden_field :fiat_price , value: @latest_price, id:"latest_price" %>
       <% end %>
     </div>
 
@@ -112,7 +112,7 @@
           <%= f.hidden_field :transaction_type, value: 'sell' %>
           <%= f.submit 'SELL', class: 'btn btn-success' %>
         </div>
-        <%= f.hidden_field :fiat_price_cents, value: @latest_price %>
+        <%= f.hidden_field :fiat_price, value: @latest_price, id:"latest_price"%>
       <% end %>
     </div>
   </div>

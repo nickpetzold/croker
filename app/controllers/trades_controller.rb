@@ -50,12 +50,10 @@ class TradesController < ApplicationController
   end
 
   def sell_trade
-    puts "SELL SELL SELL SELL"
     @trade.transaction_type = 'sell'
-
     # Verify if user crypto balnce is superior to the amount he wants to sell
     # because user can't sell more than what he has
-    if user_crypto_balance?
+    if user_crypto_balance? && valid_sell?
       # if user has crypto balance that allows him to sell
       # verify if he entered the right params to save the trade
       if @trade.save
@@ -100,6 +98,10 @@ class TradesController < ApplicationController
     amount_bought >= amount_sold
   end
 
+  def valid_sell?
+    @trade.fiat_amount <= (@trade.fiat_price * @trade.cryptocurrency_amount)
+  end
+
   def buy_or_sell
     # verify if its a trade or a sell
     # if true = buy
@@ -118,7 +120,7 @@ class TradesController < ApplicationController
   end
 
   def trade_params
-    params.require(:trade).permit(:fiat_price_cents, :fiat_amount, :cryptocurrency_amount, :transaction_type, :date_of_trade)
+    params.require(:trade).permit(:fiat_price, :fiat_amount, :cryptocurrency_amount, :transaction_type, :date_of_trade)
   end
 
   def crypto_service
