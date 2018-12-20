@@ -7,7 +7,7 @@ User.destroy_all
 
 puts "---------- Creating Users ----------"
 
-user = User.new(email: "anandha@gmail.com", first_name: "Anandha", last_name: "Khaou", password: 123456)
+user = User.new(email: "anandha1@hotmail.com", first_name: "Anandha", last_name: "Khaou", password: 123456)
 user.save
 puts "#{user.email} Successfully Created!"
 user = User.new(email: "nick@gmail.com", first_name: "Nick", last_name: "Petzold", password: 123456)
