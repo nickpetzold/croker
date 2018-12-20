@@ -1,0 +1,7 @@
+# config/meta.yml
+
+meta_product_name: "Croker"
+meta_title: "Crypto Trading Made Easy"
+meta_description: "Croker is your gateway into the cryptosphere. Get your USD, we got the cryptocurrencies."
+meta_image: "logo.png" # should exist in `app/assets/images/`
+twitter_account: "@product_twitter_account"   # required for Twitter Cards
