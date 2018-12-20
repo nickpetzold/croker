@@ -70,7 +70,11 @@ const initCharts = function() {
         x.classList.remove('selected');
       });
     });
-    oneDayBtn.addEventListener("click", function(event) {
+
+    getData(oneDayBtn.dataset.cryptoId, oneDayBtn.dataset.timeframe);
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", function(event) {
        const cryptoId = event.target.dataset.cryptoId;
        const timeFrame = event.target.dataset.timeframe;
 
@@ -79,6 +83,7 @@ const initCharts = function() {
        removeSelectedClass();
        oneDayBtn.classList.add('selected');
      });
+    })
   }
 };
 

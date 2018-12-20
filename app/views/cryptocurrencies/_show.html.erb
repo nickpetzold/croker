@@ -29,10 +29,10 @@
     <% end %>
   </div>
   <div class="timeframe-btns">
-    <div class="btn-timescale one-day selected" data-timeframe="daily" data-crypto-id="<%= @cryptocurrency.id %>" >1D</div>
-    <div class="btn-timescale one-week">1W</div>
-    <div class="btn-timescale one-month">1M</div>
-    <div class="btn-timescale one-year">1Y</div>
+    <div class="btn-timescale one-day selected" data-timeframe="minutely" data-crypto-id="<%= @cryptocurrency.id %>" >1D</div>
+    <div class="btn-timescale one-week" data-timeframe="hourly" data-crypto-id="<%= @cryptocurrency.id %>">1W</div>
+    <div class="btn-timescale one-month"data-timeframe="hourly" data-crypto-id="<%= @cryptocurrency.id %>">1M</div>
+    <div class="btn-timescale one-year" data-timeframe="daily" data-crypto-id="<%= @cryptocurrency.id %>">1Y</div>
   </div>
 </div>
 <!-- Beggining of the BUY/SELL div -->
