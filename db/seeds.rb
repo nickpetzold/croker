@@ -64,7 +64,7 @@ puts "Created new trade and portfolio entry for #{trade.cryptocurrency.ticker_na
 trade = Trade.new(transaction_type: 0)
 trade.user = User.find_by(email: "anandha@gmail.com")
 trade.cryptocurrency = Cryptocurrency.find_by(ticker_code: "XLM")
-trade.fiat_price_cents = 12.34
+trade.fiat_price_cents = 9.34
 trade.fiat_amount_cents = 500000
 trade.cryptocurrency_amount = trade.fiat_amount_cents / trade.fiat_price_cents
 trade.date_of_trade = Date.new(2018, 12, 01)
@@ -128,7 +128,7 @@ puts "Created new trade and portfolio entry for #{trade.cryptocurrency.ticker_na
 trade = Trade.new(transaction_type: 0)
 trade.user = User.find_by(email: "anandha@gmail.com")
 trade.cryptocurrency = Cryptocurrency.find_by(ticker_code: "LTC")
-trade.fiat_price_cents = 3299
+trade.fiat_price_cents = 3999
 trade.fiat_amount_cents = 5000000
 trade.cryptocurrency_amount = trade.fiat_amount_cents / trade.fiat_price_cents
 trade.date_of_trade = Date.new(2018, 12, 16)
