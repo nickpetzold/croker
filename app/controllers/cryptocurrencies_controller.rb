@@ -29,8 +29,8 @@ class CryptocurrenciesController < ApplicationController
 
   def chart
     @cryptocurrency = Cryptocurrency.find(params[:id])
-    timeframe = params[:timeframe]
     tcode = @cryptocurrency.ticker_code
+    timeframe = params[:timeframe]
     @chart = []
     if timeframe == 'daily'
       @chart << chart_service.yearly_chart(tcode, timeframe)
