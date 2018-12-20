@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   resources :cryptocurrencies, only: [:index, :show] do
     resources :trades, only: [:new, :create]
     resources :charts, only: :show
+    member do
+     get 'chart/:timeframe', to: 'cryptocurrencies#chart', as: :chart
+   end
   end
 
   resources :top_ups, only: [:show, :new, :create] do

@@ -16,7 +16,8 @@
 <!-- <div class="chart-wrapper"> -->
   <!-- Render the chart in this div -->
 <!-- </div> -->
-<div id="chart-container" data-historical-prices="<%= @data.to_json %>" class="chart-wrapper">
+<div id="chart-container" data-historical-prices="<%= @chart.to_json %>" class="chart-wrapper">
+
 </div>
 <!-- This div contains the timeframe selectors for the chart [1D, 1W, 1M, 1Y, Since Ever] -->
 <div class="timeframe-wrapper">

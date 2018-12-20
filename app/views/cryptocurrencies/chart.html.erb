@@ -1,0 +1,20 @@
+
+<div id="chart-container" data-historical-prices="<%= @chart.to_json %>" class="chart-wrapper">
+
+</div>
+<!-- This div contains the timeframe selectors for the chart [1D, 1W, 1M, 1Y, Since Ever] -->
+<div class="timeframe-wrapper">
+  <div id="show-balance" class="show-balance">
+    <% if current_user %>
+    <h3>Balance:  <span id="balance" class="balance"><%= humanized_money_with_symbol(current_user.fiat_balance) %></span></h3>
+    <% else %>
+    <h3> </h3>
+    <% end %>
+  </div>
+  <div class="timeframe-btns">
+    <div class="btn-timescale one-day selected">1D</div>
+    <div class="btn-timescale one-week">1W</div>
+    <div class="btn-timescale one-month">1M</div>
+    <div class="btn-timescale one-year">1Y</div>
+  </div>
+</div>
