@@ -18,23 +18,27 @@
           </thead>
           <tbody>
             <% @cryptocurrencies.each do |crypto| %>
-              <tr class="index-row <%= crypto == @cryptocurrency ? 'active-row' : '' %>" onclick="window.location='<%= "#{cryptocurrencies_path(crypto_id: crypto.id)}" %>';">
-                <td class="index-name" data-sort='<%= crypto.ticker_name %>'>
-                  <div class="name-field-table">
-                    <%= image_tag "#{crypto.ticker_code}.png", class: "portfolio-icon" %>
-                    <h4><%= crypto.ticker_name %> <span class="crypto-code"><%= crypto.ticker_code %></span></h4>
-                  </div>
-                </td>
-                <% price = @live_prices[crypto.ticker_name][crypto.ticker_code] %>
-                <% value_held = @value_held_hash[crypto.ticker_code] * price %>
-                <% if value_held == 0 %>
-                  <td class="index-value table-value" data-sort='<%= value_held %>'>-</td>
-                <% else %>
-                  <td class="index-value table-value" data-sort='<%= value_held %>'>$<%= number_with_delimiter(value_held.round, delimeter: ',') %></td>
-                <% end %>
-                <% price_precision = price > 1 ? 2 : 4 %>
-                <td class="index-value table-value price-value" data-sort='<%= price %>'>$<%= number_with_precision(price, precision: price_precision, delimiter: ',') %></td>
-              </tr>
+
+
+              <a href="/cryptocurrencies/<%= crypto.id %>/chart/daily" data-remote= "true">
+                <tr class="index-row <%= crypto == @cryptocurrency ? 'active-row' : '' %>>
+                  <td class="index-name" data-sort='<%= crypto.ticker_name %>'>
+                    <div class="name-field-table">
+                      <%= image_tag "#{crypto.ticker_code}.png", class: "portfolio-icon" %>
+                      <h4><%= crypto.ticker_name %> <span class="crypto-code"><%= crypto.ticker_code %></span></h4>
+                    </div>
+                  </td>
+                  <% price = @live_prices[crypto.ticker_name][crypto.ticker_code] %>
+                  <% value_held = @value_held_hash[crypto.ticker_code] * price %>
+                  <% if value_held == 0 %>
+                    <td class="index-value table-value" data-sort='<%= value_held %>'>-</td>
+                  <% else %>
+                    <td class="index-value table-value" data-sort='<%= value_held %>'>$<%= number_with_delimiter(value_held.round, delimeter: ',') %></td>
+                  <% end %>
+                  <% price_precision = price > 1 ? 2 : 4 %>
+                  <td class="index-value table-value price-value" data-sort='<%= price %>'>$<%= number_with_precision(price, precision: price_precision, delimiter: ',') %></td>
+                </tr>
+              </a>
             <% end %>
           </tbody>
         </table>
