@@ -3,7 +3,12 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Croker</title>
+
+    <% if controller.class == PagesController && controller.action_name == 'home' %>
+    <title>Croker - Cryptocurrency trading for newbies and veterans alike</title>
+    <% else %>
+    <title><%= yield(:title) %></title>
+    <% end %>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <%= favicon_link_tag 'favicon.ico' %>
