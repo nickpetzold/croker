@@ -35,7 +35,7 @@ const renderChart = function(data) {
       },
       series: [{
         name : "|",
-        data: data,
+        data: getData,
         lineColor: '#60cd44',
         color: '#60cd44',
         fillOpacity: 0.5,
@@ -66,27 +66,27 @@ const initCharts = function() {
       });
     });
     oneDayBtn.addEventListener("click", function(event) {
-      getData(1, 'daily');
-      renderChart(data[3]);
-      removeSelectedClass();
-      oneDayBtn.classList.add('selected');
-    });
-    oneWeekBtn.addEventListener("click", function(event) {
-      renderChart(data[2]);
-      removeSelectedClass();
-      oneWeekBtn.classList.add('selected');
-    });
-    oneMonthBtn.addEventListener("click", function(event) {
-      renderChart(data[1]);
-      removeSelectedClass();
-      oneMonthBtn.classList.add('selected');
-    });
-    oneYearBtn.addEventListener("click", function(event) {
-      renderChart(data[0]);
-      removeSelectedClass();
-      oneYearBtn.classList.add('selected');
-    });
-    renderChart(data[3]);
+       getData(1, 'daily');
+       renderChart(getData[0]);
+       removeSelectedClass();
+       oneDayBtn.classList.add('selected');
+     });
+    // oneWeekBtn.addEventListener("click", function(event) {
+    //   renderChart(data[2]);
+    //   removeSelectedClass();
+    //   oneWeekBtn.classList.add('selected');
+    // });
+    // oneMonthBtn.addEventListener("click", function(event) {
+    //   renderChart(data[1]);
+    //   removeSelectedClass();
+    //   oneMonthBtn.classList.add('selected');
+    // });
+    // oneYearBtn.addEventListener("click", function(event) {
+    //   renderChart(data[0]);
+    //   removeSelectedClass();
+    //   oneYearBtn.classList.add('selected');
+    // });
+    // renderChart(data[3]);
 
   }
 };
