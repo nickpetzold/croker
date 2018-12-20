@@ -12,6 +12,7 @@ import { toggleActiveClass } from '../components/toggleActiveClass';
 
 
 import { buyAndSellAnimations } from '../components/buysellcharts';
+import { javascriptTopUps } from '../components/javascriptTopUps';
 
 
 
@@ -20,6 +21,7 @@ bindSweetAlertButtonDemo();
 removeFlashes();
 initTables();
 toggleActiveClass();
+javascriptTopUps();
 
 
 
