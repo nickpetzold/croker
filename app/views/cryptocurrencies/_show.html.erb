@@ -16,7 +16,7 @@
 <!-- <div class="chart-wrapper"> -->
   <!-- Render the chart in this div -->
 <!-- </div> -->
-<div id="chart-container" data-historical-prices="<%= @chart.to_json %>" class="chart-wrapper">
+<div id="chart-container" class="chart-wrapper">
 
 </div>
 <!-- This div contains the timeframe selectors for the chart [1D, 1W, 1M, 1Y, Since Ever] -->
@@ -29,7 +29,7 @@
     <% end %>
   </div>
   <div class="timeframe-btns">
-    <div class="btn-timescale one-day selected">1D</div>
+    <div class="btn-timescale one-day selected" data-timeframe="daily" data-crypto-id="<%= @cryptocurrency.id %>" >1D</div>
     <div class="btn-timescale one-week">1W</div>
     <div class="btn-timescale one-month">1M</div>
     <div class="btn-timescale one-year">1Y</div>
