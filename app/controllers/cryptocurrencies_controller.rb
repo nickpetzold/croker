@@ -28,7 +28,6 @@ class CryptocurrenciesController < ApplicationController
   end
 
   def chart
-    byebug
     @cryptocurrency = Cryptocurrency.find(params[:id])
     tcode = @cryptocurrency.ticker_code
     timeframe = params[:timeframe]

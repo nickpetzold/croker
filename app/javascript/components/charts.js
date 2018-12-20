@@ -51,7 +51,10 @@ const renderChart = function(data) {
 const initCharts = function() {
 
   if (chartElement) {
-    const data = JSON.parse(chartElement.dataset.historicalPrices);
+    //const data = JSON.parse(chartElement.dataset.historicalPrices);
+
+
+
     const oneDayBtn = document.querySelector('.one-day');
     const oneWeekBtn = document.querySelector('.one-week');
     const oneMonthBtn = document.querySelector('.one-month');
@@ -63,6 +66,7 @@ const initCharts = function() {
       });
     });
     oneDayBtn.addEventListener("click", function(event) {
+      getData(1, 'daily');
       renderChart(data[3]);
       removeSelectedClass();
       oneDayBtn.classList.add('selected');
@@ -86,5 +90,17 @@ const initCharts = function() {
 
   }
 };
+
+
+const getData = (id, timeframe) => {
+  fetch(`http://localhost:3000/cryptocurrencies/${id}/chart/${timeframe}.json`)
+  .then(response => response.json())
+  .then((data) => {
+    console.log(data);
+  });
+}
+
+
+
 
 export { initCharts };
