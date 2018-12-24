@@ -81,7 +81,7 @@ const initCharts = function() {
        getData(cryptoId, timeFrame);
 
        removeSelectedClass();
-       oneDayBtn.classList.add('selected');
+       button.classList.add('selected');
      });
     })
   }

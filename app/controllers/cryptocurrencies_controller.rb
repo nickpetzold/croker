@@ -1,5 +1,6 @@
 class CryptocurrenciesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
+  before_action :set_cryptocurrency, only: [:chart]
 
   def index
     # this is an array of instances
@@ -22,13 +23,12 @@ class CryptocurrenciesController < ApplicationController
     if params[:crypto_id]
       @cryptocurrency = Cryptocurrency.find(params[:crypto_id])
       # THIS IS HARD CODED DONT FORGET TO REPLACE IT
-      @latest_price = 2000
+      @latest_price = @live_prices[@cryptocurrency.ticker_name][@cryptocurrency.ticker_code]
     end
     @crypto_autocomplete = Cryptocurrency.pluck(:ticker_name).sort
   end
 
   def chart
-    @cryptocurrency = Cryptocurrency.find(params[:id])
     tcode = @cryptocurrency.ticker_code
     timeframe = params[:timeframe]
     @chart = []
@@ -44,6 +44,10 @@ class CryptocurrenciesController < ApplicationController
   end
 
   private
+
+  def set_cryptocurrency
+    @cryptocurrency = Cryptocurrency.find(params[:id])
+  end
 
   def chart_service
     @chart_service ||= BuildChartService.new
